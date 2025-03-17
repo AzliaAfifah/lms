@@ -1,4 +1,4 @@
-@php 
+@php
     $setting = App\Models\SiteSetting::find(1);
 @endphp
 
@@ -104,8 +104,8 @@
                                         <a href="{{ url('/') }}">Home </i></a>
                                     </li>
                                     <li>
-                                        <a href="#">courses</a>
-                                        
+                                        <a href="{{ route('course.all') }}">courses</a>
+
                                     </li>
                                     <li>
                                         <a href="{{ route('blog') }}">blog </a>

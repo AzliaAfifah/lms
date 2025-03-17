@@ -34,7 +34,7 @@ class IndexController extends Controller
         return view('frontend.course.course_details',compact('course','goals','instructorCourses','categories','relatedCourses'));
     }
 
-    public function CategoryCourse($id, $slug) 
+    public function CategoryCourse($id, $slug)
     {
         $courses = Course::where('category_id',$id)->where('status','1')->get();
         $category = Category::where('id',$id)->first();
@@ -42,7 +42,18 @@ class IndexController extends Controller
         return view('frontend.category.category_all',compact('courses','category','categories'));
     }
 
-    public function SubCategoryCourse($id, $slug) 
+    public function CategoryAll()
+    {
+        return view('frontend.category.all_category');
+    }
+
+    public function CourseAll()
+    {
+        $courses = Course::where('status','1')->get();
+        return view('frontend.course.all_course', compact('courses'));
+    }
+
+    public function SubCategoryCourse($id, $slug)
     {
         $courses = Course::where('subcategory_id',$id)->where('status','1')->get();
         $subcategory = SubCategory::where('id',$id)->first();
@@ -50,7 +61,7 @@ class IndexController extends Controller
         return view('frontend.category.subcategory_all',compact('courses','subcategory','categories'));
     }
 
-    public function InstructorDetails($id) 
+    public function InstructorDetails($id)
     {
         $instructor = User::find($id);
         $courses = Course::where('instructor_id',$id)->get();

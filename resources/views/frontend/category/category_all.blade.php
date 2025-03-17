@@ -84,25 +84,25 @@
                             <div class="custom-control custom-checkbox mb-1 fs-15">
                                 <input type="checkbox" class="custom-control-input" id="levelCheckbox" required>
                                 <label class="custom-control-label custom--control-label text-black" for="levelCheckbox">
-                                    All Levels<span class="ml-1 text-gray">(20,300)</span>
+                                    All Levels
                                 </label>
                             </div><!-- end custom-control -->
                             <div class="custom-control custom-checkbox mb-1 fs-15">
                                 <input type="checkbox" class="custom-control-input" id="levelCheckbox2" required>
                                 <label class="custom-control-label custom--control-label text-black" for="levelCheckbox2">
-                                    Beginner<span class="ml-1 text-gray">(5,300)</span>
+                                    Beginner
                                 </label>
                             </div><!-- end custom-control -->
                             <div class="custom-control custom-checkbox mb-1 fs-15">
                                 <input type="checkbox" class="custom-control-input" id="levelCheckbox3" required>
                                 <label class="custom-control-label custom--control-label text-black" for="levelCheckbox3">
-                                    Intermediate<span class="ml-1 text-gray">(3,300)</span>
+                                    Middle
                                 </label>
                             </div><!-- end custom-control -->
                             <div class="custom-control custom-checkbox mb-1 fs-15">
                                 <input type="checkbox" class="custom-control-input" id="levelCheckbox4" required>
                                 <label class="custom-control-label custom--control-label text-black" for="levelCheckbox4">
-                                    Expert<span class="ml-1 text-gray">(1,300)</span>
+                                    Advance
                                 </label>
                             </div><!-- end custom-control -->
                         </div>

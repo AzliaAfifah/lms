@@ -919,7 +919,13 @@
                                     </div><!-- end collapse -->
                                 </div><!-- end card -->
                                 @endforeach
-
+                                <div class="card">
+                                    <div class="card-header" id="">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="" aria-expanded="true" aria-controls="collapseOne">
+                                            <span class="fs-15">Quiz</span>
+                                        </button>
+                                    </div><!-- end card-header -->
+                                </div><!-- end card -->
                             </div><!-- end accordion-->
                         </div><!-- end course-dashboard-side-content -->
                     </div><!-- end course-dashboard-sidebar-wrap -->

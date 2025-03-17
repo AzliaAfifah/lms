@@ -16,13 +16,13 @@
             </div><!-- end col-lg-9 -->
             <div class="col-lg-3">
                 <div class="category-btn-box text-right">
-                    <a href="categories.html" class="btn theme-btn">All Categories <i class="la la-arrow-right icon ml-1"></i></a>
+                    <a href="{{ route('category.all') }}" class="btn theme-btn">All Categories <i class="la la-arrow-right icon ml-1"></i></a>
                 </div><!-- end category-btn-box-->
             </div><!-- end col-lg-3 -->
         </div><!-- end row -->
         <div class="category-wrapper mt-30px">
             <div class="row">
-               
+
                @foreach ($category as $cat)
                @php
                $course = App\Models\Course::where('category_id',$cat->id)->get();

@@ -192,7 +192,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 
             </div><!-- end tab-content -->
             <div class="more-btn-box mt-4 text-center">
-                <a href="course-grid.html" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ml-1"></i></a>
+                <a href="{{ route('course.all') }}" class="btn theme-btn">Browse all Courses <i class="la la-arrow-right icon ml-1"></i></a>
             </div><!-- end more-btn-box -->
         </div><!-- end container -->
     </div><!-- end card-content-wrapper -->
@@ -217,7 +217,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                 @else
                     <h6 class="ribbon fs-14 mr-2">New</h6>
                 @endif
-                    
+
                     <p class="text-success fs-14 font-weight-medium">Updated<span class="font-weight-bold pl-1">{{ $item->created_at->format('M d Y') }}</span></p>
                 </div>
                 <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
@@ -235,7 +235,7 @@ $categories = App\Models\Category::orderBy('category_name','ASC')->get();
                     <li><i class="la la-check mr-1 text-black"></i> {{ $goal->goal_name }}</li>
                 @endforeach
                 </ul>
-                
+
 
                 <div class="d-flex justify-content-between align-items-center">
                     <button type="submit" class="btn theme-btn flex-grow-1 mr-3" onclick="addToCart({{ $item->id }},'{{ $item->course_name }}','{{ $item->instructor_id }}','{{ $item->course_name_slug }}' )"><i class="la la-shopping-cart mr-1 fs-18"></i> Add to Cart</button>

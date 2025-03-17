@@ -284,7 +284,9 @@ Route::middleware(['auth','roles:instructor'])->group(function(){
 Route::get('/instructor/login', [InstructorController::class, 'InstructorLogin'])->name('instructor.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/course/details/{id}/{slug}', [IndexController::class, 'CourseDetails']);
 Route::get('/category/{id}/{slug}', [IndexController::class, 'CategoryCourse']);
-Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryCourse']);
+Route::get('/category/all', [IndexController::class, 'CategoryAll'])->name('category.all');
+Route::get('/course/all', [IndexController::class, 'CourseAll'])->name('course.all');
+// Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryCourse']);
 Route::get('/instructor/details/{id}', [IndexController::class, 'InstructorDetails'])->name('instructor.details');
 Route::post('/add-to-wishlist/{course_id}', [WishListController::class, 'AddToWishList']);
 

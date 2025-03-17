@@ -67,7 +67,7 @@ class BlogController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    ////// All Blog Post 
+    ////// All Blog Post
 
     public function BlogPost()
     {
@@ -196,7 +196,7 @@ class BlogController extends Controller
 
     public function BlogList()
     {
-        $blog = BlogPost::latest()->paginate(2);
+        $blog = BlogPost::latest()->paginate(4);
         $bcategory = BlogCategory::latest()->get();
         $post = BlogPost::latest()->limit(3)->get();
         return view('frontend.blog.blog_list', compact('blog','bcategory','post'));
