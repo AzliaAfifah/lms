@@ -1,3 +1,6 @@
+@guest
+
+@else
 <section class="register-area section-padding dot-bg overflow-hidden">
     <div class="container">
         <div class="row">
@@ -65,3 +68,5 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end register-area -->
+@endguest
+

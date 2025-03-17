@@ -25,7 +25,7 @@
 				@if (Auth::user()->can('category.menu'))
 					<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-cart'></i>
+						<div class="parent-icon"><i class="lni lni-list"></i>
 						</div>
 						<div class="menu-title">Manage Category</div>
 					</a>
@@ -40,7 +40,7 @@
 				@if (Auth::user()->can('instructor.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-user"></i>
 						</div>
 						<div class="menu-title">Manage Instructor</div>
 					</a>
@@ -53,19 +53,19 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-book"></i>
 						</div>
 						<div class="menu-title">Manage Courses</div>
 					</a>
 					<ul>
-						<li> <a href="{{ route('admin.all.course') }}"><i class='bx bx-radio-circle'></i>All Courses</a>
+						<li> <a href="{{ route('admin.all.course') }}"><i class="lni lni-book"></i>All Courses</a>
 						</li>
 					</ul>
 				</li>
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-ticket-alt"></i>
 						</div>
 						<div class="menu-title">Manage Coupon</div>
 					</a>
@@ -77,7 +77,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-cog"></i>
 						</div>
 						<div class="menu-title">Manage Setting</div>
 					</a>
@@ -91,7 +91,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-cart"></i>
 						</div>
 						<div class="menu-title">Manage Orders</div>
 					</a>
@@ -103,7 +103,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-bar-chart"></i>
 						</div>
 						<div class="menu-title">Manage Report</div>
 					</a>
@@ -114,7 +114,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-comments"></i>
 						</div>
 						<div class="menu-title">Manage Review</div>
 					</a>
@@ -126,7 +126,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-users"></i>
 						</div>
 						<div class="menu-title">Manage All User</div>
 					</a>
@@ -138,7 +138,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-pencil"></i>
 						</div>
 						<div class="menu-title">Manage Blog</div>
 					</a>
@@ -151,7 +151,7 @@
 				<li class="menu-label">Role & Permission</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-line-chart"></i>
+						<div class="parent-icon"><i class="lni lni-lock"></i>
 						</div>
 						<div class="menu-title">Role & Permission</div>
 					</a>
@@ -165,7 +165,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="bx bx-line-chart"></i>
+						<div class="parent-icon"><i class="lni lni-shield"></i>
 						</div>
 						<div class="menu-title">Manage Admin</div>
 					</a>
@@ -173,7 +173,7 @@
 						<li> <a href="{{ route('all.admin') }}"><i class='bx bx-radio-circle'></i>All Admin</a></li>
 					</ul>
 				</li> 	
-				<li>
+				{{-- <li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-map-alt"></i>
 						</div>
@@ -193,7 +193,7 @@
 						</div>
 						<div class="menu-title">Support</div>
 					</a>
-				</li>
+				</li> --}}
 			</ul>
 			<!--end navigation-->
 		</div>
