@@ -31,7 +31,7 @@
     <div class="container">
         <div class="filter-bar mb-4">
             <div class="filter-bar-inner d-flex flex-wrap align-items-center justify-content-between">
-                <p class="fs-14">We found <span class="text-black">{{ count($courses) }}</span> courses available for you</p>
+                <p class="fs-14">We found <span class="text-black">{{ count($course) }}</span> courses available for you</p>
                 <div class="d-flex flex-wrap align-items-center">
                     {{-- <ul class="filter-nav mr-3">
                         <li><a href="course-grid.html" data-toggle="tooltip" data-placement="top" title="Grid View" class="active"><span class="la la-th-large"></span></a></li>
@@ -205,25 +205,8 @@
                 </div><!-- end row -->
                 <div class="text-center pt-3">
                     <nav aria-label="Page navigation example" class="pagination-box">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true"><i class="la la-arrow-left"></i></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true"><i class="la la-arrow-right"></i></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
+                        {{ $courses->links('vendor.pagination.custom') }}
                     </nav>
-                    <p class="fs-14 pt-2">Showing 1-10 of 56 results</p>
                 </div>
             </div><!-- end col-lg-8 -->
         </div><!-- end row -->

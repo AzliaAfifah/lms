@@ -285,10 +285,12 @@ Route::get('/instructor/login', [InstructorController::class, 'InstructorLogin']
 Route::get('/course/details/{id}/{slug}', [IndexController::class, 'CourseDetails']);
 Route::get('/category/{id}/{slug}', [IndexController::class, 'CategoryCourse']);
 Route::get('/category/all', [IndexController::class, 'CategoryAll'])->name('category.all');
+// Route::get('/funfact', [IndexController::class, 'Funfact']);
 Route::get('/course/all', [IndexController::class, 'CourseAll'])->name('course.all');
 // Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryCourse']);
 Route::get('/instructor/details/{id}', [IndexController::class, 'InstructorDetails'])->name('instructor.details');
 Route::post('/add-to-wishlist/{course_id}', [WishListController::class, 'AddToWishList']);
+
 
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 Route::post('/buy/data/store/{id}', [CartController::class, 'BuyToCart']);

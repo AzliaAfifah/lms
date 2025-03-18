@@ -36,7 +36,7 @@ All Courses | Linguana
     <div class="container">
         <div class="filter-bar mb-4">
             <div class="filter-bar-inner d-flex flex-wrap align-items-center justify-content-between">
-                <p class="fs-14">We found <span class="text-black">{{ count($courses) }}</span> courses available for you</p>
+                <p class="fs-14">We found <span class="text-black">{{ count($course) }}</span> courses available for you</p>
             </div><!-- end filter-bar-inner -->
         </div><!-- end filter-bar -->
         <div class="tab-content" id="myTabContent">

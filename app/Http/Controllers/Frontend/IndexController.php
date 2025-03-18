@@ -36,10 +36,11 @@ class IndexController extends Controller
 
     public function CategoryCourse($id, $slug)
     {
-        $courses = Course::where('category_id',$id)->where('status','1')->get();
+        $course = Course::where('category_id',$id)->where('status','1')->get();
+        $courses = Course::where('category_id',$id)->where('status','1')->latest()->paginate(4);
         $category = Category::where('id',$id)->first();
         $categories = Category::latest()->get();
-        return view('frontend.category.category_all',compact('courses','category','categories'));
+        return view('frontend.category.category_all',compact('courses','course','category','categories'));
     }
 
     public function CategoryAll()
@@ -49,8 +50,8 @@ class IndexController extends Controller
 
     public function CourseAll()
     {
-        $courses = Course::where('status','1')->get();
-        return view('frontend.course.all_course', compact('courses'));
+        $course = Course::where('status','1')->get();
+        return view('frontend.course.all_course', compact('course'));
     }
 
     public function SubCategoryCourse($id, $slug)
@@ -67,4 +68,10 @@ class IndexController extends Controller
         $courses = Course::where('instructor_id',$id)->get();
         return view('frontend.instructor.instructor_details',compact('instructor','courses'));
     }
+
+    // public function Funfact()
+    // {
+    //     $course = Course::where('status','1')->get();
+    //     return view('frontend.home.funfact-area', compact('course'));
+    // }
 }

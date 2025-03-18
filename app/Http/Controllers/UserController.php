@@ -38,7 +38,7 @@ class UserController extends Controller
             $file->move(public_path('upload/user_images'), $filename);
             $data['photo'] = $filename;
         }
- 
+
         $data->save();
 
         $notification = array(
@@ -87,7 +87,7 @@ class UserController extends Controller
                 'message' => 'Old Password Does not Match!',
                 'alert-type' => 'error'
              );
-     
+
              return back()->with($notification);
         }
 
@@ -100,7 +100,7 @@ class UserController extends Controller
             'message' => 'Password Change Successfully!',
             'alert-type' => 'success'
          );
- 
+
          return back()->with($notification);
     }
 

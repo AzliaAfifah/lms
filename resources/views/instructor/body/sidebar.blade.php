@@ -30,7 +30,7 @@
 				<li class="menu-label">Course Manage </li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class='bx bx-cart'></i>
+						<div class="parent-icon"><i class="lni lni-book"></i>
 						</div>
 						<div class="menu-title">Course Manage </div>
 					</a>
@@ -42,7 +42,7 @@
 				</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-cart"></i>
 						</div>
 						<div class="menu-title">All Orders</div>
 					</a>
@@ -53,7 +53,7 @@
 				</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-question-circle"></i>
 						</div>
 						<div class="menu-title">All Questions</div>
 					</a>
@@ -64,7 +64,7 @@
 				</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-ticket-alt"></i>
 						</div>
 						<div class="menu-title">Manage Coupon</div>
 					</a>
@@ -75,7 +75,7 @@
 				</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-comments"></i>
 						</div>
 						<div class="menu-title">Manage Review</div>
 					</a>
@@ -86,7 +86,7 @@
 				</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class='bx bx-bookmark-heart'></i>
+						<div class="parent-icon"><i class="lni lni-bubble"></i>
 						</div>
 						<div class="menu-title">Live Chat</div>
 					</a>
@@ -95,7 +95,7 @@
 						</li>
 					</ul>
 				</li>
-				<li class="menu-label">Charts & Maps</li>
+				{{-- <li class="menu-label">Charts & Maps</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-line-chart"></i>
@@ -123,19 +123,19 @@
 						<li> <a href="map-vector-maps.html"><i class='bx bx-radio-circle'></i>Vector Maps</a>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 
 				@else
-				
+
 				@endif
-				
-				<li>
+
+				{{-- <li>
 					<a href="https://themeforest.net/user/codervent" target="_blank">
 						<div class="parent-icon"><i class="bx bx-support"></i>
 						</div>
 						<div class="menu-title">Support</div>
 					</a>
-				</li>
+				</li> --}}
 			</ul>
 			<!--end navigation-->
 		</div>
