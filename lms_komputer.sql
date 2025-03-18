@@ -3,11 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2025 at 04:00 AM
+-- Generation Time: Mar 18, 2025 at 07:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
-
--- Testing
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -99,7 +97,8 @@ INSERT INTO `categories` (`id`, `category_name`, `category_slug`, `image`, `crea
 (4, 'Mandarin', 'mandarin', 'upload/category/1826448315481593.png', NULL, '2025-03-12 20:34:08'),
 (5, 'French', 'french', 'upload/category/1826448342843813.png', NULL, '2025-03-12 20:34:35'),
 (6, 'Korean', 'korean', 'upload/category/1826448368551030.png', NULL, '2025-03-12 20:35:00'),
-(7, 'Japanese', 'japanese', 'upload/category/1826448390452066.png', NULL, '2025-03-12 20:35:20');
+(7, 'Japanese', 'japanese', 'upload/category/1826448390452066.png', NULL, '2025-03-12 20:35:20'),
+(11, 'German', 'german', 'upload/category/1826815900010092.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,7 +198,9 @@ INSERT INTO `courses` (`id`, `category_id`, `instructor_id`, `course_image`, `co
 (16, 4, 2, 'upload/course/thambnail/1826451968103155.jpg', 'Mandarin Tones & Characters: A Beginner’s Guide', 'Mandarin Tones & Characters: A Beginner’s Guide', 'mandarin-tones-&-characters:-a-beginner’s-guide', '<p>hello</p>', 'upload/course/video/1741840332.mp4', 'Middle', '20', '2', 'Yes', 450, 210, 'Hello', '1', NULL, '1', 1, '2025-03-12 21:32:12', NULL),
 (17, 6, 2, 'upload/course/thambnail/1826453865915948.jpg', 'Hangul 101: Learn to Read & Write Korean in a Week', 'Hangul 101: Learn to Read & Write Korean in a Week', 'hangul-101:-learn-to-read-&-write-korean-in-a-week', '<p>hi</p>', 'upload/course/video/1741842142.mp4', 'Advance', '12', '1', 'Yes', 500, 400, 'hi', NULL, NULL, '1', 1, '2025-03-12 22:02:22', NULL),
 (18, 5, 2, 'upload/course/thambnail/1826454350080884.jpg', 'French Pronunciation Bootcamp: Sound Like a Native!', 'French Pronunciation Bootcamp: Sound Like a Native!', 'french-pronunciation-bootcamp:-sound-like-a-native!', '<p>hello</p>', 'upload/course/video/1741842603.mp4', 'Middle', '12', '4', 'Yes', 200, 100, 'hello', '1', NULL, NULL, 1, '2025-03-12 22:10:03', NULL),
-(19, 7, 2, 'upload/course/thambnail/1826454584828241.jpg', 'Hiragana & Katakana Mastery: Your First Step to Japanese', 'Hiragana & Katakana Mastery: Your First Step to Japanese', 'hiragana-&-katakana-mastery:-your-first-step-to-japanese', '<p>hai</p>', 'upload/course/video/1741842827.mp4', 'Middle', '38', '4', 'No', 400, 300, 'hai', '1', NULL, '1', 1, '2025-03-12 22:13:47', NULL);
+(19, 7, 2, 'upload/course/thambnail/1826454584828241.jpg', 'Hiragana & Katakana Mastery: Your First Step to Japanese', 'Hiragana & Katakana Mastery: Your First Step to Japanese', 'hiragana-&-katakana-mastery:-your-first-step-to-japanese', '<p>hai</p>', 'upload/course/video/1741842827.mp4', 'Middle', '38', '4', 'No', 400, 300, 'hai', '1', NULL, '1', 1, '2025-03-12 22:13:47', NULL),
+(21, 1, 2, 'upload/course/thambnail/1826901462580135.jpg', 'TOEFL Mastery: Crush the Exam with Confidence', 'TOEFL Mastery: Crush the Exam with Confidence', 'toefl-mastery:-crush-the-exam-with-confidence', '<p>qqqq</p>', 'upload/course/video/1742269004.mp4', 'Advance', '12', '3', 'Yes', 500, NULL, 'qqqq', '1', NULL, NULL, 1, '2025-03-17 20:36:44', NULL),
+(22, 1, 2, 'upload/course/thambnail/1826901533205258.jpg', 'Business English: Communicate Like a Pro', 'Business English: Communicate Like a Pro', 'business-english:-communicate-like-a-pro', '<p>123</p>', 'upload/course/video/1742269070.mp4', 'Middle', '12', '3', 'Yes', 500, NULL, '123', '1', NULL, '1', 1, '2025-03-17 20:37:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -243,7 +244,9 @@ INSERT INTO `course_goals` (`id`, `course_id`, `goal_name`, `created_at`, `updat
 (31, 16, 'aaaa', '2025-03-12 21:32:12', '2025-03-12 21:32:12'),
 (32, 17, 'aiaiaiai', '2025-03-12 22:02:22', '2025-03-12 22:02:22'),
 (33, 18, 'abcd', '2025-03-12 22:10:03', '2025-03-12 22:10:03'),
-(34, 19, 'abdch', '2025-03-12 22:13:47', '2025-03-12 22:13:47');
+(34, 19, 'abdch', '2025-03-12 22:13:47', '2025-03-12 22:13:47'),
+(36, 21, 'qqqq', '2025-03-17 20:36:44', '2025-03-17 20:36:44'),
+(37, 22, 'dnjshudehu', '2025-03-17 20:37:50', '2025-03-17 20:37:50');
 
 -- --------------------------------------------------------
 
@@ -271,7 +274,14 @@ INSERT INTO `course_lectures` (`id`, `course_id`, `section_id`, `lecture_title`,
 (1, 5, 1, 'Simple Present Tense', NULL, NULL, 'Welcome to Motion Graphics in After Effects.\r\nIn the next lectures you will start creating your first animation and animate imported footage.\r\nBut I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes,\r\nAt vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.\r\nOccaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.\r\nEt harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus,\r\nOn the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.', '2025-01-18 03:33:34', '2025-02-18 21:16:28'),
 (2, 5, 1, 'Simple Past Tense', NULL, 'https://youtu.be/PdbBP0F8GK8?si=FU1o1gA1EoLo4ZGd', 'Simple Past Tense', '2025-01-18 03:41:17', '2025-01-18 03:41:17'),
 (3, 5, 1, 'Simple Future Tense', NULL, 'https://www.youtube.com/embed/4Ae7O57Itu8?si=Bi2Pk19U4J1-asB6', 'Simple Future Tense', '2025-01-18 03:42:53', '2025-02-18 21:35:01'),
-(7, 5, 4, 'Understanding', NULL, 'https://www.youtube.com/embed/WioL50vGE04?si=I2iBOqWKhNjnI9QG', 'Understanding', '2025-01-22 06:25:53', '2025-01-22 06:25:53');
+(7, 5, 4, 'Understanding', NULL, 'https://www.youtube.com/embed/WioL50vGE04?si=I2iBOqWKhNjnI9QG', 'Understanding', '2025-01-22 06:25:53', '2025-01-22 06:25:53'),
+(8, 14, 8, 'Learn English Tenses (complete course)', NULL, 'https://www.youtube.com/embed/UdbvTP4rCxc?si=38nC6E_NAEC3HSog', 'Learn English Tenses (complete course)', '2025-03-16 20:43:50', '2025-03-16 20:46:06'),
+(9, 14, 8, 'How to learn ALL 12 tenses', NULL, 'https://www.youtube.com/embed/mScixcyubUY?si=H_MsvHSXsr-y1vea', 'How to learn ALL 12 tenses', '2025-03-16 20:44:27', '2025-03-16 20:46:19'),
+(10, 14, 9, 'PRESENT SIMPLE', NULL, 'https://www.youtube.com/embed/Z19NAX_gWxI?si=1v4wghWmR-w52bVD', 'PRESENT SIMPLE', '2025-03-16 20:45:08', '2025-03-16 20:46:30'),
+(11, 14, 9, 'PRESENT CONTINUOUS (PRESENT PROGRESSIVE)', NULL, 'https://www.youtube.com/embed/w04YVmJR4w4?si=GIk2tzk4bljEuo4a', 'PRESENT CONTINUOUS (PRESENT PROGRESSIVE)', '2025-03-16 20:45:38', '2025-03-16 20:46:40'),
+(12, 14, 9, 'Present Simple or Present Continuous?', NULL, 'https://www.youtube.com/embed/SL3ciyAEcms?si=YhslkkeXm_cOipNH', 'Present Simple or Present Continuous?', '2025-03-16 20:47:34', '2025-03-16 20:47:34'),
+(13, 14, 10, 'PAST SIMPLE', NULL, 'https://www.youtube.com/embed/dmJrYbDjxQY?si=VH4_eYbuMrVkOStc', 'PAST SIMPLE', '2025-03-16 20:48:17', '2025-03-16 20:48:17'),
+(14, 14, 10, 'PAST CONTINUOUS', NULL, 'https://www.youtube.com/embed/bTWa5M4UMO8?si=yKNbrg4cDti6SUoe', 'PAST CONTINUOUS', '2025-03-16 20:48:52', '2025-03-16 20:48:52');
 
 -- --------------------------------------------------------
 
@@ -294,7 +304,10 @@ CREATE TABLE `course_sections` (
 INSERT INTO `course_sections` (`id`, `course_id`, `section_title`, `created_at`, `updated_at`) VALUES
 (1, 5, 'Section 1 : Grammar', NULL, NULL),
 (2, 11, 'test', NULL, NULL),
-(4, 5, 'Section 2 : Speaking', NULL, NULL);
+(4, 5, 'Section 2 : Speaking', NULL, NULL),
+(8, 14, 'Introduction to English Tenses', NULL, NULL),
+(9, 14, 'Present Tenses: Talking About Now', NULL, NULL),
+(10, 14, 'Past Tenses: Talking About the Past', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -412,9 +425,11 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('1b6ce814-3210-4bf2-b6da-a661e0649f6c', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:47', '2025-03-05 19:42:33', '2025-03-05 23:06:47'),
 ('2a48200f-5f83-4c86-a958-62badaeab9e0', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 06:12:19', '2025-03-16 06:12:19'),
 ('67d514db-db69-4aa5-a466-338f452d965f', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 20:52:49', '2025-03-05 20:52:49'),
+('6b041dd1-51bf-4dbb-b284-fd8995b6628b', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23'),
 ('836586f7-2308-43d7-ad7b-7e1922a5629a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 19:42:33', '2025-03-05 19:42:33'),
 ('9e3bee8f-6757-480e-acde-9cd711459353', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 06:12:19', '2025-03-16 06:12:19'),
-('cbb166c8-83db-49a6-91e5-d7b204bca2c3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:36', '2025-03-05 20:52:49', '2025-03-05 23:06:36');
+('cbb166c8-83db-49a6-91e5-d7b204bca2c3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:36', '2025-03-05 20:52:49', '2025-03-05 23:06:36'),
+('ea1088a1-b54d-4c91-9782-4aef547483c2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23');
 
 -- --------------------------------------------------------
 
@@ -439,14 +454,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id`, `course_title`, `price`, `created_at`, `updated_at`) VALUES
-(13, 27, 3, 5, 2, 'Learn English Grammar', 200, '2025-02-18 20:30:14', '2025-02-18 20:30:14'),
-(14, 28, 3, 6, 2, 'Vocabulary Building', 300, '2025-02-18 20:35:33', '2025-02-18 20:35:33'),
-(15, 29, 3, 7, 2, NULL, 400, NULL, NULL),
-(16, 30, 4, 5, 2, NULL, 200, NULL, NULL),
-(17, 31, 2, 5, 2, 'Learn English Grammar', 200, '2025-02-28 08:22:22', '2025-02-28 08:22:22'),
-(18, 32, 4, 11, 2, 'Spanish Course', 300, '2025-03-05 19:42:20', '2025-03-05 19:42:20'),
-(19, 33, 4, 6, 2, 'Vocabulary Building', 300, '2025-03-05 20:52:40', '2025-03-05 20:52:40'),
-(20, 34, 3, 19, 2, 'Hiragana & Katakana Mastery: Your First Step to Japanese', 400, '2025-03-16 06:12:10', '2025-03-16 06:12:10');
+(20, 34, 3, 19, 2, 'Hiragana & Katakana Mastery: Your First Step to Japanese', 400, '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
+(21, 35, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 300, '2025-03-16 20:33:17', '2025-03-16 20:33:17');
 
 -- --------------------------------------------------------
 
@@ -503,7 +512,8 @@ INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_deliver
 (31, 'Instructor', 'instructor@gmail.com', '993', 'Indonesia', 'handcash', '140', 'Direct Payment', 'EOS11996117', '28 February 2025', 'February', '2025', 'pending', '2025-02-28 08:22:22', '2025-02-28 08:22:22'),
 (32, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS70790250', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 19:42:20', '2025-03-05 19:42:20'),
 (33, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS43575614', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 20:52:40', '2025-03-05 20:52:40'),
-(34, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '320', 'Direct Payment', 'EOS27562089', '16 March 2025', 'March', '2025', 'pending', '2025-03-16 06:12:10', '2025-03-16 06:12:10');
+(34, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '320', 'Direct Payment', 'EOS27562089', '16 March 2025', 'March', '2025', 'pending', '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
+(35, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '240', 'Direct Payment', 'EOS43547443', '17 March 2025', 'March', '2025', 'pending', '2025-03-16 20:33:17', '2025-03-16 20:33:17');
 
 -- --------------------------------------------------------
 
@@ -788,9 +798,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-03-13 05:43:25', NULL, NULL, '2025-03-12 22:43:25'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-03-16 13:05:53', NULL, '2025-02-04 07:11:01', '2025-03-16 06:05:53'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-03-16 13:13:00', NULL, NULL, '2025-03-16 06:13:00'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-03-18 03:22:14', NULL, NULL, '2025-03-17 20:22:14'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-03-18 05:47:13', NULL, '2025-02-04 07:11:01', '2025-03-17 22:47:13'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-03-18 05:50:43', NULL, NULL, '2025-03-17 22:50:43'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-06 02:40:43', NULL, '2024-12-19 05:30:18', '2025-03-05 19:40:43'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', NULL, NULL, NULL, '2025-02-17 20:14:00'),
@@ -818,7 +828,13 @@ CREATE TABLE `wishlists` (
 
 INSERT INTO `wishlists` (`id`, `user_id`, `course_id`, `created_at`, `updated_at`) VALUES
 (5, 3, 9, '2025-02-15 22:28:31', NULL),
-(6, 3, 12, '2025-02-15 22:28:53', NULL);
+(6, 3, 12, '2025-02-15 22:28:53', NULL),
+(7, 1, 18, '2025-03-17 00:05:48', NULL),
+(8, 1, 15, '2025-03-17 00:09:35', NULL),
+(9, 1, 19, '2025-03-17 00:09:49', NULL),
+(10, 1, 16, '2025-03-17 00:10:33', NULL),
+(11, 3, 18, '2025-03-17 00:19:32', NULL),
+(12, 3, 17, '2025-03-17 00:21:01', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1024,7 +1040,7 @@ ALTER TABLE `blog_posts`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `chat_messages`
@@ -1042,25 +1058,25 @@ ALTER TABLE `coupons`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `course_goals`
 --
 ALTER TABLE `course_goals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `course_lectures`
 --
 ALTER TABLE `course_lectures`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `course_sections`
 --
 ALTER TABLE `course_sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1078,13 +1094,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1144,7 +1160,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
