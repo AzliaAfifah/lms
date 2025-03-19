@@ -101,7 +101,7 @@ Linguana
 <!--======================================
         START REGISTER AREA
 ======================================-->
-@include('frontend.home.register-area')
+@include('frontend.home.testimonial')
 <!--======================================
         END REGISTER AREA
 ======================================-->

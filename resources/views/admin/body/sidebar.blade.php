@@ -126,6 +126,18 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="lni lni-star"></i>
+						</div>
+						<div class="menu-title">Manage Testimonial</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('admin.pending.testimonial') }}"><i class='bx bx-radio-circle'></i>Pending Testimonial</a></li>
+						<li> <a href="{{ route('admin.active.testimonial') }}"><i class='bx bx-radio-circle'></i>Active Testimonial</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-users"></i>
 						</div>
 						<div class="menu-title">Manage All User</div>

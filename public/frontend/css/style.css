@@ -2881,6 +2881,48 @@ div.datedropper .picker .pick-lg-b li {
   .form--control-gray:focus {
     background-color: rgba(127, 136, 151, 0.1); }
 
+    .form--control {
+      height: 50px;
+      padding-left: 45px;
+      font-size: 14px;
+      color: #233d63;
+      border-color: rgba(127, 136, 151, 0.2);
+      font-weight: 400;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px; }
+      .form--control:focus {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        border-color: #35A49C; }
+
+        .form--control2 {
+          height: 50px;
+          font-size: 14px;
+          color: #233d63;
+          border-color: rgba(127, 136, 151, 0.2);
+          font-weight: 400;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px; }
+          .form--control2:focus {
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            border-color: #35A49C; }
+    
+    .form--control-gray {
+      background-color: rgba(127, 136, 151, 0.1);
+      border-color: transparent; }
+      .form--control-gray:focus {
+        background-color: rgba(127, 136, 151, 0.1); }
 .form-group {
   position: relative; }
 

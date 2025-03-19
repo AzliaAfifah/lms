@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\ActiveUserController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\RoleController;
 use App\Http\Controllers\Backend\ChatController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
@@ -145,6 +146,13 @@ Route::middleware(['auth','roles:admin'])->group(function(){
         Route::get('/admin/pending/review','AdminPendingReview')->name('admin.pending.review');
         Route::post('/update/review/status','UpdateReviewStatus')->name('update.review.status');
         Route::get('/admin/active/review','AdminActiveReview')->name('admin.active.review');
+    });
+
+    // Admin Testimonial Route
+    Route::controller(TestimonialController::class)->group(function (){
+        Route::get('/admin/pending/testimonial','AdminPendingTestimonial')->name('admin.pending.testimonial');
+        Route::post('/update/testimonial/status','UpdateTestimonialStatus')->name('update.testimonial.status');
+        Route::get('/admin/active/testimonial','AdminActiveTestimonial')->name('admin.active.testimonial');
     });
 
     // Admin All User and Instructor Route
@@ -290,6 +298,8 @@ Route::get('/course/all', [IndexController::class, 'CourseAll'])->name('course.a
 // Route::get('/subcategory/{id}/{slug}', [IndexController::class, 'SubCategoryCourse']);
 Route::get('/instructor/details/{id}', [IndexController::class, 'InstructorDetails'])->name('instructor.details');
 Route::post('/add-to-wishlist/{course_id}', [WishListController::class, 'AddToWishList']);
+
+Route::post('/store/testimonial', [TestimonialController::class, 'StoreTestimonial'])->name('store.testimonial');
 
 
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
