@@ -1,4 +1,4 @@
-{{-- /// Start Wishlist Add Option /// --}}
+ <!-- #region -->{{-- /// Start Wishlist Add Option /// --}}
 <script type="text/javascript">
     $.ajaxSetup({
         headers: {
@@ -13,7 +13,7 @@
             , url: "/add-to-wishlist/" + course_id,
 
             success: function(data) {
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
                     toast: true
@@ -38,7 +38,7 @@
                     , })
                 }
 
-                // End Message  
+                // End Message
             }
         })
     }
@@ -99,7 +99,7 @@
 
             success: function(data) {
             wishlist();
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
                     toast: true
@@ -124,7 +124,7 @@
                     , })
                 }
 
-                // End Message  
+                // End Message
             }
         })
     }
@@ -150,7 +150,7 @@ function addToCart(courseId, courseName, instructorId, slug) {
 
             success: function(data) {
             miniCart();
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
                     toast: true
@@ -175,7 +175,7 @@ function addToCart(courseId, courseName, instructorId, slug) {
                     , })
                 }
 
-                // End Message  
+                // End Message
             }
         });
 }
@@ -198,7 +198,7 @@ function buyCourse(courseId, courseName, instructorId, slug) {
 
             success: function(data) {
             miniCart();
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
                     toast: true
@@ -226,7 +226,7 @@ function buyCourse(courseId, courseName, instructorId, slug) {
                     , })
                 }
 
-                // End Message  
+                // End Message
             }
         });
 }
@@ -271,12 +271,12 @@ function buyCourse(courseId, courseName, instructorId, slug) {
             dataType: 'json',
             success:function(data) {
             miniCart();
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
-                    toast: true, 
-                    position: 'top-end', 
-                    showConfirmButton: false, 
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
                     timer: 3000
                 })
                 if ($.isEmptyObject(data.error)) {
@@ -352,12 +352,12 @@ function cartRemove(rowId){
             miniCart();
             cart();
             couponCalculation();
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
-                    toast: true, 
-                    position: 'top-end', 
-                    showConfirmButton: false, 
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
                     timer: 3000
                 })
                 if ($.isEmptyObject(data.error)) {
@@ -400,12 +400,12 @@ function applyCoupon(){
                 if (data.validity == true) {
                     $('#couponField').hide();
                 }
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
-                    toast: true, 
-                    position: 'top-end', 
-                    showConfirmButton: false, 
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
                     timer: 3000
                 })
                 if ($.isEmptyObject(data.error)) {
@@ -499,12 +499,12 @@ couponCalculation();
                 if (data.validity == true) {
                     $('#couponField').hide();
                 }
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
-                    toast: true, 
-                    position: 'top-end', 
-                    showConfirmButton: false, 
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
                     timer: 3000
                 })
                 if ($.isEmptyObject(data.error)) {
@@ -541,12 +541,12 @@ couponCalculation();
             success:function(data) {
                 couponCalculation();
                 $('#couponField').show();
-                // Start Message 
+                // Start Message
 
                 const Toast = Swal.mixin({
-                    toast: true, 
-                    position: 'top-end', 
-                    showConfirmButton: false, 
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
                     timer: 3000
                 })
                 if ($.isEmptyObject(data.error)) {

@@ -69,9 +69,35 @@ class IndexController extends Controller
         return view('frontend.instructor.instructor_details',compact('instructor','courses'));
     }
 
-    // public function Funfact()
-    // {
-    //     $course = Course::where('status','1')->get();
-    //     return view('frontend.home.funfact-area', compact('course'));
-    // }
+    public function SearchCourse(Request $request)
+    {
+        $courses = Course::where('course_name', 'LIKE', "%{$request->search}%")->get();
+
+        if ($courses->isEmpty()) {
+            return response()->json(['html' => '<p>No courses found.</p>']);
+        }
+
+        $output = ''; // Pastikan $output awalnya kosong
+
+        foreach ($courses as $course) {
+            $output .= '
+            <div class="col-lg-6 responsive-column-half">
+                <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1'.$course->id.'">
+                    <div class="card-image">
+                        <a href="/course/details/'.$course->id.'/'. $course->course_name_slug.'" class="d-block">
+                            <img class="card-img-top lazy" src="'.asset($course->course_image).'" alt="Card image cap">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/course/details/'.$course->id.'/'. $course->course_name_slug.'">'.$course->course_name.'</a></h5>
+                        <p class="card-text"><a href="/instructor/details/'.$course->instructor_id.'">'.$course->user->name.'</a></p>
+                    </div>
+                </div>
+            </div>';
+        }
+
+        return response()->json(['html' => $output]);
+
+    }
+
 }

@@ -1,5 +1,6 @@
 @php
     $testimonials = App\Models\Testimonial::where('status',1)->latest()->get();
+    $student = App\Models\User::where('role','user')->where('status','1')->get();
 @endphp
 
 <section class="testimonial-area bg-gray section--padding">
@@ -8,15 +9,15 @@
             <div class="col-lg-4">
                 <div class="testimonial-content-wrap pb-4">
                     <div class="section-heading">
-                        <h2 class="section__title mb-3">From the Aduca community</h2>
-                        <p class="section__desc" style="font-size: 20px;">
-                            Donec vitae orci sed dolor rutrum auctor. Duis arcu tortor, suscipit eget, imperdiet nec
+                        <h2 class="section__title mb-3" style="font-size: 32px;">Voices from the Linguana community</h2>
+                        <p class="section__desc" style="font-size: 16px;">
+                            Join the Linguana community and explore a world of language learning. Improve your skills with engaging content and expert insights.
                         </p>
                     </div><!-- end section-heading -->
                 </div>
             </div><!-- end col-lg-4 -->
             <div class="col-lg-8">
-                <h3 class="fs-22 font-weight-medium pb-3">{{ count($testimonials) }} people are already learning on Aduca</h3>
+                <h3 class="fs-22 font-weight-medium pb-3">{{ count($student) }} people are already learning on Aduca</h3>
                 <div class="testimonial-carousel-2 owl-action-styled owl-action-styled-2">
                     @foreach ($testimonials as $item)
                         <div class="card card-item">

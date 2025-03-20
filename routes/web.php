@@ -344,3 +344,6 @@ Route::get('/user-all', [ChatController::class, 'GetAllUsers']);
 Route::get('/user-message/{id}', [ChatController::class, 'UserMsgById']);
 Route::get('/instructor/live/chat', [ChatController::class, 'InstructorLiveChat'])->name('instructor.live.chat');
 
+Route::get('/search/course', [IndexController::class, 'SearchCourse'])->name('search_course');
+
+
