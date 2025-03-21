@@ -41,7 +41,7 @@
                 <div class="card card-item">
                     <div class="card-body">
                         <p class="card-text pb-3">{!! nl2br($blog->long_descp) !!}</p>
-                        
+
                         <div class="section-block"></div>
                         <h3 class="fs-18 font-weight-semi-bold pt-3">Tags</h3>
                         <div class="d-flex flex-wrap justify-content-between align-items-center pt-3">
@@ -57,10 +57,10 @@
                 <div class="comments-wrap pt-5" id="comments">
                     <div class="d-flex align-items-center justify-content-between pb-4">
                         <h3 class="fs-22 font-weight-semi-bold">Comments</h3>
-                        <span class="ribbon ribbon-lg">4</span>
+                        <span class="ribbon ribbon-lg">{{ count($comments) }}</span>
                     </div>
                     <div class="comment-list">
-                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+                        {{-- <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
                             <div class="media-img mr-4 rounded-full">
                                 <img class="rounded-full lazy" src="images/img-loading.png" data-src="images/small-avatar-1.jpg" alt="User image">
                             </div>
@@ -70,11 +70,7 @@
                                 <p class="pb-3">This is one of the best courses I have taken in Udemy. It is very complete, and it has made continue learning about Java and SQL databases as well.</p>
                                 <div class="helpful-action d-flex align-items-center justify-content-between">
                                     <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal"><i class="la la-reply mr-1"></i> Reply</a>
-                                    <div class="pl-2">
-                                        <span class="fs-13">Was this review helpful?</span>
-                                        <button class="btn">Yes</button>
-                                        <button class="btn">No</button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div><!-- end media -->
@@ -88,71 +84,88 @@
                                 <p class="pb-3">This is one of the best courses I have taken in Udemy. It is very complete, and it has made continue learning about Java and SQL databases as well.</p>
                                 <div class="helpful-action d-flex align-items-center justify-content-between">
                                     <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal"><i class="la la-reply mr-1"></i> Reply</a>
-                                    <div class="pl-2">
-                                        <span class="fs-13">Was this review helpful?</span>
-                                        <button class="btn">Yes</button>
-                                        <button class="btn">No</button>
-                                    </div>
+
                                 </div>
                             </div>
-                        </div><!-- end media -->
+                        </div><!-- end media --> --}}
+
+
                         <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+
+                            @foreach ($comments as $comment)
                             <div class="media-img mr-4 rounded-full">
-                                <img class="rounded-full lazy" src="images/img-loading.png" data-src="images/small-avatar-3.jpg" alt="User image">
+                                <img class="rounded-full lazy" src="{{ (!empty($comment['user']['photo'])) ? url('upload/user_images/'.$comment['user']['photo']) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-1.jpg" alt="User image">
                             </div>
                             <div class="media-body">
-                                <h5 class="pb-2">Miguel Sanches</h5>
-                                <span class="d-block lh-18 pb-2">2 month ago</span>
-                                <p class="pb-3">This is one of the best courses I have taken in Udemy. It is very complete, and it has made continue learning about Java and SQL databases as well.</p>
+                                <h5 class="pb-2">{{ $comment['user']['name'] }}</h5>
+                                <div class="d-flex blog-tags">
+                                    <span class="d-block lh-18 pb-2">{{ $comment['user']['role'] }}</span>
+                                    <p class="d-block lh-18 pb-2 pl-1">{{ $comment->created_at->diffForHumans() }}
+                                    </p>
+                                </div>
+                                <p class="pb-3">{!! nl2br($comment->comment) !!}</p>
                                 <div class="helpful-action d-flex align-items-center justify-content-between">
                                     <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal"><i class="la la-reply mr-1"></i> Reply</a>
-                                    <div class="pl-2">
-                                        <span class="fs-13">Was this review helpful?</span>
-                                        <button class="btn">Yes</button>
-                                        <button class="btn">No</button>
+                                    @if ($comment->id > 0)
+                                    <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30 toggle-reply" href="#">
+                                        <i class="la la-arrow-down"></i> <span class="reply-count">1</span> Show Replies
+                                    </a>
+                                    @endif
+                                </div>
+                                <div class="replies mt-3" style="display: none; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-in-out;">
+
+                                    @foreach ($replies as $reply)
+                                    <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4 review-reply">
+                                        <div class="media-img mr-4 rounded-full">
+                                            <img class="rounded-full lazy" src="{{ (!empty($reply['user']['photo'])) ? url('upload/user_images/'.$reply['user']['photo']) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-2.jpg" alt="User image">
+                                        </div>
+                                        <div class="media-body">
+                                            <h5 class="pb-2">{{ $reply['user']['name'] }}</h5>
+                                            <div class="d-flex blog-tags">
+                                                <span class="d-block lh-18 pb-2">{{ $reply['user']['role'] }}</span>
+                                                <p class="d-block lh-18 pb-2 pl-1">{{ $reply->created_at->diffForHumans() }}</p>
+                                            </div>
+                                            <p class="pb-3">{!! nl2br($reply->reply) !!}</p>
+                                        </div>
                                     </div>
+                                    @endforeach
+
                                 </div>
                             </div>
-                        </div><!-- end media -->
+                            @endforeach
+                        </div>
+
+
                     </div>
                     <div class="load-more-btn-box text-center pt-3 pb-5">
                         <button class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30"><i class="la la-refresh mr-1"></i> Load More Comment</button>
                     </div>
                 </div>
                 <div class="section-block"></div>
+
+
                 <div class="add-comment-wrap pt-5">
+                    @guest
+                    <p><b>For Add Comment, You need to login first <br> <a href="{{ route('login') }}">Login Here</a></b></p>
+                    @else
+
+
                     <h3 class="fs-22 font-weight-semi-bold pb-4">Add a Comment</h3>
-                    <form method="post" class="row">
-                        <div class="input-box col-lg-6">
-                            <label class="label-text">Name</label>
-                            <div class="form-group">
-                                <input class="form-control form--control" type="text" name="name" placeholder="Your Name">
-                                <span class="la la-user input-icon"></span>
-                            </div>
-                        </div><!-- end input-box -->
-                        <div class="input-box col-lg-6">
-                            <label class="label-text">Email</label>
-                            <div class="form-group">
-                                <input class="form-control form--control" type="email" name="email" placeholder="Email Address">
-                                <span class="la la-envelope input-icon"></span>
-                            </div>
-                        </div><!-- end input-box -->
+                    <form action="{{ route('store.comment') }}" method="post" class="row">
+                        @csrf
+                        <input type="hidden" name="blogpost_id" value="{{ $blog->id }}">
                         <div class="input-box col-lg-12">
-                            <label class="label-text">Message</label>
+                            {{-- <label class="label-text">Message</label> --}}
                             <div class="form-group">
-                                <textarea class="form-control form--control pl-3" name="message" placeholder="Write Message" rows="5"></textarea>
+                                <textarea class="form-control form--control pl-3" name="comment" placeholder="Write Message" rows="5"></textarea>
                             </div>
                         </div><!-- end input-box -->
                         <div class="btn-box col-lg-12">
-                            <div class="custom-control custom-checkbox mb-3 fs-15">
-                                <input type="checkbox" class="custom-control-input" id="saveCheckbox" required>
-                                <label class="custom-control-label custom--control-label" for="saveCheckbox">
-                                    Save my name, and email in this browser for the next time I comment.
-                                </label>
-                            </div><!-- end custom-control -->
                             <button class="btn theme-btn" type="submit">Submit Comment</button>
                         </div><!-- end btn-box -->
                     </form>
+                    @endguest
+
                 </div><!-- end add-comment-wrap -->
             </div><!-- end col-lg-8 -->
             <div class="col-lg-4">
@@ -217,5 +230,60 @@
 <!-- ================================
        START BLOG AREA
 ================================= -->
+
+<!-- Modal -->
+<div class="modal fade modal-container" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-gray">
+                <div class="pr-2">
+                    <h5 class="modal-title fs-19 font-weight-semi-bold lh-24" id="replyModalTitle">
+                        Reply to comment
+                    </h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="la la-times"></span>
+                </button>
+            </div><!-- end modal-header -->
+            <div class="modal-body">
+                <form action="{{ route('store.reply') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="blogpost_id" value="{{ $blog->id }}">
+                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                    <div class="form-group">
+                        <label class="label-text">Message</label>
+                        <textarea class="form-control form--control pl-3" name="reply" placeholder="Write Message" rows="5"></textarea>
+                    </div>
+                    <div class="btn-box text-right">
+                        <button type="button" class="btn font-weight-medium mr-3" data-dismiss="modal">Cancel</button>
+                        <button class="btn theme-btn theme-btn-sm" type="submit">Reply <i class="la la-arrow-right icon ml-1"></i></button>
+                    </div><!-- end btn-box -->
+                </form>
+            </div><!-- end modal-body -->
+        </div><!-- end modal-content -->
+    </div><!-- end modal-dialog -->
+</div><!-- end modal -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".toggle-reply").forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.preventDefault();
+                let replies = this.closest(".media-body").querySelector(".replies");
+                let icon = this.querySelector("i");
+
+                if (replies.style.maxHeight === "0px" || replies.style.maxHeight === "") {
+                    replies.style.display = "block";
+                    replies.style.maxHeight = replies.scrollHeight + "px";
+                    icon.classList.replace("la-arrow-down", "la-arrow-up");
+                } else {
+                    replies.style.maxHeight = "0px";
+                    setTimeout(() => { replies.style.display = "none"; }, 300);
+                    icon.classList.replace("la-arrow-up", "la-arrow-down");
+                }
+            });
+        });
+    });
+</script>
 
 @endsection

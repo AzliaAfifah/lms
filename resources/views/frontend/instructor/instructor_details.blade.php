@@ -20,7 +20,7 @@
                 </div>
             </div><!-- end media -->
 
-            
+
             <ul class="social-icons social-icons-styled social--icons-styled">
                 <li><a href="#"><i class="la la-facebook"></i></a></li>
                 <li><a href="#"><i class="la la-twitter"></i></a></li>
@@ -90,7 +90,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <h4 class="counter__title counter text-color-2 fs-35">1,515,351</h4>
+                        <h4 class="counter__title counter text-color-2 fs-35">{{ count($student) }}</h4>
                         <p class="counter__meta">Total Students</p>
                     </div><!-- end counter-item -->
                 </div><!-- end col-lg-4 -->
@@ -153,7 +153,7 @@
                                 </g>
                             </svg>
                         </div>
-                        <h4 class="counter__title counter text-color-3 fs-35">515,351</h4>
+                        <h4 class="counter__title counter text-color-3 fs-35">{{ count($review) }}</h4>
                         <p class="counter__meta">Reviews</p>
                     </div><!-- end counter-item -->
                 </div><!-- end col-lg-4 -->
@@ -213,7 +213,7 @@
             @else
             <button class="btn theme-btn d-none d-lg-inline-block">Login First</button>
             @endauth
-            
+
 
                 <li class="nav-item">
                     <a class="nav-link active" id="about-me-tab" data-toggle="tab" href="#about-me" role="tab" aria-controls="about-me" aria-selected="false">
@@ -404,7 +404,7 @@
                 @else
                     <h6 class="ribbon fs-14 mr-2">New</h6>
                 @endif
-                    
+
                     <p class="text-success fs-14 font-weight-medium">Updated<span class="font-weight-bold pl-1">{{ $item->created_at->format('M d Y') }}</span></p>
                 </div>
                 <ul class="generic-list-item generic-list-item-bullet generic-list-item--bullet d-flex align-items-center fs-14">
@@ -422,7 +422,7 @@
                     <li><i class="la la-check mr-1 text-black"></i> {{ $goal->goal_name }}</li>
                 @endforeach
                 </ul>
-                
+
 
                 <div class="d-flex justify-content-between align-items-center">
                     <a href="#" class="btn theme-btn flex-grow-1 mr-3"><i class="la la-shopping-cart mr-1 fs-18"></i> Add to Cart</a>

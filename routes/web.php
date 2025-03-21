@@ -334,6 +334,8 @@ Route::post('/store/review', [ReviewController::class, 'StoreReview'])->name('st
 Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
 Route::get('/blog/cat/list/{id}', [BlogController::class, 'BlogCatList']);
 Route::get('/blog', [BlogController::class, 'BlogList'])->name('blog');
+Route::post('/store/comment', [BlogController::class, 'StoreComment'])->name('store.comment');
+Route::post('/store/reply', [BlogController::class, 'StoreReply'])->name('store.reply');
 
 // Route::post('/mark-notification-as-read/{notification}', [CartController::class, 'MarkAsRead']);
 Route::post('/mark-notification-as-read/{notificationId}', [CartController::class, 'MarkAsRead']);

@@ -9,6 +9,8 @@ use App\Models\SubCategory;
 use Intervention\Image\ImageManager;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Review;
 use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Models\Course_goal;
@@ -28,10 +30,13 @@ class IndexController extends Controller
 
         $categories = Category::latest()->get();
 
+        $student = Order::where('user_id', $id)->get();
+        $review = Review::where('user_id', $id)->get();
+
         $cat_id = $course->category_id;
         $relatedCourses = Course::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(3)->get();
 
-        return view('frontend.course.course_details',compact('course','goals','instructorCourses','categories','relatedCourses'));
+        return view('frontend.course.course_details',compact('course','goals','instructorCourses','categories','relatedCourses','student','review'));
     }
 
     public function CategoryCourse($id, $slug)
@@ -66,7 +71,9 @@ class IndexController extends Controller
     {
         $instructor = User::find($id);
         $courses = Course::where('instructor_id',$id)->get();
-        return view('frontend.instructor.instructor_details',compact('instructor','courses'));
+        $student = Order::where('user_id', $id)->get();
+        $review = Review::where('user_id', $id)->get();
+        return view('frontend.instructor.instructor_details',compact('instructor','courses','student','review'));
     }
 
     public function SearchCourse(Request $request)

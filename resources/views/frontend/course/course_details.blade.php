@@ -71,7 +71,7 @@
                                 <span class="la la-star"></span>
                                 <span class="la la-star"></span>
                             @endif
-                            
+
                         </div>
                         <span class="rating-total pl-1">({{ count($reviewcount) }} ratings)</span>
 
@@ -214,8 +214,8 @@
                                         <img class="lazy" src="images/img-loading.png" data-src="{{ (!empty($course->user->photo)) ? url('upload/instructor_images/'.$course->user->photo) : url('upload/no_image.jpg') }}" alt="Avatar image">
                                     </a>
                                     <ul class="generic-list-item pt-3">
-                                        <li><i class="la la-user mr-2 text-color-3"></i> 45,786 Students</li>
-                                        <li><i class="la la-comment-o mr-2 text-color-3"></i> 2,533 Reviews</li>
+                                        <li><i class="la la-user mr-2 text-color-3"></i> {{ count($student) }} Students</li>
+                                        <li><i class="la la-comment-o mr-2 text-color-3"></i> {{ count($review) }} Reviews</li>
                                         <li><i class="la la-play-circle-o mr-2 text-color-3"></i>{{ count($instructorCourses) }} Courses</li>
                                         <li><a href="teacher-detail.html">View all Courses</a></li>
                                     </ul>
@@ -237,9 +237,9 @@
                             </div>
                         </div><!-- end instructor-wrap -->
                     </div><!-- end course-overview-card -->
-                    
-                    
-                    
+
+
+
                     <div class="course-overview-card pt-4">
                         <h3 class="fs-24 font-weight-semi-bold pb-40px">Student feedback</h3>
                         <div class="feedback-wrap">
@@ -290,8 +290,6 @@
                                         <span>Course Rating</span>
                                     </div><!-- end rating-wrap -->
                                 </div><!-- end review-rating-summary -->
-
-                               
 
                                 <div class="media-body">
 
@@ -397,20 +395,19 @@
                                     </div>
                                     <span class="d-block lh-18 pb-2">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
                                     <p class="pb-2">{{ $item->comment }}</p>
-                                    
+
                                 </div>
                             </div><!-- end media -->
                         @endforeach
-                            
+
                         </div><!-- end review-wrap -->
                         <div class="see-more-review-btn text-center">
                             <button type="button" class="btn theme-btn theme-btn-transparent">Load more reviews</button>
                         </div>
                     </div><!-- end course-overview-card -->
 
-
                     @guest
-                    <p><b>For Add Course Review, You need to login first <a href="{{ route('login') }}">Login Here</a></b></p>
+                    <p><b>For Add Course Review, You need to login first <br> <a href="{{ route('login') }}">Login Here</a></b></p>
                     @else
                         <div class="course-overview-card pt-4">
                             <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
@@ -434,7 +431,7 @@
 
                             <input type="hidden" name="course_id" value="{{ $course->id }}">
                             <input type="hidden" name="instructor_id" value="{{ $course->instructor_id }}">
-                            
+
                                 <div class="input-box col-lg-12">
                                     <label class="label-text">Message</label>
                                     <div class="form-group">

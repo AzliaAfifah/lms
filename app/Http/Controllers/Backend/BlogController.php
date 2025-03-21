@@ -6,8 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogCategory;
 use App\Models\BlogPost;
+use App\Models\Comment;
+use App\Models\Reply;
 use Intervention\Image\Laravel\Facades\Image;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -177,12 +180,16 @@ class BlogController extends Controller
 
     public function BlogDetails($slug)
     {
+
+        $comments = Comment::latest()->get();
+        $replies = Reply::latest()->get();
+
         $blog = BlogPost::where('post_slug',$slug)->first();
         $tags = $blog->post_tags;
         $tags_all = explode(',',$tags);
         $bcategory = BlogCategory::latest()->get();
         $post = BlogPost::latest()->limit(3)->get();
-        return view('frontend.blog.blog_details', compact('blog','tags_all','bcategory','post'));
+        return view('frontend.blog.blog_details', compact('blog','tags_all','bcategory','post','comments','replies'));
     }
 
     public function BlogCatList($id)
@@ -200,5 +207,62 @@ class BlogController extends Controller
         $bcategory = BlogCategory::latest()->get();
         $post = BlogPost::latest()->limit(3)->get();
         return view('frontend.blog.blog_list', compact('blog','bcategory','post'));
+    }
+
+    public function StoreComment(Request $request)
+    {
+        // $blogId = BlogPost::find($request->id);
+        // $blog = BlogPost::where('id',$blogId)->first();
+
+        $blog = $request->blogpost_id;
+
+        $request->validate([
+            'blogpost_id' => 'required',
+            'comment' => 'required',
+        ]);
+
+        Comment::insert([
+            'blogpost_id' => $blog,
+            'user_id' => Auth::id(),
+            'comment' => $request->comment,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Comment Will Approved By Admin',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function StoreReply(Request $request)
+    {
+        // $blogId = BlogPost::find($request->id);
+        // $blog = BlogPost::where('id',$blogId)->first();
+
+        $blog = $request->blogpost_id;
+        $comment = $request->comment_id;
+
+        $request->validate([
+            'blogpost_id' => 'required',
+            'comment_id' => 'required',
+            'reply' => 'required',
+        ]);
+
+        Reply::insert([
+            'blogpost_id' => $blog,
+            'comment_id' => $comment,
+            'user_id' => Auth::id(),
+            'reply' => $request->reply,
+            'created_at' => Carbon::now(),
+        ]);
+
+        $notification = array(
+            'message' => 'Reply Will Approved By Admin',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
     }
 }
