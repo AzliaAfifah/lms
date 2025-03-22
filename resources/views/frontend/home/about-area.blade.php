@@ -8,9 +8,7 @@
                         <h2 class="section__title">Benefits of Learning With Linguana</h2>
                         <span class="section-divider"></span>
                         <p class="section__desc">
-                            Simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            the industry’s when an unknown printerit to make a type specimen book
-                            Pellentesque tellus arcu
+                            Linguana offers a dynamic learning experience with over 130,000 courses, expert instructors, and interactive live chat, making education more accessible, engaging, and effective for everyone.
                         </p>
                     </div><!-- end section-heading -->
                     <div class="row pt-4 pb-3">

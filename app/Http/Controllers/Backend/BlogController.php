@@ -180,16 +180,16 @@ class BlogController extends Controller
 
     public function BlogDetails($slug)
     {
-
-        $comments = Comment::latest()->get();
-        $replies = Reply::latest()->get();
-
-        $blog = BlogPost::where('post_slug',$slug)->first();
+        $blog = BlogPost::where('post_slug', $slug)->first();
         $tags = $blog->post_tags;
-        $tags_all = explode(',',$tags);
+        $tags_all = explode(',', $tags);
         $bcategory = BlogCategory::latest()->get();
         $post = BlogPost::latest()->limit(3)->get();
-        return view('frontend.blog.blog_details', compact('blog','tags_all','bcategory','post','comments','replies'));
+
+        // Ambil komentar beserta balasannya
+        $comments = Comment::with('replies')->latest()->get();
+
+        return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bcategory', 'post', 'comments'));
     }
 
     public function BlogCatList($id)

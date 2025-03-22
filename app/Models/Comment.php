@@ -19,4 +19,9 @@ class Comment extends Model
     {
         return $this->belongsTo(BlogPost::class, 'blogpost_id', 'id');
     }
+
+    public function replies()
+{
+    return $this->hasMany(Reply::class, 'comment_id'); // Ganti 'comment_id' dengan nama kolom yang sesuai
+}
 }

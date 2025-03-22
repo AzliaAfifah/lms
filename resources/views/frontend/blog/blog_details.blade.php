@@ -89,52 +89,46 @@
                             </div>
                         </div><!-- end media --> --}}
 
+                        @foreach ($comments as $comment)
+    <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+        <div class="media-img mr-4 rounded-full">
+            <img class="rounded-full lazy" src="{{ (!empty($comment['user']['photo'])) ? url('upload/user_images/'.$comment['user']['photo']) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-1.jpg" alt="User  image">
+        </div>
+        <div class="media-body">
+            <h5 class="pb-2">{{ $comment['user']['name'] }}</h5>
+            <div class="d-flex blog-tags">
+                <span class="d-block lh-18 pb-2">{{ $comment['user']['role'] }}</span>
+                <p class="d-block lh-18 pb-2 pl-1">{{ $comment->created_at->diffForHumans() }}</p>
+            </div>
+            <p class="pb-3">{!! nl2br($comment->comment) !!}</p>
+            <div class="helpful-action d-flex align-items-center justify-content-between">
+                <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal"><i class="la la-reply mr-1"></i> Reply</a>
+                
+                <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30 toggle-reply" href="#">
+                    <i class="la la-arrow-down"></i> <span class="reply-count">{{ count($comment->replies) }}</span> Show Replies
+                </a>
 
-                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
-
-                            @foreach ($comments as $comment)
-                            <div class="media-img mr-4 rounded-full">
-                                <img class="rounded-full lazy" src="{{ (!empty($comment['user']['photo'])) ? url('upload/user_images/'.$comment['user']['photo']) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-1.jpg" alt="User image">
-                            </div>
-                            <div class="media-body">
-                                <h5 class="pb-2">{{ $comment['user']['name'] }}</h5>
-                                <div class="d-flex blog-tags">
-                                    <span class="d-block lh-18 pb-2">{{ $comment['user']['role'] }}</span>
-                                    <p class="d-block lh-18 pb-2 pl-1">{{ $comment->created_at->diffForHumans() }}
-                                    </p>
-                                </div>
-                                <p class="pb-3">{!! nl2br($comment->comment) !!}</p>
-                                <div class="helpful-action d-flex align-items-center justify-content-between">
-                                    <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal"><i class="la la-reply mr-1"></i> Reply</a>
-                                    @if ($comment->id > 0)
-                                    <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30 toggle-reply" href="#">
-                                        <i class="la la-arrow-down"></i> <span class="reply-count">1</span> Show Replies
-                                    </a>
-                                    @endif
-                                </div>
-                                <div class="replies mt-3" style="display: none; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-in-out;">
-
-                                    @foreach ($replies as $reply)
-                                    <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4 review-reply">
-                                        <div class="media-img mr-4 rounded-full">
-                                            <img class="rounded-full lazy" src="{{ (!empty($reply['user']['photo'])) ? url('upload/user_images/'.$reply['user']['photo']) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-2.jpg" alt="User image">
-                                        </div>
-                                        <div class="media-body">
-                                            <h5 class="pb-2">{{ $reply['user']['name'] }}</h5>
-                                            <div class="d-flex blog-tags">
-                                                <span class="d-block lh-18 pb-2">{{ $reply['user']['role'] }}</span>
-                                                <p class="d-block lh-18 pb-2 pl-1">{{ $reply->created_at->diffForHumans() }}</p>
-                                            </div>
-                                            <p class="pb-3">{!! nl2br($reply->reply) !!}</p>
-                                        </div>
-                                    </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                            @endforeach
+            </div>
+            <div class="replies mt-3" style="display: none; overflow: hidden; max-height: 0; transition: max-height 0.3s ease-in-out;">
+                @foreach ($comment->replies as $reply)
+                <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4 review-reply">
+                    <div class="media-img mr-4 rounded-full">
+                        <img class="rounded-full lazy" src="{{ (!empty($reply['user']['photo'])) ? url('upload/user_images/'.$reply['user']['photo']) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-2.jpg" alt="User  image">
+                    </div>
+                    <div class="media-body">
+                        <h5 class="pb-2">{{ $reply['user']['name'] }}</h5>
+                        <div class="d-flex blog-tags">
+                            <span class="d-block lh-18 pb-2">{{ $reply['user']['role'] }}</span>
+                            <p class="d-block lh-18 pb-2 pl-1">{{ $reply->created_at->diffForHumans() }}</p>
                         </div>
-
+                        <p class="pb-3">{!! nl2br($reply->reply) !!}</p>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+@endforeach
 
                     </div>
                     <div class="load-more-btn-box text-center pt-3 pb-5">
