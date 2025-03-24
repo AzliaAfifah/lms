@@ -102,8 +102,8 @@
             </div>
             <p class="pb-3">{!! nl2br($comment->comment) !!}</p>
             <div class="helpful-action d-flex align-items-center justify-content-between">
-                <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal"><i class="la la-reply mr-1"></i> Reply</a>
-                
+                <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30" href="#" data-toggle="modal" data-target="#replyModal" data-comment-id="{{ $comment->id }}"><i class="la la-reply mr-1"></i> Reply</a>
+
                 <a class="btn theme-btn theme-btn-sm theme-btn-transparent lh-30 toggle-reply" href="#">
                     <i class="la la-arrow-down"></i> <span class="reply-count">{{ count($comment->replies) }}</span> Show Replies
                 </a>
@@ -232,7 +232,7 @@
             <div class="modal-header border-bottom-gray">
                 <div class="pr-2">
                     <h5 class="modal-title fs-19 font-weight-semi-bold lh-24" id="replyModalTitle">
-                        Reply to comment
+                        Reply comment {{ $comment->user_id }}
                     </h5>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -243,7 +243,7 @@
                 <form action="{{ route('store.reply') }}" method="post">
                     @csrf
                     <input type="hidden" name="blogpost_id" value="{{ $blog->id }}">
-                    <input type="hidden" name="comment_id" value="{{ $comment->id }}">
+                    <input type="hidden" name="comment_id">
                     <div class="form-group">
                         <label class="label-text">Message</label>
                         <textarea class="form-control form--control pl-3" name="reply" placeholder="Write Message" rows="5"></textarea>
@@ -278,6 +278,16 @@
             });
         });
     });
+
+const replyButton = document.querySelectorAll('[data-toggle="modal"]');
+
+replyButton.forEach(button => {
+    button.addEventListener('click', function () {
+        const commentId = this.getAttribute('data-comment-id');
+
+        document.querySelector('input[name="comment_id"]').value = commentId;
+    });
+});
 </script>
 
 @endsection

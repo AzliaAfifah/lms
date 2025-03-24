@@ -188,8 +188,9 @@ class BlogController extends Controller
 
         // Ambil komentar beserta balasannya
         $comments = Comment::with('replies')->latest()->get();
+        $comment = Comment::with('user')->first();
 
-        return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bcategory', 'post', 'comments'));
+        return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bcategory', 'post', 'comments','comment'));
     }
 
     public function BlogCatList($id)
