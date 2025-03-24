@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2025 at 10:55 AM
+-- Generation Time: Mar 24, 2025 at 10:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,8 @@ INSERT INTO `blog_categories` (`id`, `category_name`, `category_slug`, `created_
 (1, 'Language', 'language', NULL, '2025-03-03 20:58:28'),
 (3, 'Grammar', 'grammar', NULL, NULL),
 (4, 'Vocabulary', 'vocabulary', NULL, NULL),
-(5, 'Pronunciation', 'pronunciation', NULL, '2025-03-04 06:46:17');
+(5, 'Pronunciation', 'pronunciation', NULL, '2025-03-04 06:46:17'),
+(6, 'Bilingual', 'bilingual', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,9 @@ CREATE TABLE `blog_posts` (
 INSERT INTO `blog_posts` (`id`, `blogcat_id`, `post_title`, `post_slug`, `post_image`, `long_descp`, `post_tags`, `created_at`, `updated_at`) VALUES
 (1, 1, 'The Power of Language: How Learning a New Language Transforms Your Mind', 'the-power-of-language:-how-learning-a-new-language-transforms-your-mind', 'upload/post/1825670946412908.jpg', '<p data-pm-slice=\"1 1 []\">Language is more than just a means of communication; it is a powerful tool that shapes the way we think, perceive the world, and connect with others. Learning a new language is not only a valuable skill but also a transformative experience that brings numerous cognitive, social, and professional benefits.</p>\r\n<h3>Cognitive Benefits</h3>\r\n<p>One of the most significant advantages of learning a new language is its impact on cognitive abilities. Studies have shown that bilingual or multilingual individuals tend to have better memory, problem-solving skills, and multitasking abilities. Learning a language stimulates the brain, keeping it active and engaged, which can even delay cognitive decline as people age.</p>\r\n<p>Moreover, language learning improves concentration and enhances creativity. Since each language has its unique structure and vocabulary, learners develop a more flexible way of thinking, allowing them to approach problems from different perspectives.</p>\r\n<h3>Social and Cultural Connections</h3>\r\n<p>Language is a gateway to understanding different cultures. By learning a new language, individuals gain insight into the traditions, values, and ways of life of people from different backgrounds. This fosters empathy, open-mindedness, and a deeper appreciation for diversity.</p>\r\n<p>In addition, speaking multiple languages enhances social interactions. It allows people to build relationships with individuals from different linguistic backgrounds, making travel experiences more enriching and professional networking more effective.</p>\r\n<h3>Career Advantages</h3>\r\n<p>In today&rsquo;s globalized world, being multilingual is a significant advantage in the job market. Many employers value language skills as they indicate adaptability, cultural awareness, and strong communication abilities. Industries such as international business, tourism, education, and diplomacy often seek individuals who can communicate in multiple languages.</p>\r\n<p>Furthermore, learning a new language can open up opportunities to work or study abroad. It increases access to a wider range of academic and professional resources, ultimately enhancing career prospects and personal growth.</p>\r\n<h3>Strategies for Effective Language Learning</h3>\r\n<p>Learning a language requires dedication and practice. Here are some effective strategies to improve language proficiency:</p>\r\n<p><strong>Immerse Yourself:</strong> Surround yourself with the language through movies, music, and conversations with native speakers.</p>\r\n<p><strong>Practice Regularly:</strong> Consistency is key. Set a study schedule and practice speaking, writing, and reading daily.</p>\r\n<p><strong>Use Technology:</strong> Language-learning apps, online courses, and flashcards can make learning engaging and interactive.</p>\r\n<p><strong>Join Language Groups:</strong> Engage in language exchange programs or join clubs where you can practice with others.</p>\r\n<p><strong>Think in the Language:</strong> Try to think and express yourself in the target language to build fluency.</p>\r\n<h3>Conclusion</h3>\r\n<p>Learning a new language is a rewarding journey that enhances cognitive functions, deepens cultural understanding, and opens doors to new opportunities. Whether for personal growth, social interactions, or career advancement, mastering another language enriches life in countless ways. So why not take the first step today and embark on the adventure of language learning?</p>\r\n<p>&nbsp;</p>', 'jQuery,language', '2025-03-05 03:12:18', '2025-03-05 03:12:18'),
 (2, 3, 'The History of Grammar: The Evolution of Language Rules', 'the-history-of-grammar:-the-evolution-of-language-rules', 'upload/post/1825671349840181.png', '<p data-pm-slice=\"1 1 []\">Grammar, the set of rules that govern language structure, has played a crucial role in human communication for centuries. Its development spans across civilizations, adapting to linguistic changes and scholarly advancements.</p>\r\n<h3><strong>Ancient Beginnings</strong></h3>\r\n<p>The earliest recorded grammatical studies date back to ancient Mesopotamia, where Sumerians created written symbols for their language around 2500 BCE. However, the first known systematic grammar was developed in ancient India by Panini, a Sanskrit scholar from the 4th century BCE. His work, <em>Ashtadhyayi</em>, remains one of the most sophisticated linguistic analyses ever created.</p>\r\n<h3>Greek and Roman Contributions</h3>\r\n<p>The Greeks made significant contributions to grammar, particularly through philosophers like Plato and Aristotle, who studied language structure and meaning. The Stoic philosophers later formalized grammatical rules, classifying words into different categories. The Romans, influenced by Greek linguistics, refined grammatical studies, with figures like Varro and Priscian shaping Latin grammar, which influenced many modern languages.</p>\r\n<h3>Medieval and Renaissance Developments</h3>\r\n<p>During the Middle Ages, Latin remained the dominant language for education and scholarship. Monks and scholars preserved and expanded grammatical knowledge. The Renaissance brought renewed interest in classical texts, leading to the study of vernacular languages and the standardization of grammar rules for languages like English, French, and Spanish.</p>\r\n<h3>Modern Grammar</h3>\r\n<p>In the 18th and 19th centuries, linguistic scholars sought to define and codify grammatical rules for different languages. The emergence of comparative linguistics helped uncover relationships between languages, while the 20th century saw the rise of structural and generative grammar theories, particularly through the work of Noam Chomsky. Today, grammar continues to evolve with digital communication and global linguistic influences.</p>\r\n<h3>Conclusion</h3>\r\n<p>The history of grammar reflects humanity&rsquo;s ongoing effort to structure and refine language. From ancient scripts to modern linguistic theories, grammar remains a fundamental part of communication, adapting to the needs of each generation.</p>\r\n<p>&nbsp;</p>', 'jQuery,grammar', '2025-03-05 01:53:51', '2025-03-05 01:53:51'),
-(4, 4, 'Mastering Pronunciation: Speak Clearly and Confidently', 'mastering-pronunciation:-speak-clearly-and-confidently', 'upload/post/1825762865255968.jpg', '<p>aaaa</p>', 'aaa', '2025-03-12 22:43:24', '2025-03-12 22:43:24');
+(4, 4, 'Mastering Pronunciation: Speak Clearly and Confidently', 'mastering-pronunciation:-speak-clearly-and-confidently', 'upload/post/1825762865255968.jpg', '<p>aaaa</p>', 'aaa', '2025-03-12 22:43:24', '2025-03-12 22:43:24'),
+(5, 1, 'How Language Shapes Cultural Identity and Traditions', 'how-language-shapes-cultural-identity-and-traditions', 'upload/post/1827462409820313.jpg', '<p data-pm-slice=\"1 1 []\">Language is more than just a tool for communication; it is the heartbeat of culture and identity. The way we speak, the words we use, and the expressions we adopt are deeply tied to our history, values, and traditions. Every language carries the unique worldview of the people who speak it, shaping not only how they interact with the world but also how they preserve and pass on their cultural heritage.</p>\r\n<h3><strong>Language as a Reflection of Culture</strong></h3>\r\n<p>Each language is a mirror of the society it originates from. The words, idioms, and phrases used in a language reflect the values, beliefs, and way of life of its speakers. For instance, in Japanese, there are different levels of politeness embedded in the language, reflecting the cultural importance of respect and hierarchy. Similarly, many Indigenous languages have words that describe a deep relationship with nature, emphasizing their connection to the land.</p>\r\n<h3><strong>Preserving Traditions Through Language</strong></h3>\r\n<p>Language plays a crucial role in maintaining traditions and customs. Stories, folklore, songs, and rituals are passed down through generations via spoken or written language. When a language disappears, it often takes with it a wealth of traditional knowledge. This is why efforts to preserve endangered languages are vital in keeping cultural traditions alive.</p>\r\n<h3><strong>Language and Identity</strong></h3>\r\n<p>For many people, their language is a core part of their identity. It provides a sense of belonging and connects individuals to their roots. Bilingual and multilingual individuals often experience a unique connection to multiple cultures, allowing them to navigate different cultural spaces with ease. However, language loss due to globalization and colonization has led some communities to struggle with maintaining their cultural identity.</p>\r\n<h3><strong>How Language Influences Thought</strong></h3>\r\n<p>The structure of a language can shape the way its speakers think. This concept, known as linguistic relativity, suggests that the way people perceive the world is influenced by the language they speak. For example, some languages have multiple words for colors or emotions, which can lead to a more nuanced understanding of those concepts. Similarly, cultures with languages that emphasize collectivism may prioritize community and relationships over individualism.</p>\r\n<h3><strong>The Role of Language in Modern Society</strong></h3>\r\n<p>In today&rsquo;s globalized world, languages are constantly evolving and blending. While this allows for greater communication and cultural exchange, it also poses challenges in preserving linguistic diversity. Many communities are working hard to revitalize their native languages through education, digital media, and cultural programs to ensure that their heritage continues to thrive.</p>\r\n<h3><strong>Conclusion</strong></h3>\r\n<p>Language is more than a means of communication; it is a vessel for cultural identity, history, and traditions. It shapes how people see the world, interact with one another, and pass down their heritage. As we navigate an increasingly interconnected world, it is essential to recognize and appreciate the power of language in preserving cultural diversity and fostering understanding among different communities.</p>', 'language', '2025-03-24 01:12:45', NULL),
+(6, 6, 'The Benefits of Being Bilingual: How It Boosts Your Brainpower', 'the-benefits-of-being-bilingual:-how-it-boosts-your-brainpower', 'upload/post/1827463481030220.jpg', '<p data-pm-slice=\"1 1 []\">In a world that is increasingly interconnected, the ability to speak more than one language is a valuable skill. Beyond just enhancing communication, being bilingual provides numerous cognitive, social, and even economic benefits. Research has shown that bilingualism strengthens the brain in various ways, leading to improved mental agility, problem-solving skills, and even long-term brain health.</p>\r\n<h3><strong>1. Enhanced Cognitive Function</strong></h3>\r\n<p>Bilingual individuals tend to have better cognitive flexibility, meaning they can switch between tasks more efficiently than monolinguals. This ability to shift between languages strengthens the brain\'s executive functions, which are responsible for managing attention, planning, and problem-solving.</p>\r\n<h3><strong>2. Improved Memory and Learning Skills</strong></h3>\r\n<p>Learning and using two languages require constant mental exercise, which helps improve memory retention. Bilingual individuals often perform better in tasks that involve memorization and recall, making it easier for them to learn additional languages or absorb new information quickly.</p>\r\n<h3><strong>3. Stronger Problem-Solving and Critical Thinking Skills</strong></h3>\r\n<p>Since bilinguals are accustomed to thinking in different linguistic structures, they develop strong analytical skills. This helps them approach problems from multiple perspectives, making them better at creative thinking, decision-making, and logical reasoning.</p>\r\n<h3><strong>4. Delayed Onset of Cognitive Decline</strong></h3>\r\n<p>One of the most significant benefits of being bilingual is its impact on brain health as people age. Studies suggest that bilingual individuals are more resistant to dementia and Alzheimer\'s disease. The mental workout required to manage two languages helps keep the brain active and resilient.</p>\r\n<h3><strong>5. Increased Multitasking Abilities</strong></h3>\r\n<p>Bilingual individuals constantly switch between two languages, a skill that translates into better multitasking abilities. They can quickly adapt to different situations, juggle multiple tasks effectively, and focus better in distracting environments.</p>\r\n<h3><strong>6. Greater Cultural Awareness and Adaptability</strong></h3>\r\n<p>Language and culture are deeply connected. Bilingual individuals often have a more profound understanding of different cultures, making them more empathetic and open-minded. This cultural awareness enhances their ability to communicate and connect with people from diverse backgrounds.</p>\r\n<h3><strong>7. Career Advantages and Economic Benefits</strong></h3>\r\n<p>In an increasingly globalized job market, bilingualism is a highly sought-after skill. Many companies prefer employees who can communicate with international clients or work in multilingual environments. Being bilingual can lead to better job opportunities, higher salaries, and career advancement.</p>\r\n<h3><strong>Conclusion</strong></h3>\r\n<p>Being bilingual is more than just speaking two languages; it&rsquo;s a brain-boosting ability that enhances memory, cognitive function, and adaptability. From improving problem-solving skills to delaying cognitive decline, the benefits of bilingualism extend beyond language proficiency. As the world becomes more interconnected, learning a second language is an investment that pays off in both personal and professional growth.</p>', 'bilingual,languages', '2025-03-24 01:30:03', '2025-03-24 01:30:03');
 
 -- --------------------------------------------------------
 
@@ -126,31 +129,6 @@ INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `msg`, `created_a
 (4, 3, 2, 'I want you to fix my error', '2025-03-11 20:47:29', '2025-03-11 20:47:29'),
 (5, 2, 3, 'what kind of error do you have?', '2025-03-11 20:52:05', '2025-03-11 20:52:05'),
 (6, 3, 2, 'Hmm I don\'t know', '2025-03-11 20:52:47', '2025-03-11 20:52:47');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `comments`
---
-
-CREATE TABLE `comments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `blogpost_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `comments`
---
-
-INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 'asdasdas', '0', '2025-03-21 08:07:54', NULL),
-(2, 4, 4, 'Hello i\'m here', '0', '2025-03-21 20:05:41', NULL),
-(3, 4, 4, 'Yeay', '0', '2025-03-22 01:14:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -631,35 +609,6 @@ INSERT INTO `questions` (`id`, `course_id`, `user_id`, `instructor_id`, `parent_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `replies`
---
-
-CREATE TABLE `replies` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `blogpost_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment_id` bigint(20) UNSIGNED NOT NULL,
-  `reply` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `replies`
---
-
-INSERT INTO `replies` (`id`, `blogpost_id`, `user_id`, `comment_id`, `reply`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 1, 'i agree', '0', '2025-03-21 01:31:39', NULL),
-(2, 4, 4, 1, 'Yeah', '0', '2025-03-21 21:46:10', NULL),
-(3, 4, 4, 2, 'qwerqweqwrqwr', '0', '2025-03-21 23:45:31', NULL),
-(5, 4, 4, 2, 'HI', '0', '2025-03-22 01:45:21', NULL),
-(6, 4, 4, 1, 'Halo', '0', '2025-03-22 01:45:45', NULL),
-(7, 4, 4, 1, 'What?', '0', '2025-03-22 01:49:27', NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `reviews`
 --
 
@@ -674,6 +623,17 @@ CREATE TABLE `reviews` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `course_id`, `user_id`, `comment`, `rating`, `instructor_id`, `status`, `created_at`, `updated_at`) VALUES
+(6, 14, 22, 'This is a really good course', '4', 2, '1', '2025-03-22 20:59:00', '2025-03-22 23:33:28'),
+(7, 14, 3, 'I love this course so much', '5', 2, '1', '2025-03-22 23:37:19', '2025-03-22 23:38:27'),
+(8, 14, 4, 'I really need this course so much. Thanks!', '5', 2, '1', '2025-03-22 23:38:05', '2025-03-22 23:38:27'),
+(9, 14, 3, 'This is a really wonderful course. Thanks!', '4', 2, '1', '2025-03-23 20:33:34', '2025-03-23 20:38:05'),
+(10, 14, 3, 'THIS IS GONNA BE THE BEST COURSE EVER!', '5', 2, '0', '2025-03-23 20:34:19', NULL);
 
 -- --------------------------------------------------------
 
@@ -829,32 +789,6 @@ INSERT INTO `sub_categories` (`id`, `category_id`, `subcategory_name`, `subcateg
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testimonials`
---
-
-CREATE TABLE `testimonials` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `rating` varchar(255) NOT NULL,
-  `comment` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `testimonials`
---
-
-INSERT INTO `testimonials` (`id`, `user_id`, `rating`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, '4', 'This is such a really good course if you want to learn language intensively', '1', '2025-03-19 00:33:01', '2025-03-19 08:20:41'),
-(2, 3, '4', 'I love this course so much, it has a different type of learning method', '1', '2025-03-19 00:34:30', '2025-03-19 08:08:26'),
-(3, 3, '5', 'Linguana is a really great language course', '1', '2025-03-19 00:42:09', '2025-03-19 08:02:12'),
-(6, 4, '4', 'I\'m in love with this course, thank you for teaching me.', '1', '2025-03-19 20:57:59', '2025-03-19 21:01:16');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -881,15 +815,16 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-03-21 04:45:59', NULL, NULL, '2025-03-20 21:45:59'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-03-24 08:30:03', NULL, NULL, '2025-03-24 01:30:03'),
 (2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-03-18 05:47:13', NULL, '2025-02-04 07:11:01', '2025-03-17 22:47:13'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-03-21 08:55:19', NULL, NULL, '2025-03-21 01:55:19'),
-(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-22 08:49:05', NULL, '2024-12-19 05:30:18', '2025-03-22 01:49:05'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-03-24 05:35:36', NULL, NULL, '2025-03-23 22:35:36'),
+(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-23 06:37:36', NULL, '2024-12-19 05:30:18', '2025-03-22 23:37:36'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', NULL, NULL, NULL, '2025-02-17 20:14:00'),
 (9, 'afifah', 'Afifah', 'afifah@gmail.com', NULL, '$2y$10$7vVTRlak4RE0qYlJycLvheRr5pvAjtguMVX.XG1FEn1uE1BvphHO6', NULL, '1212', 'Ciwidey', 'admin', '1', NULL, NULL, '2025-03-07 23:59:41', '2025-03-07 23:59:41'),
 (10, 'oyen', 'Oyen', 'oyen@gmail.com', NULL, '$2y$10$TM3/bOPbaB89f6Hy/Ks8Nu9eBbDB4meNHeMpGflvDtO96S.UtgpbO', NULL, '1111', 'Ciwidey', 'admin', '1', '2025-03-09 11:41:36', NULL, '2025-03-08 00:02:36', '2025-03-09 04:41:36'),
-(20, 'Muhammad Abyan', 'Byndewan', 'abyan@abyan.com', NULL, '$2y$10$.STjJSbW2C6mP742jD5rEeTdLyW3dv8xOdTk1/3j90UkXO5bnBFDW', '202503090535WhatsApp Image 2024-08-27 at 22.52.41_b131a581.jpg', '1234567890', 'kepo', 'admin', '1', '2025-03-09 05:37:50', NULL, '2025-03-08 00:40:40', '2025-03-08 22:37:50');
+(20, 'Muhammad Abyan', 'Byndewan', 'abyan@abyan.com', NULL, '$2y$10$.STjJSbW2C6mP742jD5rEeTdLyW3dv8xOdTk1/3j90UkXO5bnBFDW', '202503090535WhatsApp Image 2024-08-27 at 22.52.41_b131a581.jpg', '1234567890', 'kepo', 'admin', '1', '2025-03-09 05:37:50', NULL, '2025-03-08 00:40:40', '2025-03-08 22:37:50'),
+(22, 'Ainun Nabila Ramadhita', NULL, 'ainun@gmail.com', NULL, '$2y$10$eAUog/ORTdTWUsCFQ36WPOKkYVoWze8khY/5sIqyGkhZTFplxDH0.', NULL, NULL, NULL, 'user', '1', '2025-03-23 03:58:41', NULL, '2025-03-22 20:11:17', '2025-03-22 20:58:41');
 
 -- --------------------------------------------------------
 
@@ -946,14 +881,6 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `chat_messages`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `comments`
---
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `comments_blogpost_id_foreign` (`blogpost_id`),
-  ADD KEY `comments_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `coupons`
@@ -1059,15 +986,6 @@ ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `replies`
---
-ALTER TABLE `replies`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `replies_blogpost_id_foreign` (`blogpost_id`),
-  ADD KEY `replies_user_id_foreign` (`user_id`),
-  ADD KEY `replies_comment_id_foreign` (`comment_id`);
-
---
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -1108,13 +1026,6 @@ ALTER TABLE `sub_categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `testimonials`
---
-ALTER TABLE `testimonials`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `testimonials_user_id_foreign` (`user_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1135,13 +1046,13 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `blog_categories`
 --
 ALTER TABLE `blog_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `blog_posts`
 --
 ALTER TABLE `blog_posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1154,12 +1065,6 @@ ALTER TABLE `categories`
 --
 ALTER TABLE `chat_messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `comments`
---
-ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -1234,16 +1139,10 @@ ALTER TABLE `questions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `replies`
---
-ALTER TABLE `replies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -1270,16 +1169,10 @@ ALTER TABLE `sub_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `testimonials`
---
-ALTER TABLE `testimonials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
@@ -1290,13 +1183,6 @@ ALTER TABLE `wishlists`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `comments`
---
-ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_blogpost_id_foreign` FOREIGN KEY (`blogpost_id`) REFERENCES `blog_posts` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `model_has_permissions`
@@ -1311,14 +1197,6 @@ ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Constraints for table `replies`
---
-ALTER TABLE `replies`
-  ADD CONSTRAINT `replies_blogpost_id_foreign` FOREIGN KEY (`blogpost_id`) REFERENCES `blog_posts` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `replies_comment_id_foreign` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `replies_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
 -- Constraints for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -1331,12 +1209,6 @@ ALTER TABLE `reviews`
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `testimonials`
---
-ALTER TABLE `testimonials`
-  ADD CONSTRAINT `testimonials_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
