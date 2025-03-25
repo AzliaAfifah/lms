@@ -232,7 +232,7 @@
             <div class="modal-header border-bottom-gray">
                 <div class="pr-2">
                     <h5 class="modal-title fs-19 font-weight-semi-bold lh-24" id="replyModalTitle">
-                        Reply comment {{ $comment->user_id }}
+                        Reply comment
                     </h5>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -250,7 +250,7 @@
                     </div>
                     <div class="btn-box text-right">
                         <button type="button" class="btn font-weight-medium mr-3" data-dismiss="modal">Cancel</button>
-                        <button class="btn theme-btn theme-btn-sm" type="submit">Reply <i class="la la-arrow-right icon ml-1"></i></button>
+                        <button class="btn theme-btn theme-btn-sm" type="submit">Submit Reply <i class="la la-arrow-right icon ml-1"></i></button>
                     </div><!-- end btn-box -->
                 </form>
             </div><!-- end modal-body -->
