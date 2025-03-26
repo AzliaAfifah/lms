@@ -6,7 +6,7 @@
 <div class="page-content">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-info">
+            <div class="card radius-10 border-info">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-danger">
+            <div class="card radius-10 border-danger">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-danger">
+            <div class="card radius-10 border-danger">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-success">
+            <div class="card radius-10 border-success">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
@@ -62,7 +62,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-success">
+            <div class="card radius-10 border-success">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
@@ -76,68 +76,68 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-info">
+            <div class="card radius-10 border-info">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Pending Review</p>
-                            <h4 class="my-1 text-info">{{ count($pendingReview) }}</h4>
+                            <h4 class="my-1 text-warning">{{ count($pendingReview) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class="lni lni-comments"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-kyoto text-white ms-auto"><i class="lni lni-comments"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-info">
+            <div class="card radius-10 border-info">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Active Review</p>
-                            <h4 class="my-1 text-info">{{ count($activeReview) }}</h4>
+                            <h4 class="my-1 text-warning">{{ count($activeReview) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class="lni lni-comments"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-kyoto text-white ms-auto"><i class="lni lni-comments"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-info">
+            <div class="card radius-10 border-info">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Active Order</p>
-                            <h4 class="my-1 text-info">{{ count($activeOrder) }}</h4>
+                            <h4 class="my-1 text-indigo">{{ count($activeOrder) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class="lni lni-cart"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-cosmic text-white ms-auto"><i class="lni lni-cart"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-info">
+            <div class="card radius-10 border-info">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Pending Order</p>
-                            <h4 class="my-1 text-info">{{ count($pendingOrder) }}</h4>
+                            <h4 class="my-1 text-indigo">{{ count($pendingOrder) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class="lni lni-cart"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-cosmic text-white ms-auto"><i class="lni lni-cart"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-warning">
+            <div class="card radius-10 border-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Pending Testimonial</p>
-                            <h4 class="my-1 text-warning">{{ count($pendingTestimonial) }}</h4>
+                            <h4 class="my-1 text-orange">{{ count($pendingTestimonial) }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class="lni lni-star"></i>
                         </div>
@@ -146,12 +146,12 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-warning">
+            <div class="card radius-10 border-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Active Testimonial</p>
-                            <h4 class="my-1 text-warning">{{ count($activeTestimonial) }}</h4>
+                            <h4 class="my-1 text-orange">{{ count($activeTestimonial) }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class="lni lni-star"></i>
                         </div>
@@ -160,56 +160,56 @@
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-warning">
+            <div class="card radius-10 border-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Users</p>
-                            <h4 class="my-1 text-warning">{{ count($users) }}</h4>
+                            <h4 class="my-1 text-quepal">{{ count($users) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class="lni lni-users"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-quepal text-white ms-auto"><i class="lni lni-users"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-warning">
+            <div class="card radius-10 border-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Instructors</p>
-                            <h4 class="my-1 text-warning">{{ count($instructors) }}</h4>
+                            <h4 class="my-1 text-blue">{{ count($instructors) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class="lni lni-users"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-deepblue text-white ms-auto"><i class="lni lni-users"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-warning">
+            <div class="card radius-10 border-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Blog</p>
-                            <h4 class="my-1 text-warning">{{ count($Blog) }}</h4>
+                            <h4 class="my-1 text-scooter">{{ count($Blog) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class="lni lni-pencil"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto"><i class="lni lni-pencil"></i>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="card radius-10 border-start border-0 border-4 border-warning">
+            <div class="card radius-10 border-warning">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Blog Category</p>
-                            <h4 class="my-1 text-warning">{{ count($BlogCategory) }}</h4>
+                            <h4 class="my-1 text-lush">{{ count($BlogCategory) }}</h4>
                         </div>
-                        <div class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"><i class="lni lni-pencil"></i>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-lush text-white ms-auto"><i class="lni lni-pencil"></i>
                         </div>
                     </div>
                 </div>
