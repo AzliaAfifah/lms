@@ -9,11 +9,34 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Coupon;
+use App\Models\Category;
+use App\Models\Review;
+use App\Models\Testimonial;
+use App\Models\BlogPost;
+use App\Models\Payment;
+use App\Models\BlogCategory;
+use Carbon\Carbon;
 class AdminController extends Controller
 {
     public function AdminDashboard()
     {
-        return view('admin.index');
+        $category = Category::get();
+        $course = Course::where('status', '1')->get();
+        $courses = Course::where('status', '0')->get();
+        $coupon = Coupon::where('coupon_validity', '>', Carbon::today())->get();
+        $coupons = Coupon::where('coupon_validity', '<', Carbon::today())->get();
+        $pendingOrder = Payment::where('status', 'pending')->get();
+        $activeOrder = Payment::where('status', 'confirm')->get();
+        $pendingReview = Review::where('status', '0')->get();
+        $activeReview = Review::where('status', '1')->get();
+        $pendingTestimonial = Testimonial::where('status', '0')->get();
+        $activeTestimonial = Testimonial::where('status', '1')->get();
+        $users = User::where('role','user')->latest()->get();
+        $instructors = User::where('role','instructor')->latest()->get();
+        $Blog = BlogPost::get();
+        $BlogCategory = BlogCategory::get();
+        return view('admin.index', compact('coupons','category','course','courses','coupon','pendingReview','activeReview','pendingTestimonial','activeTestimonial','users','Blog','BlogCategory','activeOrder','pendingOrder','instructors'));
     }
 
     public function AdminLogout(Request $request)
@@ -62,7 +85,7 @@ class AdminController extends Controller
             $file->move(public_path('upload/admin_images'), $filename);
             $data['photo'] = $filename;
         }
- 
+
         $data->save();
 
         $notification = array(
@@ -95,7 +118,7 @@ class AdminController extends Controller
                 'message' => 'Old Password Does not Match!',
                 'alert-type' => 'error'
              );
-     
+
              return back()->with($notification);
         }
 
@@ -108,7 +131,7 @@ class AdminController extends Controller
             'message' => 'Password Change Successfully!',
             'alert-type' => 'success'
          );
- 
+
          return back()->with($notification);
     }
 
@@ -117,12 +140,17 @@ class AdminController extends Controller
         return view('frontend.instructor.reg_instructor');
     }
 
+    public function InstructorRegistration()
+    {
+        return view('frontend.instructor.instructor_register');
+    }
+
     public function InstructorRegister(Request $request)
     {
-        $request->validate([ 
+        $request->validate([
             'name' => ['required','string','max:255'],
             'email' => ['required','string', 'unique:users'],
-        ]);      
+        ]);
 
         User::insert([
             'name' => $request->name,
@@ -139,7 +167,7 @@ class AdminController extends Controller
             'message' => 'Instructor Registered Successfully!',
             'alert-type' => 'success'
         );
- 
+
          return redirect()->route('instructor.login')->with($notification);
     }
 
@@ -205,7 +233,7 @@ class AdminController extends Controller
     public function StoreAdmin(Request $request)
     {
         $role = Role::findById($request->roles);
-        
+
         $user = new User();
         $user->username = $request->username;
         $user->name = $request->name;
@@ -216,16 +244,16 @@ class AdminController extends Controller
         $user->role = 'admin';
         $user->status = '1';
         $user->save();
-        
+
         $user->assignRole($role);
 
         $notification = array(
             'message' => 'New Admin Inserted Successfully!',
             'alert-type' => 'success'
         );
- 
+
          return redirect()->route('all.admin')->with($notification);
-    }    
+    }
 
     public function EditAdmin($id)
     {
@@ -237,7 +265,7 @@ class AdminController extends Controller
     public function UpdateAdmin(Request $request, $id)
     {
         $role = Role::findById($request->roles);
-        
+
         $user = User::find($id);
         $user->username = $request->username;
         $user->name = $request->name;
@@ -247,7 +275,7 @@ class AdminController extends Controller
         $user->role = 'admin';
         $user->status = '1';
         $user->save();
-        
+
         $user->roles()->detach();
         $user->assignRole($role);
 
@@ -255,7 +283,7 @@ class AdminController extends Controller
             'message' => 'Admin Updated Successfully!',
             'alert-type' => 'success'
         );
- 
+
         return redirect()->route('all.admin')->with($notification);
     }
 
@@ -270,7 +298,7 @@ class AdminController extends Controller
             'message' => 'Admin Deleted Successfully!',
             'alert-type' => 'success'
         );
- 
+
         return redirect()->back()->with($notification);
     }
 }

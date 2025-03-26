@@ -224,6 +224,7 @@ Route::middleware(['auth','roles:admin'])->group(function(){
 
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become/instructor', [AdminController::class, 'BecomeInstructor'])->name('become.instructor');
+Route::get('/instructor/registration', [AdminController::class, 'InstructorRegistration'])->name('instructor.registration');
 Route::post('/instructor/register', [AdminController::class, 'InstructorRegister'])->name('instructor.register');
 
 // Instructor Group Middleware

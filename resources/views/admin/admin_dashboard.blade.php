@@ -16,7 +16,7 @@
         <link href="{{ asset('backend/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
         <link href="{{ asset('backend/assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('backend/assets/plugins/input-tags/css/tagsinput.css') }}" rel="stylesheet" />
-        
+
         <!-- loader-->
         <link href="{{ asset('backend/assets/css/pace.min.css') }}" rel="stylesheet" />
         <script src="{{ asset('backend/assets/js/pace.min.js') }}"></script>
@@ -30,6 +30,7 @@
         <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
         <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
         <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css"') }}" />
+        <link rel="stylesheet" href="{{ asset('backend/assets/css/custom.css"') }}" />
 
         <!-- Data Table -->
         <link href="{{ asset('backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" />
@@ -80,7 +81,7 @@
         <!--app JS-->
         <script src="{{ asset('backend/assets/js/app.js') }}"></script>
         <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
         <script src="{{ asset('backend/assets/js/code.js') }}"></script>
 
@@ -97,7 +98,7 @@
 
         </script>
 
-        <script src="https://cdn.tiny.cloud/1/a8fb9z4oshzj8bqmngh4fdu71rrxjv3hwtudu5pg4m4wtbl4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>        
+        <script src="https://cdn.tiny.cloud/1/a8fb9z4oshzj8bqmngh4fdu71rrxjv3hwtudu5pg4m4wtbl4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
             tinymce.init({
                 selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
@@ -132,7 +133,7 @@
 
         </script>
 
-        
+
 
     </body>
 
