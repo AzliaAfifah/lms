@@ -237,7 +237,7 @@ class CartController extends Controller
         } else {
 
             $notification = array(
-                'message' => 'You Need to Login Fisrt!',
+                'message' => 'You Need to Login First!',
                 'alert-type' => 'error'
              );
 

@@ -5,7 +5,11 @@
 @php
     $id = Auth::user()->id;
     $instructorId = App\Models\User::find($id);
+    $instructor_review = App\Models\Review::find($id);
     $status = $instructorId->status;
+
+    $course= $instructorId->courses;
+   // $review = $instructor_review->review;
 @endphp
 
 <div class="page-content">
@@ -23,9 +27,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Orders</p>
-                            <h4 class="my-1 text-info">4805</h4>
-                            <p class="mb-0 font-13">+2.5% from last week</p>
+                            <p class="mb-0 text-secondary">Total Courses</p>
+                            <h4 class="my-1 text-info">{{ count($course) }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"><i class='bx bxs-cart'></i>
                         </div>
@@ -38,9 +41,8 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Revenue</p>
-                            <h4 class="my-1 text-danger">$84,245</h4>
-                            <p class="mb-0 font-13">+5.4% from last week</p>
+                            <p class="mb-0 text-secondary">Total Review</p>
+                            <h4 class="my-1 text-danger"></h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto"><i class='bx bxs-wallet'></i>
                         </div>
@@ -81,7 +83,7 @@
     </div>
     <!--end row-->
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-12 col-lg-12 d-flex">
             <div class="card radius-10 w-100">
                 <div class="card-header">
@@ -263,7 +265,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 

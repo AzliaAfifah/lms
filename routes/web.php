@@ -31,7 +31,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 Route::get('/', [UserController::class, 'Index'])->name('index');
 
 Route::get('/dashboard', function () {
-    return view('frontend.dashboard.index');
+    return view('frontend.dashboard.index');    
 })->middleware(['auth', 'roles:user', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -168,6 +168,9 @@ Route::middleware(['auth','roles:admin'])->group(function(){
         Route::get('/edit/blog/category/{id}','EditBlogCategory');
         Route::post('/update/blog/category','UpdateBlogCategory')->name('blog.category.update');
         Route::get('/delete/blog/category/{id}','DeleteBlogCategory')->name('delete.blog.category');
+        Route::get('/admin/pending/comment','AdminPendingComment')->name('admin.pending.comment');
+        Route::post('/update/comment/status','UpdateCommentStatus')->name('update.comment.status');
+        Route::get('/admin/active/comment','AdminActiveComment')->name('admin.active.comment');
     });
 
     // Admin All Blog Post Route
@@ -347,6 +350,8 @@ Route::get('/user-all', [ChatController::class, 'GetAllUsers']);
 Route::get('/user-message/{id}', [ChatController::class, 'UserMsgById']);
 Route::get('/instructor/live/chat', [ChatController::class, 'InstructorLiveChat'])->name('instructor.live.chat');
 
-Route::get('/search/course', [IndexController::class, 'SearchCourse'])->name('search_course');
+// Route::get('/search/course', [IndexController::class, 'SearchCourse'])->name('search_course');
+
+Route::get('/search/course/', [CourseController::class, 'SearchCourse'])->name('search_course');
 
 

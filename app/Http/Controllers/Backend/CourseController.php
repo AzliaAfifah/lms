@@ -356,4 +356,17 @@ class CourseController extends Controller
             return redirect()->back()->with($notification);
     }
 
+    public function SearchCourse(Request $request) 
+    {
+        $query = $request->get('search');
+        $courses = Course::where('course_name', 'LIKE', "%{$query}%")
+            ->orWhere('description', 'LIKE', "%{$query}%") // Misalnya, jika Anda ingin mencari di deskripsi juga
+            ->with('user') // Mengambil relasi user
+            ->get();
+
+        return response()->json([
+            'html' => view('frontend.category.search_results', compact('courses'))->render()
+        ]);
+    }
+
 }

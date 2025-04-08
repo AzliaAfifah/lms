@@ -19,4 +19,5 @@ class Review extends Model
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
+
 }

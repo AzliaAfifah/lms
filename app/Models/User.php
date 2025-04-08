@@ -72,4 +72,14 @@ class User extends Authenticatable
             return $hasPermission;
         }
     } 
+
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'instructor_id');
+    }
+
+    public function review()
+    {
+        return $this->hasMany(Review::class, 'instructor_id');
+    }
 }

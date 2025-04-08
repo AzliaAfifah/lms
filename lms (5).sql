@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2025 at 11:06 AM
--- Server version: 10.4.32-MariaDB
+-- Generation Time: Apr 08, 2025 at 04:45 AM
+-- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `blog_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_name` varchar(255) DEFAULT NULL,
-  `category_slug` varchar(255) DEFAULT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -55,11 +55,11 @@ INSERT INTO `blog_categories` (`id`, `category_name`, `category_slug`, `created_
 CREATE TABLE `blog_posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `blogcat_id` int(11) NOT NULL,
-  `post_title` varchar(255) DEFAULT NULL,
-  `post_slug` varchar(255) DEFAULT NULL,
-  `post_image` varchar(255) DEFAULT NULL,
-  `long_descp` text DEFAULT NULL,
-  `post_tags` varchar(255) DEFAULT NULL,
+  `post_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `long_descp` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -83,9 +83,9 @@ INSERT INTO `blog_posts` (`id`, `blogcat_id`, `post_title`, `post_slug`, `post_i
 
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_name` varchar(255) NOT NULL,
-  `category_slug` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -113,7 +113,7 @@ CREATE TABLE `chat_messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sender_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'user_id',
   `receiver_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'instructor_id',
-  `msg` text NOT NULL,
+  `msg` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -140,8 +140,8 @@ CREATE TABLE `comments` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `blogpost_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -151,10 +151,9 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 22, 'Thanks for the knowledge!', '0', '2025-03-21 08:07:54', NULL),
-(2, 4, 3, 'Wow, this is so interesting', '0', '2025-03-21 20:05:41', NULL),
-(3, 4, 4, 'This topic is really great', '0', '2025-03-22 01:14:32', NULL),
-(4, 1, 3, 'I love the blog so much', '0', '2025-03-24 21:44:38', NULL);
+(5, 1, 3, 'I know this is a really great blog to read', '0', '2025-03-29 07:29:16', NULL),
+(6, 2, 4, 'Hello, i\'m from spanish', '0', '2025-03-29 07:31:07', NULL),
+(7, 1, 4, 'This is so wonderful', '1', '2025-03-31 00:28:10', '2025-03-31 04:57:18');
 
 -- --------------------------------------------------------
 
@@ -164,9 +163,9 @@ INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `cr
 
 CREATE TABLE `coupons` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `coupon_name` varchar(255) NOT NULL,
-  `coupon_discount` varchar(255) NOT NULL,
-  `coupon_validity` varchar(255) NOT NULL,
+  `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_discount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_validity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `instructor_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
@@ -196,22 +195,22 @@ CREATE TABLE `courses` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
   `instructor_id` int(11) NOT NULL,
-  `course_image` varchar(255) DEFAULT NULL,
-  `course_title` text DEFAULT NULL,
-  `course_name` text DEFAULT NULL,
-  `course_name_slug` varchar(255) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `video` varchar(255) DEFAULT NULL,
-  `label` varchar(255) DEFAULT NULL,
-  `duration` varchar(255) DEFAULT NULL,
-  `resources` varchar(255) DEFAULT NULL,
-  `certificate` varchar(255) DEFAULT NULL,
+  `course_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_name_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `duration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resources` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `certificate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `selling_price` int(11) DEFAULT NULL,
   `discount_price` int(11) DEFAULT NULL,
-  `prerequisite` text DEFAULT NULL,
-  `bestseller` varchar(255) DEFAULT NULL,
-  `featured` varchar(255) DEFAULT NULL,
-  `highestrated` varchar(255) DEFAULT NULL,
+  `prerequisite` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bestseller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `highestrated` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Inactive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -240,7 +239,7 @@ INSERT INTO `courses` (`id`, `category_id`, `instructor_id`, `course_image`, `co
 CREATE TABLE `course_goals` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` int(11) NOT NULL,
-  `goal_name` text DEFAULT NULL,
+  `goal_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -287,10 +286,10 @@ CREATE TABLE `course_lectures` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` int(11) DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED NOT NULL,
-  `lecture_title` varchar(255) DEFAULT NULL,
-  `video` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `content` text DEFAULT NULL,
+  `lecture_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -321,7 +320,7 @@ INSERT INTO `course_lectures` (`id`, `course_id`, `section_id`, `lecture_title`,
 CREATE TABLE `course_sections` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` int(11) NOT NULL,
-  `section_title` varchar(255) NOT NULL,
+  `section_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -346,11 +345,11 @@ INSERT INTO `course_sections` (`id`, `course_id`, `section_title`, `created_at`,
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -362,7 +361,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -406,7 +405,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -418,7 +417,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -439,11 +438,11 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 --
 
 CREATE TABLE `notifications` (
-  `id` char(36) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `notifiable_type` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notifiable_id` bigint(20) UNSIGNED NOT NULL,
-  `data` text NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -457,9 +456,9 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('1b6ce814-3210-4bf2-b6da-a661e0649f6c', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:47', '2025-03-05 19:42:33', '2025-03-05 23:06:47'),
 ('2a48200f-5f83-4c86-a958-62badaeab9e0', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 06:12:19', '2025-03-16 06:12:19'),
 ('67d514db-db69-4aa5-a466-338f452d965f', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 20:52:49', '2025-03-05 20:52:49'),
-('6b041dd1-51bf-4dbb-b284-fd8995b6628b', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23'),
+('6b041dd1-51bf-4dbb-b284-fd8995b6628b', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:34', '2025-03-16 20:33:23', '2025-03-28 05:24:34'),
 ('836586f7-2308-43d7-ad7b-7e1922a5629a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 19:42:33', '2025-03-05 19:42:33'),
-('9e3bee8f-6757-480e-acde-9cd711459353', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 06:12:19', '2025-03-16 06:12:19'),
+('9e3bee8f-6757-480e-acde-9cd711459353', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:36', '2025-03-16 06:12:19', '2025-03-28 05:24:36'),
 ('cbb166c8-83db-49a6-91e5-d7b204bca2c3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:36', '2025-03-05 20:52:49', '2025-03-05 23:06:36'),
 ('ea1088a1-b54d-4c91-9782-4aef547483c2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23');
 
@@ -475,7 +474,7 @@ CREATE TABLE `orders` (
   `user_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `instructor_id` int(11) DEFAULT NULL,
-  `course_title` varchar(255) DEFAULT NULL,
+  `course_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -496,8 +495,8 @@ INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -516,18 +515,18 @@ INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `cash_delivery` varchar(255) DEFAULT NULL,
-  `total_amount` varchar(255) DEFAULT NULL,
-  `payment_type` varchar(255) DEFAULT NULL,
-  `invoice_no` varchar(255) DEFAULT NULL,
-  `order_date` varchar(255) DEFAULT NULL,
-  `order_month` varchar(255) DEFAULT NULL,
-  `order_year` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cash_delivery` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `invoice_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_month` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -555,9 +554,9 @@ INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_deliver
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
-  `group_name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -595,11 +594,11 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -618,8 +617,8 @@ CREATE TABLE `questions` (
   `user_id` int(11) DEFAULT NULL,
   `instructor_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `subject` text DEFAULT NULL,
-  `question` text DEFAULT NULL,
+  `subject` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `question` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -643,8 +642,8 @@ CREATE TABLE `replies` (
   `blogpost_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `comment_id` bigint(20) UNSIGNED NOT NULL,
-  `reply` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `reply` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -654,15 +653,9 @@ CREATE TABLE `replies` (
 --
 
 INSERT INTO `replies` (`id`, `blogpost_id`, `user_id`, `comment_id`, `reply`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 3, 1, 'i agree', '0', '2025-03-21 01:31:39', NULL),
-(2, 4, 4, 1, 'Yeah', '0', '2025-03-21 21:46:10', NULL),
-(3, 4, 4, 2, 'qwerqweqwrqwr', '0', '2025-03-21 23:45:31', NULL),
-(5, 4, 4, 2, 'HI', '0', '2025-03-22 01:45:21', NULL),
-(6, 4, 4, 1, 'Halo', '0', '2025-03-22 01:45:45', NULL),
-(7, 4, 4, 1, 'What?', '0', '2025-03-22 01:49:27', NULL),
-(8, 1, 3, 3, 'hore', '0', '2025-03-23 22:23:04', NULL),
-(9, 1, 3, 2, 'ok', '0', '2025-03-23 22:24:17', NULL),
-(10, 1, 3, 4, 'Hi', '0', '2025-03-24 22:57:42', NULL);
+(11, 1, 4, 5, 'HI', '0', '2025-03-29 07:32:57', NULL),
+(12, 2, 3, 6, 'Really? me too', '0', '2025-03-29 07:33:46', NULL),
+(13, 1, 4, 7, 'Yeah', '0', '2025-03-31 02:00:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -674,10 +667,10 @@ CREATE TABLE `reviews` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment` text NOT NULL,
-  `rating` varchar(255) NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `instructor_id` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -701,8 +694,8 @@ INSERT INTO `reviews` (`id`, `course_id`, `user_id`, `comment`, `rating`, `instr
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -771,13 +764,13 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `site_settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `copyright` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `copyright` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -797,13 +790,13 @@ INSERT INTO `site_settings` (`id`, `logo`, `phone`, `email`, `address`, `faceboo
 
 CREATE TABLE `smtp_settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `mailer` varchar(255) DEFAULT NULL,
-  `host` varchar(255) DEFAULT NULL,
-  `port` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `encryption` varchar(255) DEFAULT NULL,
-  `from_address` varchar(255) DEFAULT NULL,
+  `mailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `host` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `port` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `encryption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -824,8 +817,8 @@ INSERT INTO `smtp_settings` (`id`, `mailer`, `host`, `port`, `username`, `passwo
 CREATE TABLE `sub_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
-  `subcategory_name` varchar(255) NOT NULL,
-  `subcategory_slug` varchar(255) NOT NULL,
+  `subcategory_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subcategory_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -853,9 +846,9 @@ INSERT INTO `sub_categories` (`id`, `category_id`, `subcategory_name`, `subcateg
 CREATE TABLE `testimonials` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `rating` varchar(255) NOT NULL,
-  `comment` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `rating` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -879,18 +872,18 @@ INSERT INTO `testimonials` (`id`, `user_id`, `rating`, `comment`, `status`, `cre
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `role` enum('admin','instructor','user') DEFAULT 'user',
-  `status` enum('1','0') NOT NULL DEFAULT '1',
-  `last_seen` varchar(255) DEFAULT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` enum('admin','instructor','user') COLLATE utf8mb4_unicode_ci DEFAULT 'user',
+  `status` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `last_seen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -900,17 +893,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-03-26 08:46:52', NULL, NULL, '2025-03-26 01:46:52'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-03-18 05:47:13', NULL, '2025-02-04 07:11:01', '2025-03-17 22:47:13'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-03-25 06:32:30', NULL, NULL, '2025-03-24 23:32:30'),
-(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-23 06:37:36', NULL, '2024-12-19 05:30:18', '2025-03-22 23:37:36'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-05 14:18:34', NULL, NULL, '2025-04-05 07:18:34'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-03 09:26:04', NULL, '2025-02-04 07:11:01', '2025-04-03 02:26:04'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-03 13:11:06', NULL, NULL, '2025-04-03 06:11:06'),
+(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-31 08:59:45', NULL, '2024-12-19 05:30:18', '2025-03-31 01:59:45'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
-(6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', NULL, NULL, NULL, '2025-02-17 20:14:00'),
+(6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
 (9, 'afifah', 'Afifah', 'afifah@gmail.com', NULL, '$2y$10$7vVTRlak4RE0qYlJycLvheRr5pvAjtguMVX.XG1FEn1uE1BvphHO6', NULL, '1212', 'Ciwidey', 'admin', '1', NULL, NULL, '2025-03-07 23:59:41', '2025-03-07 23:59:41'),
 (10, 'oyen', 'Oyen', 'oyen@gmail.com', NULL, '$2y$10$TM3/bOPbaB89f6Hy/Ks8Nu9eBbDB4meNHeMpGflvDtO96S.UtgpbO', NULL, '1111', 'Ciwidey', 'admin', '1', '2025-03-09 11:41:36', NULL, '2025-03-08 00:02:36', '2025-03-09 04:41:36'),
 (20, 'Muhammad Abyan', 'Byndewan', 'abyan@abyan.com', NULL, '$2y$10$.STjJSbW2C6mP742jD5rEeTdLyW3dv8xOdTk1/3j90UkXO5bnBFDW', '202503090535WhatsApp Image 2024-08-27 at 22.52.41_b131a581.jpg', '1234567890', 'kepo', 'admin', '1', '2025-03-09 05:37:50', NULL, '2025-03-08 00:40:40', '2025-03-08 22:37:50'),
 (22, 'Ainun Nabila Ramadhita', NULL, 'ainun@gmail.com', NULL, '$2y$10$eAUog/ORTdTWUsCFQ36WPOKkYVoWze8khY/5sIqyGkhZTFplxDH0.', NULL, NULL, NULL, 'user', '1', '2025-03-23 03:58:41', NULL, '2025-03-22 20:11:17', '2025-03-22 20:58:41'),
-(23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', NULL, NULL, NULL, NULL);
+(23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28');
 
 -- --------------------------------------------------------
 
@@ -1180,7 +1173,7 @@ ALTER TABLE `chat_messages`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -1258,7 +1251,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `replies`
 --
 ALTER TABLE `replies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `reviews`

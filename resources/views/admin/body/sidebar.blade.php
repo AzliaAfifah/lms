@@ -126,6 +126,18 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
+						<div class="parent-icon"><i class="lni lni-comments"></i>
+						</div>
+						<div class="menu-title">Manage Comments</div>
+					</a>
+					<ul>
+						<li> <a href="{{ route('admin.pending.comment') }}"><i class='bx bx-radio-circle'></i>Pending Comment</a></li>
+						<li> <a href="{{ route('admin.active.comment') }}"><i class='bx bx-radio-circle'></i>Active Comment</a></li>
+					</ul>
+				</li>
+
+				<li>
+					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-star"></i>
 						</div>
 						<div class="menu-title">Manage Testimonial</div>

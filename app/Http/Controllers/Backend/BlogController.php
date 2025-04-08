@@ -187,7 +187,7 @@ class BlogController extends Controller
         $post = BlogPost::latest()->limit(3)->get();
 
         // Ambil komentar beserta balasannya
-        $comments = Comment::with('replies')->latest()->get();
+        $comments = Comment::with('replies')->where('blogpost_id', $blog->id)->where('status','1')->latest()->get();
         $comment = Comment::with('user')->first();
 
         return view('frontend.blog.blog_details', compact('blog', 'tags_all', 'bcategory', 'post', 'comments','comment'));
@@ -242,28 +242,65 @@ class BlogController extends Controller
         // $blogId = BlogPost::find($request->id);
         // $blog = BlogPost::where('id',$blogId)->first();
 
-        $blog = $request->blogpost_id;
-        $comment = $request->comment_id;
+        if(Auth::check()){
+            $blog = $request->blogpost_id;
+            $comment = $request->comment_id;
 
-        $request->validate([
-            'blogpost_id' => 'required',
-            'comment_id' => 'required',
-            'reply' => 'required',
-        ]);
+            $request->validate([
+                'blogpost_id' => 'required',
+                'comment_id' => 'required',
+                'reply' => 'required',
+            ]);
 
-        Reply::insert([
-            'blogpost_id' => $blog,
-            'comment_id' => $comment,
-            'user_id' => Auth::id(),
-            'reply' => $request->reply,
-            'created_at' => Carbon::now(),
-        ]);
+            Reply::insert([
+                'blogpost_id' => $blog,
+                'comment_id' => $comment,
+                'user_id' => Auth::id(),
+                'reply' => $request->reply,
+                'created_at' => Carbon::now(),
+            ]);
 
-        $notification = array(
-            'message' => 'Reply Will Approved By Admin',
-            'alert-type' => 'success'
-        );
+            $notification = array(
+                'message' => 'Reply Will Approved By Admin',
+                'alert-type' => 'success'
+            );
 
-        return redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'You Need to Login First!',
+                'alert-type' => 'error'
+             );
+
+             return redirect()->back()->with($notification);
+        }
+
+        
+    }
+
+    public function AdminPendingComment()
+    {
+        $comment = Comment::where('status',0)->orderBy('id','DESC')->get();
+        return view('admin.backend.comment.pending_comment', compact('comment'));
+    }
+
+    public function UpdateCommentStatus(Request $request)
+    {
+        $commentId = $request->input('comment_id');
+        $isChecked = $request->input('is_checked',0);
+
+        $comment = Comment::find($commentId);
+        if($comment) {
+            $comment->status = $isChecked;
+            $comment->save();
+        }
+
+        return response()->json(['message' => 'Comment Status Updated Successfully']);
+    }
+
+    public function AdminActiveComment()
+    {
+        $comment = Comment::where('status',1)->orderBy('id','DESC')->get();
+        return view('admin.backend.comment.active_comment', compact('comment'));
     }
 }
