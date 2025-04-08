@@ -34,7 +34,15 @@
 
 </head>
 <body>
-    <!-- ================================
+    <!--======================================
+        START HEADER AREA
+    ======================================-->
+@include('frontend.body.header')
+<!--======================================
+        END HEADER AREA
+======================================-->
+
+<!-- ================================
     START BREADCRUMB AREA
 ================================= -->
 <section class="breadcrumb-area section-padding img-bg-2">
@@ -78,18 +86,12 @@
             <div class="col-lg-10 mx-auto">
                 <div class="card card-item">
                     <div class="card-body">
+                        <h4><strong>Personal Information</strong></h4><br>
                         <form method="post" class="row">
-                            <div class="input-box col-lg-6">
-                                <label class="label-text">First Name</label>
+                            <div class="input-box col-lg-12">
+                                <label class="label-text">Full Name</label>
                                 <div class="form-group">
                                     <input class="form-control form--control" type="text" name="name" placeholder="e.g. Alex">
-                                    <span class="la la-user input-icon"></span>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-6">
-                                <label class="label-text">Last Name</label>
-                                <div class="form-group">
-                                    <input class="form-control form--control" type="email" name="email" placeholder="e.g. Smith">
                                     <span class="la la-user input-icon"></span>
                                 </div>
                             </div><!-- end input-box -->
@@ -379,7 +381,7 @@
                                     </div>
                                 </div>
                             </div><!-- end input-box -->
-                            <div class="input-box col-lg-6">
+                            {{-- <div class="input-box col-lg-6">
                                 <label class="label-text">How did hear about us?</label>
                                 <div class="form-group">
                                     <div class="select-container w-auto">
@@ -398,35 +400,22 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-12">
-                                <label class="label-text">Which language do you intend to tutor in?</label>
-                                <div class="form-group d-flex align-items-center">
-                                    <div class="custom-control custom-radio fs-15 mr-3">
-                                        <input type="radio" class="custom-control-input" id="maleRadioCheck" name="radio-stacked" required>
-                                        <label class="custom-control-label custom--control-label" for="maleRadioCheck">Male</label>
-                                    </div>
-                                    <div class="custom-control custom-radio fs-15">
-                                        <input type="radio" class="custom-control-input" id="femaleRadioCheck" name="radio-stacked" required>
-                                        <label class="custom-control-label custom--control-label" for="femaleRadioCheck">Female</label>
-                                    </div>
-                                </div>
-                            </div><!-- end input-box -->
-                            <div class="input-box col-lg-12">
+                            </div><!-- end input-box --> --}}
+                            {{-- <div class="input-box col-lg-12">
                                 <label class="label-text">Upload CV</label>
                                 <div class="form-group">
                                     <input type="file" class="form-control form--control">
                                 </div>
-                            </div><!-- end input-box -->
+                            </div><!-- end input-box --> --}}
                             <div class="btn-box col-lg-12">
-                                <div class="custom-control custom-checkbox mb-4 fs-15">
+                                {{-- <div class="custom-control custom-checkbox mb-4 fs-15">
                                     <input type="checkbox" class="custom-control-input" id="agreeCheckbox" required>
                                     <label class="custom-control-label custom--control-label" for="agreeCheckbox">by signing i agree to the
                                         <a href="terms-and-conditions.html" class="text-color hover-underline">terms and conditions</a> and
                                         <a href="privacy-policy.html" class="text-color hover-underline">privacy policy</a>
                                     </label>
-                                </div><!-- end custom-control -->
-                                <button class="btn theme-btn" type="submit">Register Account <i class="la la-arrow-right icon ml-1"></i></button>
+                                </div><!-- end custom-control --> --}}
+                                <button class="btn theme-btn" href="{{ route('education.background') }}" type="submit">Next Page <i class="la la-arrow-right icon ml-1"></i></button>
                             </div><!-- end btn-box -->
                         </form>
                     </div><!-- end card-body -->

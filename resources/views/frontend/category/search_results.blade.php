@@ -1,5 +1,3 @@
-
-
 @foreach($courses as $course)
 <div class="col-lg-6 responsive-column-half">
     <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1">

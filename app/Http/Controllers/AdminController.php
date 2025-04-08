@@ -142,7 +142,13 @@ class AdminController extends Controller
 
     public function InstructorRegistration()
     {
-        return view('frontend.instructor.instructor_register');
+        $categories = Category::get();
+        return view('frontend.instructor.instructor_register', compact('categories'));
+    }
+
+    public function EducationBackground()
+    {
+        return view('frontend.instructor.education_background');
     }
 
     public function InstructorRegister(Request $request)

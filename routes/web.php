@@ -31,7 +31,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 Route::get('/', [UserController::class, 'Index'])->name('index');
 
 Route::get('/dashboard', function () {
-    return view('frontend.dashboard.index');    
+    return view('frontend.dashboard.index');
 })->middleware(['auth', 'roles:user', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -228,6 +228,7 @@ Route::middleware(['auth','roles:admin'])->group(function(){
 Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.login')->middleware(RedirectIfAuthenticated::class);
 Route::get('/become/instructor', [AdminController::class, 'BecomeInstructor'])->name('become.instructor');
 Route::get('/instructor/registration', [AdminController::class, 'InstructorRegistration'])->name('instructor.registration');
+Route::get('/instructor/registration/education-background', [AdminController::class, 'EducationBackground'])->name('education.background');
 Route::post('/instructor/register', [AdminController::class, 'InstructorRegister'])->name('instructor.register');
 
 // Instructor Group Middleware
