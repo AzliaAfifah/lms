@@ -20,7 +20,7 @@
 					</div>
 				</div>
 				<!--end breadcrumb-->
-				
+
 				<div class="card">
 					<div class="card-body">
 						<div class="table-responsive">
@@ -66,7 +66,7 @@
                                     <label class="form-label">Blog Category Name</label>
                                     <input type="text" name="category_name" class="form-control">
                                 </div>
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save changes</button>
@@ -93,7 +93,7 @@
                                     <label class="form-label">Blog Category Name</label>
                                     <input type="text" name="category_name" class="form-control" id="cat">
                                 </div>
-                            
+
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Save changes</button>

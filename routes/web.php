@@ -229,6 +229,7 @@ Route::get('/admin/login', [AdminController::class, 'AdminLogin'])->name('admin.
 Route::get('/become/instructor', [AdminController::class, 'BecomeInstructor'])->name('become.instructor');
 Route::get('/instructor/registration', [AdminController::class, 'InstructorRegistration'])->name('instructor.registration');
 Route::get('/instructor/registration/education-background', [AdminController::class, 'EducationBackground'])->name('education.background');
+Route::post('/instructor/registration/store-education-background', [AdminController::class, 'StoreEducationBackground'])->name('store.education.background');
 Route::post('/instructor/register', [AdminController::class, 'InstructorRegister'])->name('instructor.register');
 
 // Instructor Group Middleware

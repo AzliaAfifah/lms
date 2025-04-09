@@ -183,7 +183,7 @@
                                     @enderror
                                 </div>
                             </div><!-- end input-box -->
-                            
+
                             <div class="input-box col-lg-6">
                                 <label class="label-text">Phone</label>
                                 <div class="form-group">
@@ -215,13 +215,13 @@
                             </div><!-- end input-box -->
 
                             <div class="btn-box col-lg-12">
-                                <div class="custom-control custom-checkbox mb-4 fs-15">
+                                {{-- <div class="custom-control custom-checkbox mb-4 fs-15">
                                     <input type="checkbox" class="custom-control-input" id="agreeCheckbox" required>
                                     <label class="custom-control-label custom--control-label" for="agreeCheckbox">by signing i agree to the
                                         <a href="terms-and-conditions.html" class="text-color hover-underline">terms and conditions</a> and
                                         <a href="privacy-policy.html" class="text-color hover-underline">privacy policy</a>
                                     </label>
-                                </div><!-- end custom-control -->
+                                </div><!-- end custom-control --> --}}
                                 <button class="btn theme-btn" type="submit">Apply Now <i class="la la-arrow-right icon ml-1"></i></button>
                             </div><!-- end btn-box -->
                         </form>

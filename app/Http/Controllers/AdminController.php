@@ -14,6 +14,7 @@ use App\Models\Category;
 use App\Models\Review;
 use App\Models\Testimonial;
 use App\Models\BlogPost;
+use App\Models\InstructorProfile;
 use App\Models\Payment;
 use App\Models\BlogCategory;
 use Carbon\Carbon;
@@ -146,9 +147,51 @@ class AdminController extends Controller
         return view('frontend.instructor.instructor_register', compact('categories'));
     }
 
-    public function EducationBackground()
+    public function EducationBackground() {
+        $categories = Category::get();
+        return view('frontend.instructor.education_background', compact('categories'));
+    }
+
+    public function StoreEducationBackground(Request $request)
     {
-        return view('frontend.instructor.education_background');
+        $instructor = Auth::user()->id;
+
+        $request->validate([
+            'degree' => 'required',
+            'field_of_study' => 'required',
+            'university_name' => 'required',
+            'graduation_year' => 'required',
+            'curriculum_vitae' => 'required|mimes:pdf|max:2048'
+        ]);
+
+        $pdf = $request->file('curriculum_vitae');
+        $pdfName = time().'.'. $pdf->getClientOriginalExtension();
+        $pdf->move(public_path('upload/cv/'),$pdfName);
+        $save_pdf = 'upload/course/pdf/'. $pdfName;
+
+        InstructorProfile::insert([
+            'instructor_id' => $instructor,
+            'degree' => $request->degree,
+            'field_of_study' => $request->field_of_study,
+            'university_name' => $request->university_name,
+            'graduation_year' => $request->graduation_year,
+            'organization_name' => $request->organization_name,
+            'position' => $request->position,
+            'subject_taught' => $request->subject_taught,
+            'years_experience' => $request->years_experience,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'description' => $request->description,
+            'language' => $request->language,
+            'curriculum_vitae' => $save_pdf,
+        ]);
+
+        $notification = array(
+            'message' => 'Wait until admin send you an email!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('/')->with($notification);
     }
 
     public function InstructorRegister(Request $request)
@@ -169,12 +212,12 @@ class AdminController extends Controller
             'status' => '0',
         ]);
 
-        $notification = array(
-            'message' => 'Instructor Registered Successfully!',
-            'alert-type' => 'success'
-        );
+        // $notification = array(
+        //     'message' => 'Instructor Registered Successfully!',
+        //     'alert-type' => 'success'
+        // );
 
-         return redirect()->route('instructor.login')->with($notification);
+         return redirect()->route('education.background');
     }
 
     public function AllInstructor()
