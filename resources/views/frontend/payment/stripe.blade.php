@@ -55,7 +55,7 @@
 ======================================-->
 
 <style>
- 
+
 .StripeElement {
   box-sizing: border-box;
   height: 40px;
@@ -112,7 +112,7 @@
                     <div class="card-body">
                         <h3 class="card-title fs-22 pb-3">Billing Details</h3>
                         <div class="divider"><span></span></div>
-                        
+
                             <div class="input-box col-lg-6">
                                 <label class="label-text">Name</label>
                                 <div class="form-group">
@@ -240,7 +240,7 @@
                         @endif
 
                         <div class="btn-box border-top border-top-gray pt-3">
-                            <p class="fs-14 lh-22 mb-2">Aduca is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
+                            <p class="fs-14 lh-22 mb-2">Linguana is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
                             <p class="fs-14 lh-22 mb-3">By completing your purchase you agree to these <a href="#" class="text-color hover-underline">Terms of Service.</a></p>
                             <button type="submit" class="btn theme-btn w-100">Proceed <i class="la la-arrow-right icon ml-1"></i></button>
                         </div>
@@ -249,7 +249,7 @@
             </div><!-- end col-lg-5 -->
         </div><!-- end row -->
     </div><!-- end container -->
-    
+
 </section>
 <!-- ================================
        END CONTACT AREA

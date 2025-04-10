@@ -17,6 +17,7 @@ use App\Models\Course_goal;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\Quiz;
 
 class IndexController extends Controller
 {
@@ -76,6 +77,14 @@ class IndexController extends Controller
         return view('frontend.instructor.instructor_details',compact('instructor','courses','student','review'));
     }
 
+    public function QuizCourse()
+    {
+        $questions = Quiz::all();
+        $course = Course::first();
+
+        return view('frontend.quiz.index', compact('questions','course'));
+    }
+
     public function SearchCourse(Request $request)
     {
         $courses = Course::where('course_name', 'LIKE', "%{$request->search}%")->get();
@@ -87,7 +96,19 @@ class IndexController extends Controller
         $output = ''; // Pastikan $output awalnya kosong
 
         return response()->json(['html' => $output]);
+    }
 
+    public function getQuestions()
+    {
+        $questions = Quiz::all();
+
+        $questionTypes = ['pg_text', 'pg_audio', 'essay_text', 'essay_audio'];
+
+        $questions = $questions->sortBy(function ($question) use ($questionTypes) {
+            return array_search($question->type, $questionTypes);
+        });
+
+        return response()->json($questions);
     }
 
 }

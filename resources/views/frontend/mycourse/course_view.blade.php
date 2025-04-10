@@ -131,11 +131,11 @@
                                         Question & Ans
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" id="announcements-tab" data-toggle="tab" href="#announcements" role="tab" aria-controls="announcements" aria-selected="false">
                                         Announcements
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <div class="lecture-video-detail-body">
@@ -508,8 +508,8 @@
                                                     <h3 class="fs-16 font-weight-semi-bold pb-2">Certificates</h3>
                                                 </div><!-- end lecture-overview-stats-item -->
                                                 <div class="lecture-overview-stats-item lecture-overview-stats-wide-item">
-                                                    <p class="pb-3">Get Aduca certificate by completing entire course</p>
-                                                    <a href="#" class="btn theme-btn theme-btn-transparent">Aduca Certificate</a>
+                                                    <p class="pb-3">Get Linguana certificate by completing entire course</p>
+                                                    <a href="#" class="btn theme-btn theme-btn-transparent">Linguana Certificate</a>
                                                 </div><!-- end lecture-overview-stats-item -->
                                             </div><!-- end lecture-overview-stats-wrap -->
                                         </div><!-- end lecture-overview-item -->
@@ -561,7 +561,7 @@
                                                         </div>
                                                         <div class="custom-control custom-radio mb-3 pl-0">
                                                             <textarea name="question" class="form-control form--control pl-3" rows="4" placeholder="Write your response..."></textarea>
-                                                        </div>                                                        
+                                                        </div>
                                                     </div>
                                                     <div class="btn-box text-center">
                                                         <button type="submit" class="btn theme-btn w-100">Submit Question <i class="la la-arrow-right icon ml-1"></i></button>
@@ -571,7 +571,7 @@
                                         </div><!-- end new-question-wrap -->
 
                                         <div class="question-overview-result-wrap">
-                                            
+
                                             <div class="lecture-overview-item">
                                                 <div class="question-overview-result-header d-flex align-items-center justify-content-between">
                                                     <h3 class="fs-17 font-weight-semi-bold">{{ count($allquestion) }} questions in this course</h3>
@@ -579,9 +579,9 @@
                                                 </div>
                                             </div><!-- end lecture-overview-item -->
                                             <div class="section-block"></div>
-                                            
-                                           
-                                            
+
+
+
                                             <div class="lecture-overview-item mt-0">
                                                 <div class="question-list-item">
 
@@ -666,7 +666,7 @@
                                                                         <a href="#">Lecture 20</a>
                                                                         <span>3 hours ago</span>
                                                                     </p> --}}
-                                                                    
+
                                                                 </div><!-- end media-body -->
                                                             </div><!-- end media -->
                                                         @endforeach
@@ -680,7 +680,7 @@
                                         </div>
                                     </div>
                                 </div><!-- end tab-pane -->
-                                <div class="tab-pane fade" id="announcements" role="tabpanel" aria-labelledby="announcements-tab">
+                                {{-- <div class="tab-pane fade" id="announcements" role="tabpanel" aria-labelledby="announcements-tab">
                                     <div class="lecture-overview-wrap lecture-announcement-wrap">
                                         <div class="lecture-overview-item">
                                             <div class="media media-card align-items-center">
@@ -754,16 +754,16 @@
                                             </div><!-- end lecture-announcement-comment-wrap -->
                                         </div><!-- end lecture-overview-item -->
                                     </div>
-                                </div><!-- end tab-pane -->
+                                </div><!-- end tab-pane --> --}}
                             </div><!-- end tab-content -->
                         </div><!-- end lecture-video-detail-body -->
                     </div><!-- end lecture-video-detail -->
-                    <div class="cta-area py-4 bg-gray">
+                    {{-- <div class="cta-area py-4 bg-gray">
                         <div class="container-fluid">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <div class="cta-content-wrap">
-                                        <h3 class="fs-18 font-weight-semi-bold">Top companies choose <a href="for-business.html" class="text-color hover-underline">Aduca for Business</a> to build in-demand career skills.</h3>
+                                        <h3 class="fs-18 font-weight-semi-bold">Top companies choose <a href="for-business.html" class="text-color hover-underline">Linguana for Business</a> to build in-demand career skills.</h3>
                                     </div>
                                 </div><!-- end col-lg-6 -->
                                 <div class="col-lg-6">
@@ -775,7 +775,7 @@
                                 </div><!-- end col-lg-6 -->
                             </div><!-- end row -->
                         </div><!-- end container-fluid -->
-                    </div><!-- end cta-area -->
+                    </div><!-- end cta-area --> --}}
                     <div class="footer-area pt-50px">
                         <div class="container-fluid">
                             <div class="row">
@@ -834,7 +834,7 @@
                             <div class="container-fluid">
                                 <div class="row align-items-center">
                                     <div class="col-lg-6">
-                                        <p class="copy-desc">&copy; 2021 Aduca. All Rights Reserved. by <a href="https://techydevs.com/">TechyDevs</a></p>
+                                        <p class="copy-desc">&copy; 2025 Linguana. All Rights Reserved.</p>
                                     </div><!-- end col-lg-6 -->
                                     <div class="col-lg-6">
                                         <div class="d-flex flex-wrap align-items-center justify-content-end">
@@ -921,8 +921,9 @@
                                 @endforeach
                                 <div class="card">
                                     <div class="card-header" id="">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="" aria-expanded="true" aria-controls="collapseOne">
+                                        <a href="{{ route('quiz.course', $course->id) }}" class="btn btn-link">
                                             <span class="fs-15">Quiz</span>
+                                        </a>
                                         </button>
                                     </div><!-- end card-header -->
                                 </div><!-- end card -->
@@ -990,7 +991,7 @@
                     <div class="copy-to-clipboard">
                         <span class="success-message">Copied!</span>
                         <div class="input-group">
-                            <input type="text" class="form-control form--control copy-input pl-3" value="https://www.aduca.com/share/101WxMB0oac1hVQQ==/">
+                            <input type="text" class="form-control form--control copy-input pl-3" value="https://www.Linguana.com/share/101WxMB0oac1hVQQ==/">
                             <div class="input-group-append">
                                 <button class="btn theme-btn theme-btn-sm copy-btn shadow-none"><i class="la la-copy mr-1"></i> Copy</button>
                             </div>
@@ -1015,7 +1016,7 @@
                 <div class="modal-header border-bottom-gray">
                     <div class="pr-2">
                         <h5 class="modal-title fs-19 font-weight-semi-bold lh-24" id="reportModalTitle">Report Abuse</h5>
-                        <p class="pt-1 fs-14 lh-24">Flagged content is reviewed by Aduca staff to determine whether it violates Terms of Service or Community Guidelines. If you have a question or technical issue, please contact our
+                        <p class="pt-1 fs-14 lh-24">Flagged content is reviewed by Linguana staff to determine whether it violates Terms of Service or Community Guidelines. If you have a question or technical issue, please contact our
                             <a href="contact.html" class="text-color hover-underline">Support team here</a>.</p>
                     </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1032,7 +1033,7 @@
                                         <option value>-- Select One --</option>
                                         <option value="1">Inappropriate Course Content</option>
                                         <option value="2">Inappropriate Behavior</option>
-                                        <option value="3">Aduca Policy Violation</option>
+                                        <option value="3">Linguana Policy Violation</option>
                                         <option value="4">Spammy Content</option>
                                         <option value="5">Other</option>
                                     </select>

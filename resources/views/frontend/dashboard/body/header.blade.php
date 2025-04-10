@@ -213,7 +213,7 @@
                                                             </li>
                                                             <li>
                                                                 <a href="#" class="position-relative">
-                                                                    <span class="fs-17 font-weight-semi-bold d-block">Aduca for Business</span>
+                                                                    <span class="fs-17 font-weight-semi-bold d-block">Linguana for Business</span>
                                                                     <span class="lh-20 d-block fs-14 text-gray">Bring learning to your company</span>
                                                                     <span class="position-absolute top-0 right-0 mt-3 mr-3 fs-18 text-gray">
                                                                         <i class="la la-external-link"></i>
@@ -256,9 +256,9 @@
             <li><a href="dashboard-settings.html">Edit profile</a></li>
             <li><a href="index.html">Log out</a></li>
         </ul>
-        <h4 class="off-canvas-menu-heading pt-20px">More from Aduca</h4>
+        <h4 class="off-canvas-menu-heading pt-20px">More from Linguana</h4>
         <ul class="generic-list-item off-canvas-menu-list pt-1">
-            <li><a href="for-business.html">Aduca for Business</a></li>
+            <li><a href="for-business.html">Linguana for Business</a></li>
             <li><a href="#">Get the app</a></li>
             <li><a href="invite.html">Invite friends</a></li>
             <li><a href="contact.html">Help</a></li>

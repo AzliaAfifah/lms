@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2025 at 12:39 PM
+-- Generation Time: Apr 10, 2025 at 11:54 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -129,6 +129,31 @@ INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `msg`, `created_a
 (4, 3, 2, 'I want you to fix my error', '2025-03-11 20:47:29', '2025-03-11 20:47:29'),
 (5, 2, 3, 'what kind of error do you have?', '2025-03-11 20:52:05', '2025-03-11 20:52:05'),
 (6, 3, 2, 'Hmm I don\'t know', '2025-03-11 20:52:47', '2025-03-11 20:52:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blogpost_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `comment` text NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
+(5, 1, 3, 'I know this is a really great blog to read', '0', '2025-03-29 07:29:16', NULL),
+(6, 2, 4, 'Hello, i\'m from spanish', '0', '2025-03-29 07:31:07', NULL),
+(7, 1, 4, 'This is so wonderful', '1', '2025-03-31 00:28:10', '2025-03-31 04:57:18');
 
 -- --------------------------------------------------------
 
@@ -331,6 +356,30 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `instructor_profiles`
+--
+
+CREATE TABLE `instructor_profiles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `instructor_id` bigint(20) UNSIGNED NOT NULL,
+  `degree` varchar(255) NOT NULL,
+  `field_of_study` varchar(255) NOT NULL,
+  `university_name` varchar(255) NOT NULL,
+  `graduation_year` varchar(255) NOT NULL,
+  `organization_name` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `subject_taught` varchar(255) DEFAULT NULL,
+  `years_experience` varchar(255) DEFAULT NULL,
+  `start_date` varchar(255) DEFAULT NULL,
+  `end_date` varchar(255) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `language` varchar(255) NOT NULL,
+  `curriculum_vitae` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -374,7 +423,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (29, '2025_04_09_060503_create_instructor_profiles_table', 20),
 (30, '2025_04_09_102012_create_instructor_profiles_table', 21),
 (31, '2025_04_09_102402_create_instructor_profiles_table', 22),
-(32, '2025_04_09_102647_create_instructor_profiles_table', 23);
+(32, '2025_04_09_102647_create_instructor_profiles_table', 23),
+(33, '2025_04_10_054340_create_quizzes_table', 24);
 
 -- --------------------------------------------------------
 
@@ -613,6 +663,58 @@ INSERT INTO `questions` (`id`, `course_id`, `user_id`, `instructor_id`, `parent_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `quizzes`
+--
+
+CREATE TABLE `quizzes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `question` varchar(255) DEFAULT NULL,
+  `type` enum('pg_text','essay_text','pg_audio','essay_audio') NOT NULL,
+  `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`options`)),
+  `correct_answer` varchar(255) DEFAULT NULL,
+  `audio_path` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `quizzes`
+--
+
+INSERT INTO `quizzes` (`id`, `course_id`, `question`, `type`, `options`, `correct_answer`, `audio_path`, `created_at`, `updated_at`) VALUES
+(1, 14, 'Which sentence is in the present perfect tense?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"I have eaten breakfast already.\\\",\\\"I will eat breakfast later.\\\",\\\"I was eating breakfast.\\\"]\"', 'I have eaten breakfast already.', NULL, '2025-04-09 23:29:45', '2025-04-09 23:29:45'),
+(2, 14, 'By the time you arrive, we __________ (eat) dinner.', 'essay_text', NULL, 'will have eaten', NULL, '2025-04-09 23:30:48', '2025-04-09 23:30:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `replies`
+--
+
+CREATE TABLE `replies` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `blogpost_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `comment_id` bigint(20) UNSIGNED NOT NULL,
+  `reply` text NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `replies`
+--
+
+INSERT INTO `replies` (`id`, `blogpost_id`, `user_id`, `comment_id`, `reply`, `status`, `created_at`, `updated_at`) VALUES
+(11, 1, 4, 5, 'HI', '0', '2025-03-29 07:32:57', NULL),
+(12, 2, 3, 6, 'Really? me too', '0', '2025-03-29 07:33:46', NULL),
+(13, 1, 4, 7, 'Yeah', '0', '2025-03-31 02:00:13', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reviews`
 --
 
@@ -733,7 +835,7 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`id`, `logo`, `phone`, `email`, `address`, `facebook`, `twitter`, `copyright`, `created_at`, `updated_at`) VALUES
-(1, 'upload/logo/1826127615411278.png', '08814580036', 'azlia@gmail.com', 'Canberra, Australia, 105 South Park Avenue', '#', '#', '© 2025 Linguana. All Rights Reserved. by Azlia', NULL, '2025-03-09 07:36:48');
+(1, 'upload/logo/1826127615411278.png', '08814580036', 'azlia@gmail.com', 'Canberra, Australia, 105 South Park Avenue', '#', '#', '© 2025 Aduca. All Rights Reserved. by Azlia', NULL, '2025-03-09 07:36:48');
 
 -- --------------------------------------------------------
 
@@ -793,6 +895,33 @@ INSERT INTO `sub_categories` (`id`, `category_id`, `subcategory_name`, `subcateg
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `testimonials`
+--
+
+CREATE TABLE `testimonials` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `rating` varchar(255) NOT NULL,
+  `comment` text NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `testimonials`
+--
+
+INSERT INTO `testimonials` (`id`, `user_id`, `rating`, `comment`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, '4', 'This is such a really good course if you want to learn language intensively', '1', '2025-03-19 00:33:01', '2025-03-19 08:20:41'),
+(2, 3, '4', 'I love this course so much, it has a different type of learning method', '1', '2025-03-19 00:34:30', '2025-03-19 08:08:26'),
+(3, 3, '5', 'Linguana is a really great language course', '1', '2025-03-19 00:42:09', '2025-03-19 08:02:12'),
+(6, 4, '4', 'I\'m in love with this course, thank you for teaching me.', '1', '2025-03-19 20:57:59', '2025-03-19 21:01:16'),
+(7, 3, '4', 'Linguana is a really great language course', '0', '2025-03-24 00:20:27', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -820,8 +949,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-05 14:18:34', NULL, NULL, '2025-04-05 07:18:34'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-03 09:26:04', NULL, '2025-02-04 07:11:01', '2025-04-03 02:26:04'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-03 13:11:06', NULL, NULL, '2025-04-03 06:11:06'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-10 09:51:22', NULL, '2025-02-04 07:11:01', '2025-04-10 02:51:22'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-10 08:52:41', NULL, NULL, '2025-04-10 01:52:41'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-31 08:59:45', NULL, '2024-12-19 05:30:18', '2025-03-31 01:59:45'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
@@ -889,6 +1018,14 @@ ALTER TABLE `chat_messages`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comments_blogpost_id_foreign` (`blogpost_id`),
+  ADD KEY `comments_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `coupons`
 --
 ALTER TABLE `coupons`
@@ -924,6 +1061,13 @@ ALTER TABLE `course_sections`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `instructor_profiles`
+--
+ALTER TABLE `instructor_profiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `instructor_profiles_instructor_id_foreign` (`instructor_id`);
 
 --
 -- Indexes for table `migrations`
@@ -992,6 +1136,22 @@ ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `quizzes`
+--
+ALTER TABLE `quizzes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quizzes_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `replies`
+--
+ALTER TABLE `replies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `replies_blogpost_id_foreign` (`blogpost_id`),
+  ADD KEY `replies_user_id_foreign` (`user_id`),
+  ADD KEY `replies_comment_id_foreign` (`comment_id`);
+
+--
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -1030,6 +1190,13 @@ ALTER TABLE `smtp_settings`
 --
 ALTER TABLE `sub_categories`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `testimonials_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `users`
@@ -1073,6 +1240,12 @@ ALTER TABLE `chat_messages`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
@@ -1109,10 +1282,16 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `instructor_profiles`
+--
+ALTER TABLE `instructor_profiles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -1145,6 +1324,18 @@ ALTER TABLE `questions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `quizzes`
+--
+ALTER TABLE `quizzes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `replies`
+--
+ALTER TABLE `replies`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
@@ -1175,6 +1366,12 @@ ALTER TABLE `sub_categories`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
@@ -1191,6 +1388,19 @@ ALTER TABLE `wishlists`
 --
 
 --
+-- Constraints for table `comments`
+--
+ALTER TABLE `comments`
+  ADD CONSTRAINT `comments_blogpost_id_foreign` FOREIGN KEY (`blogpost_id`) REFERENCES `blog_posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `instructor_profiles`
+--
+ALTER TABLE `instructor_profiles`
+  ADD CONSTRAINT `instructor_profiles_instructor_id_foreign` FOREIGN KEY (`instructor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
@@ -1201,6 +1411,20 @@ ALTER TABLE `model_has_permissions`
 --
 ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quizzes`
+--
+ALTER TABLE `quizzes`
+  ADD CONSTRAINT `quizzes_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `replies`
+--
+ALTER TABLE `replies`
+  ADD CONSTRAINT `replies_blogpost_id_foreign` FOREIGN KEY (`blogpost_id`) REFERENCES `blog_posts` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `replies_comment_id_foreign` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `replies_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `reviews`
@@ -1215,6 +1439,12 @@ ALTER TABLE `reviews`
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `testimonials`
+--
+ALTER TABLE `testimonials`
+  ADD CONSTRAINT `testimonials_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

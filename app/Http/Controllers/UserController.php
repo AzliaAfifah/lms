@@ -108,4 +108,9 @@ class UserController extends Controller
     {
         return view('frontend.dashboard.live_chat');
     }
+
+    public function QuizAttempt()
+    {
+        return view('frontend.dashboard.quiz_attempt');
+    }
 }

@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/user/password/update', [UserController::class, 'UserPasswordUpdate'])->name('user.password.update');
 
     Route::get('/live/chat', [UserController::class, 'LiveChat'])->name('live.chat');
+    Route::get('/quiz/attempt', [UserController::class, 'QuizAttempt'])->name('quiz.attempt');
 
     Route::controller(WishListController::class)->group(function (){
         Route::get('/user/wishlist','AllWishlist')->name('user.wishlist');
@@ -252,6 +253,13 @@ Route::middleware(['auth','roles:instructor'])->group(function(){
         Route::post('/update/course/video','UpdateCourseVideo')->name('update.course.video');
         Route::post('/update/course/goal','UpdateCourseGoal')->name('update.course.goal');
         Route::get('/delete/course/{id}','DeleteCourse')->name('delete.course');
+
+        Route::get('/all/quiz/{id}', 'AllQuiz')->name('all.quiz');
+        Route::get('/add/quiz/{id}', 'AddQuiz')->name('add.quiz');
+        Route::post('/store/quiz', 'StoreQuiz')->name('store.quiz');
+        Route::get('/edit/quiz/{id}', 'EditQuiz')->name('edit.quiz');
+        Route::post('/update/quiz/{id}', 'UpdateQuiz')->name('update.quiz');
+        Route::get('/delete/quiz/{id}', 'DeleteQuiz')->name('delete.quiz');
     });
 
     Route::controller(CourseController::class)->group(function (){
@@ -353,6 +361,9 @@ Route::get('/user-message/{id}', [ChatController::class, 'UserMsgById']);
 Route::get('/instructor/live/chat', [ChatController::class, 'InstructorLiveChat'])->name('instructor.live.chat');
 
 // Route::get('/search/course', [IndexController::class, 'SearchCourse'])->name('search_course');
+
+// Quiz Route
+Route::get('/quiz/course/{id}', [IndexController::class, 'QuizCourse'])->name('quiz.course');
 
 Route::get('/search/course/', [CourseController::class, 'SearchCourse'])->name('search_course');
 

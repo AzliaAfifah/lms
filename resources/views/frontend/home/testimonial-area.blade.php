@@ -17,7 +17,7 @@
                 </div>
             </div><!-- end col-lg-4 -->
             <div class="col-lg-8">
-                <h3 class="fs-22 font-weight-medium pb-3">{{ count($student) }} people are already learning on Aduca</h3>
+                <h3 class="fs-22 font-weight-medium pb-3">{{ count($student) }} people are already learning on Linguana</h3>
                 <div class="testimonial-carousel-2 owl-action-styled owl-action-styled-2">
                     @foreach ($testimonials as $item)
                         <div class="card card-item">

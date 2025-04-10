@@ -1,6 +1,6 @@
 /*---------------------------------------------
-Template name:  Aduca
-Description: Aduca - Education HTML Template
+Template name:  Linguana
+Description: Linguana - Education HTML Template
 Author:         TechyDevs
 Author Email:   contact@techydevs.com
 ----------------------------------------------*/

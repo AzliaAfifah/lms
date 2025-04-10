@@ -709,7 +709,7 @@
             <div class="modal-header border-bottom-gray">
                 <div class="pr-2">
                     <h5 class="modal-title fs-19 font-weight-semi-bold lh-24" id="reportModalTitle">Report Abuse</h5>
-                    <p class="pt-1 fs-14 lh-24">Flagged content is reviewed by Aduca staff to determine whether it violates Terms of Service or Community Guidelines. If you have a question or technical issue, please contact our
+                    <p class="pt-1 fs-14 lh-24">Flagged content is reviewed by Linguana staff to determine whether it violates Terms of Service or Community Guidelines. If you have a question or technical issue, please contact our
                         <a href="contact.html" class="text-color hover-underline">Support team here</a>.</p>
                 </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -726,7 +726,7 @@
                                     <option value>-- Select One --</option>
                                     <option value="1">Inappropriate Course Content</option>
                                     <option value="2">Inappropriate Behavior</option>
-                                    <option value="3">Aduca Policy Violation</option>
+                                    <option value="3">Linguana Policy Violation</option>
                                     <option value="4">Spammy Content</option>
                                     <option value="5">Other</option>
                                 </select>
