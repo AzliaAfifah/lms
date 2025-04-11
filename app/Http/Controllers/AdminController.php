@@ -149,13 +149,13 @@ class AdminController extends Controller
 
     public function EducationBackground() {
         $categories = Category::get();
-        return view('frontend.instructor.education_background', compact('categories'));
+        $instructorId = session('instructor_id');
+
+        return view('frontend.instructor.education_background', compact('categories','instructorId'));
     }
 
     public function StoreEducationBackground(Request $request)
     {
-        $instructor = Auth::user()->id;
-
         $request->validate([
             'degree' => 'required',
             'field_of_study' => 'required',
@@ -170,7 +170,7 @@ class AdminController extends Controller
         $save_pdf = 'upload/course/pdf/'. $pdfName;
 
         InstructorProfile::insert([
-            'instructor_id' => $instructor,
+            'instructor_id' => Auth::user()->id,
             'degree' => $request->degree,
             'field_of_study' => $request->field_of_study,
             'university_name' => $request->university_name,
@@ -211,6 +211,9 @@ class AdminController extends Controller
             'role' => 'instructor',
             'status' => '0',
         ]);
+
+        $instructorId = User::latest()->first()->id;
+        session(['instructor_id' => $instructorId]);
 
         // $notification = array(
         //     'message' => 'Instructor Registered Successfully!',

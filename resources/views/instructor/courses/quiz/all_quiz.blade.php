@@ -28,8 +28,8 @@
                     <thead>
                         <tr>
                             <th>Sl</th>
-                            <th>Course</th>
                             <th>Quiz</th>
+                            <th>Answer</th>
                             <th>Type</th>
                             <th>Action</th>
                         </tr>
@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $quiz['course']['course_name'] }}</td>
-                                <td>{{ $quiz->question ?? 'What do You Hear?' }}</td>
+                                <td>{{ $quiz->correct_answer }}</td>
                                 <td>
                                     @if ($quiz->type == 'pg_text')
                                         <span class="btn btn-primary btn-sm">Multiple Choice</span>

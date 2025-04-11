@@ -17,15 +17,15 @@
     <div class="card">
         <div class="card-body p-4">
             <h5 class="mb-4">Edit Quiz</h5>
-            <form action="{{ route('update.quiz',$quiz->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update.quiz', $quiz->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                {{-- @method('PUT') --}}
+                @method('PUT')
 
                 <select name="type" id="type" class="form-select mt-3">
                     <option value="pg_text" {{ $quiz->type == 'pg_text' ? 'selected' : '' }}>Multiple Choice (Text)</option>
-                    <option value="essay_text" {{ $quiz->type == 'essay_text' ? 'selected' : '' }}>Filled (Text)</option>
+                    <option value="essay_text" {{ $quiz->type == 'essay_text' ? 'selected' : '' }}>Essay (Text)</option>
                     <option value="pg_audio" {{ $quiz->type == 'pg_audio' ? 'selected' : '' }}>Multiple Choice (Audio)</option>
-                    <option value="essay_audio" {{ $quiz->type == 'essay_audio' ? 'selected' : '' }}>Filled (Audio)</option>
+                    <option value="essay_audio" {{ $quiz->type == 'essay_audio' ? 'selected' : '' }}>Essay (Audio)</option>
                 </select>
 
                 <!-- Input untuk pertanyaan teks -->
@@ -58,7 +58,7 @@
                 </div>
 
                 <!-- Input untuk jawaban benar -->
-                <div id="correct_answer" class="{{ $quiz->type != 'essay_audio' ? '' : 'd-none' }}">
+                <div id="correct_answer" class="{{ in_array($quiz->type, ['pg_text', 'essay_text', 'pg_audio','essay_audio']) ? '' : 'd-none' }}">
                     <label class="mt-3">Correct Answer</label>
                     <input type="text" name="correct_answer" class="form-control" value="{{ $quiz->correct_answer }}">
                 </div>
@@ -76,7 +76,12 @@
             document.getElementById("text_question").classList.toggle("d-none", !type.includes("text"));
             document.getElementById("audio_question").classList.toggle("d-none", !type.includes("audio"));
             document.getElementById("mcq_options").classList.toggle("d-none", !type.startsWith("pg"));
-            document.getElementById("correct_answer").classList.toggle("d-none", !type.startsWith("essay_audio"));
+            document.getElementById("correct_answer").classList.toggle("d-none", !(
+                type.startsWith("pg_text") ||
+                type.startsWith("pg_audio") ||
+                type.startsWith("essay_text") ||
+                type.startsWith("essay_audio")
+            ));
         }
 
         document.getElementById("type").addEventListener("change", toggleFields);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2025 at 11:54 AM
+-- Generation Time: Apr 11, 2025 at 01:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -361,7 +361,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `instructor_profiles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `instructor_id` bigint(20) UNSIGNED NOT NULL,
+  `instructor_id` int(11) NOT NULL,
   `degree` varchar(255) NOT NULL,
   `field_of_study` varchar(255) NOT NULL,
   `university_name` varchar(255) NOT NULL,
@@ -374,7 +374,9 @@ CREATE TABLE `instructor_profiles` (
   `end_date` varchar(255) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `language` varchar(255) NOT NULL,
-  `curriculum_vitae` varchar(255) NOT NULL
+  `curriculum_vitae` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -420,11 +422,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2025_03_18_143317_create_testimonials_table', 18),
 (27, '2025_03_21_052516_create_comments_table', 19),
 (28, '2025_03_21_053325_create_replies_table', 19),
-(29, '2025_04_09_060503_create_instructor_profiles_table', 20),
-(30, '2025_04_09_102012_create_instructor_profiles_table', 21),
-(31, '2025_04_09_102402_create_instructor_profiles_table', 22),
-(32, '2025_04_09_102647_create_instructor_profiles_table', 23),
-(33, '2025_04_10_054340_create_quizzes_table', 24);
+(33, '2025_04_10_054340_create_quizzes_table', 24),
+(34, '2025_04_11_023654_create_quiz_results_table', 25),
+(35, '2025_04_11_093649_create_instructor_profiles_table', 26);
 
 -- --------------------------------------------------------
 
@@ -515,7 +515,8 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id`, `course_title`, `price`, `created_at`, `updated_at`) VALUES
 (20, 34, 3, 19, 2, 'Hiragana & Katakana Mastery: Your First Step to Japanese', 400, '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
-(21, 35, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 300, '2025-03-16 20:33:17', '2025-03-16 20:33:17');
+(21, 35, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 300, '2025-03-16 20:33:17', '2025-03-16 20:33:17'),
+(22, 36, 3, 16, 2, 'Mandarin Tones & Characters: A Beginner’s Guide', 7582500, '2025-04-11 00:24:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -573,7 +574,8 @@ INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_deliver
 (32, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS70790250', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 19:42:20', '2025-03-05 19:42:20'),
 (33, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS43575614', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 20:52:40', '2025-03-05 20:52:40'),
 (34, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '320', 'Direct Payment', 'EOS27562089', '16 March 2025', 'March', '2025', 'pending', '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
-(35, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '240', 'Direct Payment', 'EOS43547443', '17 March 2025', 'March', '2025', 'pending', '2025-03-16 20:33:17', '2025-03-16 20:33:17');
+(35, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '240', 'Direct Payment', 'EOS43547443', '17 March 2025', 'March', '2025', 'pending', '2025-03-16 20:33:17', '2025-03-16 20:33:17'),
+(36, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'midtrans', '7582500', 'Midtrans', 'EOS9020bc7a-9fa0-458c-90ea-6776c30c48ff', '11 April 2025', 'April', '2025', 'confirm', '2025-04-11 00:24:00', '2025-04-11 00:24:25');
 
 -- --------------------------------------------------------
 
@@ -684,7 +686,34 @@ CREATE TABLE `quizzes` (
 
 INSERT INTO `quizzes` (`id`, `course_id`, `question`, `type`, `options`, `correct_answer`, `audio_path`, `created_at`, `updated_at`) VALUES
 (1, 14, 'Which sentence is in the present perfect tense?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"I have eaten breakfast already.\\\",\\\"I will eat breakfast later.\\\",\\\"I was eating breakfast.\\\"]\"', 'I have eaten breakfast already.', NULL, '2025-04-09 23:29:45', '2025-04-09 23:29:45'),
-(2, 14, 'By the time you arrive, we __________ (eat) dinner.', 'essay_text', NULL, 'will have eaten', NULL, '2025-04-09 23:30:48', '2025-04-09 23:30:48');
+(2, 14, 'By the time you arrive, we __________ (eat) dinner.', 'essay_text', NULL, 'will have eaten', NULL, '2025-04-09 23:30:48', '2025-04-09 23:30:48'),
+(4, 14, '22', 'pg_text', '\"[\\\"11\\\",\\\"22\\\",\\\"33\\\"]\"', '22', NULL, '2025-04-10 20:48:03', '2025-04-10 20:48:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `quiz_results`
+--
+
+CREATE TABLE `quiz_results` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `correct_answers` int(11) NOT NULL,
+  `wrong_answers` int(11) NOT NULL,
+  `score` int(11) NOT NULL,
+  `correctids` text DEFAULT NULL,
+  `wrongids` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `quiz_results`
+--
+
+INSERT INTO `quiz_results` (`id`, `user_id`, `course_id`, `correct_answers`, `wrong_answers`, `score`, `correctids`, `wrongids`, `created_at`, `updated_at`) VALUES
+(5, 3, 14, 3, 0, 100, '0', '0', '2025-04-10 21:25:33', '2025-04-10 21:25:33');
 
 -- --------------------------------------------------------
 
@@ -949,8 +978,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-05 14:18:34', NULL, NULL, '2025-04-05 07:18:34'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-10 09:51:22', NULL, '2025-02-04 07:11:01', '2025-04-10 02:51:22'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-10 08:52:41', NULL, NULL, '2025-04-10 01:52:41'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-11 10:29:39', NULL, '2025-02-04 07:11:01', '2025-04-11 03:29:39'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-11 07:26:49', NULL, NULL, '2025-04-11 00:26:49'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-31 08:59:45', NULL, '2024-12-19 05:30:18', '2025-03-31 01:59:45'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
@@ -958,8 +987,7 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (10, 'oyen', 'Oyen', 'oyen@gmail.com', NULL, '$2y$10$TM3/bOPbaB89f6Hy/Ks8Nu9eBbDB4meNHeMpGflvDtO96S.UtgpbO', NULL, '1111', 'Ciwidey', 'admin', '1', '2025-03-09 11:41:36', NULL, '2025-03-08 00:02:36', '2025-03-09 04:41:36'),
 (20, 'Muhammad Abyan', 'Byndewan', 'abyan@abyan.com', NULL, '$2y$10$.STjJSbW2C6mP742jD5rEeTdLyW3dv8xOdTk1/3j90UkXO5bnBFDW', '202503090535WhatsApp Image 2024-08-27 at 22.52.41_b131a581.jpg', '1234567890', 'kepo', 'admin', '1', '2025-03-09 05:37:50', NULL, '2025-03-08 00:40:40', '2025-03-08 22:37:50'),
 (22, 'Ainun Nabila Ramadhita', NULL, 'ainun@gmail.com', NULL, '$2y$10$eAUog/ORTdTWUsCFQ36WPOKkYVoWze8khY/5sIqyGkhZTFplxDH0.', NULL, NULL, NULL, 'user', '1', '2025-03-23 03:58:41', NULL, '2025-03-22 20:11:17', '2025-03-22 20:58:41'),
-(23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28'),
-(27, 'BBBBB', 'BBBBB', 'bb@gmail.com', NULL, '$2y$10$p1vug.3pKdO1WTo2XM7gY.GeLvkF7dGDZ.uWsz3xv7HHCSMn4xME.', NULL, '12121212', 'bbbbb', 'instructor', '0', NULL, NULL, NULL, NULL);
+(23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28');
 
 -- --------------------------------------------------------
 
@@ -987,7 +1015,8 @@ INSERT INTO `wishlists` (`id`, `user_id`, `course_id`, `created_at`, `updated_at
 (9, 1, 19, '2025-03-17 00:09:49', NULL),
 (10, 1, 16, '2025-03-17 00:10:33', NULL),
 (11, 3, 18, '2025-03-17 00:19:32', NULL),
-(12, 3, 17, '2025-03-17 00:21:01', NULL);
+(12, 3, 17, '2025-03-17 00:21:01', NULL),
+(13, 3, 22, '2025-04-11 02:19:03', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1066,8 +1095,7 @@ ALTER TABLE `failed_jobs`
 -- Indexes for table `instructor_profiles`
 --
 ALTER TABLE `instructor_profiles`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `instructor_profiles_instructor_id_foreign` (`instructor_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
@@ -1141,6 +1169,14 @@ ALTER TABLE `questions`
 ALTER TABLE `quizzes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `quizzes_course_id_foreign` (`course_id`);
+
+--
+-- Indexes for table `quiz_results`
+--
+ALTER TABLE `quiz_results`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `quiz_results_user_id_foreign` (`user_id`),
+  ADD KEY `quiz_results_course_id_foreign` (`course_id`);
 
 --
 -- Indexes for table `replies`
@@ -1291,19 +1327,19 @@ ALTER TABLE `instructor_profiles`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1327,7 +1363,13 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `quiz_results`
+--
+ALTER TABLE `quiz_results`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `replies`
@@ -1375,13 +1417,13 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
@@ -1393,12 +1435,6 @@ ALTER TABLE `wishlists`
 ALTER TABLE `comments`
   ADD CONSTRAINT `comments_blogpost_id_foreign` FOREIGN KEY (`blogpost_id`) REFERENCES `blog_posts` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `instructor_profiles`
---
-ALTER TABLE `instructor_profiles`
-  ADD CONSTRAINT `instructor_profiles_instructor_id_foreign` FOREIGN KEY (`instructor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `model_has_permissions`
@@ -1417,6 +1453,13 @@ ALTER TABLE `model_has_roles`
 --
 ALTER TABLE `quizzes`
   ADD CONSTRAINT `quizzes_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `quiz_results`
+--
+ALTER TABLE `quiz_results`
+  ADD CONSTRAINT `quiz_results_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `quiz_results_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `replies`

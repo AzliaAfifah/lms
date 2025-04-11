@@ -1,4 +1,4 @@
-@php 
+@php
     $setting = App\Models\SiteSetting::find(1);
 @endphp
 
@@ -7,8 +7,8 @@
         <div class="row">
             <div class="col-lg-3 responsive-column-half">
                 <div class="footer-item">
-                    <a href="index.html">
-                        <img src="{{ asset('frontend/images/logo.png') }}" alt="footer logo" class="footer__logo">
+                    <a href="{{ url('/') }}">
+                        <img src="{{ asset($setting->logo) }}" alt="footer logo" class="footer__logo">
                     </a>
                     <ul class="generic-list-item pt-4">
                         <li><a href="tel:+1631237884">{{ $setting->phone }}</a></li>

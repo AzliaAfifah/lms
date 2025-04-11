@@ -47,7 +47,8 @@
                         <h4><strong>Education Background</strong></h4>
                         <form method="POST" action="{{ route('store.education.background') }}" class="row" enctype="multipart/form-data">
                             @csrf
-                            {{-- <input type="hidden" name="instructor_id" value="{{ $instructor->id }}"> --}}
+                            <input type="text" name="instructor_id" value="{{ $instructorId }}">
+                            {{-- <input type="text" name="instructor_id" value="{{ $instructor }}"> --}}
                             <div class="input-box col-lg-6">
                                 <label class="label-text">Highest Degree Obtained</label>
                                 <div class="form-group">

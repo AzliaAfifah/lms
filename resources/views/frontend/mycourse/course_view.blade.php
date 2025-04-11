@@ -919,14 +919,15 @@
                                     </div><!-- end collapse -->
                                 </div><!-- end card -->
                                 @endforeach
+                                @if ($quisCount > 0)
                                 <div class="card">
                                     <div class="card-header" id="">
-                                        <a href="{{ route('quiz.course', $course->id) }}" class="btn btn-link">
+                                        <a href="{{ route('quiz.course',$course->id) }}" class="btn btn-link">
                                             <span class="fs-15">Quiz</span>
                                         </a>
-                                        </button>
                                     </div><!-- end card-header -->
                                 </div><!-- end card -->
+                                @endif
                             </div><!-- end accordion-->
                         </div><!-- end course-dashboard-side-content -->
                     </div><!-- end course-dashboard-sidebar-wrap -->

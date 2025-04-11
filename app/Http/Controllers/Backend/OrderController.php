@@ -23,10 +23,11 @@ use App\Models\Payment;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use App\Models\Question;
+use App\Models\Quiz;
 
 class OrderController extends Controller
 {
-    public function AdminPendingOrder() 
+    public function AdminPendingOrder()
     {
         $payment = Payment::where('status','pending')->orderBy('id','DESC')->get();
         return view('admin.backend.orders.pending_orders', compact('payment'));
@@ -61,7 +62,7 @@ class OrderController extends Controller
     public function InstructorAllOrder()
     {
         $id = Auth::user()->id;
-        $latestOrderItem = Order::where('instructor_id',$id)->select('payment_id',DB::raw('MAX(id) as  max_id'))->groupBy('payment_id');  
+        $latestOrderItem = Order::where('instructor_id',$id)->select('payment_id',DB::raw('MAX(id) as  max_id'))->groupBy('payment_id');
 
         $orderItem = Order::joinSub($latestOrderItem, 'latest_order', function($join) {
             $join->on('orders.id', '=', 'latest_order.max_id');
@@ -93,7 +94,7 @@ class OrderController extends Controller
     public function MyCourse()
     {
         $id = Auth::user()->id;
-        $latestOrders = Order::where('user_id',$id)->select('course_id',DB::raw('MAX(id) as  max_id'))->groupBy('course_id');  
+        $latestOrders = Order::where('user_id',$id)->select('course_id',DB::raw('MAX(id) as  max_id'))->groupBy('course_id');
         $mycourse = Order::joinSub($latestOrders, 'latest_order', function($join) {
             $join->on('orders.id', '=', 'latest_order.max_id');
         })->orderBy('latest_order.max_id', 'DESC')->get();
@@ -108,8 +109,10 @@ class OrderController extends Controller
         $course = Order::where('course_id',$course_id)->orderBy('id','asc')->first();
         $section = CourseSection::where('course_id',$course_id)->orderBy('id','asc')->get();
 
+        $quisCount = Quiz::where('course_id', $course_id)->count();
+
         $allquestion = Question::latest()->get();
 
-        return view('frontend.mycourse.course_view', compact('course','section','allquestion'));  
+        return view('frontend.mycourse.course_view', compact('course','section','allquestion','quisCount'));
     }
 }

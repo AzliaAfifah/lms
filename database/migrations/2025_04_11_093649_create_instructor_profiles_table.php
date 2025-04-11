@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('instructor_profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('instructor_id')->unsigned();
+            $table->integer('instructor_id');
             $table->string('degree');
             $table->string('field_of_study');
             $table->string('university_name');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('language');
             $table->string('curriculum_vitae');
-            $table->foreign('instructor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -85,6 +85,13 @@ class IndexController extends Controller
         return view('frontend.quiz.index', compact('questions','course'));
     }
 
+    public function QuizResult($id, $score, $total, $correct, $wrong)
+    {
+        $course = Course::findOrFail($id);
+
+        return view('frontend.quiz.result', compact('score','total','correct','wrong','course'));
+    }
+
     public function SearchCourse(Request $request)
     {
         $courses = Course::where('course_name', 'LIKE', "%{$request->search}%")->get();
@@ -93,7 +100,7 @@ class IndexController extends Controller
             return response()->json(['html' => '<p>No courses found.</p>']);
         }
 
-        $output = ''; // Pastikan $output awalnya kosong
+        $output = '';
 
         return response()->json(['html' => $output]);
     }

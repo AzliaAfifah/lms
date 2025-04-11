@@ -556,8 +556,6 @@
 
         let correctAnswer = questions[currentQuestionIndex].correct_answer;
 
-        console.log(`🔍 Jawaban: ${selectedAnswer}, Benar: ${correctAnswer}`);
-
         if (selectedAnswer === correctAnswer) {
             correctAnswers++;
             console.log("✅ Jawaban benar! Skor bertambah.");
@@ -590,8 +588,8 @@
                 loadQuestion(questions[currentQuestionIndex]);
                 updateProgressBar();
             } else {
-                score = correctAnswers - wrongAnswers;
-                window.location.href = `/quiz/result/${courseId}/${score * 10}/${totalQuestions * 10}/${correctAnswers}/${wrongAnswers}`;
+                const score = (correctAnswers / totalQuestions) * 100;
+                window.location.href = `/quiz/result/${courseId}/${score}/${totalQuestions}/${correctAnswers}/${wrongAnswers}`;
 
             }
         } else {

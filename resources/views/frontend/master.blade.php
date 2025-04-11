@@ -5,10 +5,12 @@
     <meta name="author" content="TechyDevs">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
 
     @vite(['resources/js/app.js'])
+
 
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,7 +19,6 @@
     <!-- Favicon -->
     <link rel="icon" sizes="16x16" href="{{ asset('frontend/images/favicon.png') }}">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -33,7 +34,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/plyr.css') }}">
     <!-- end inject -->
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
@@ -89,6 +92,9 @@
 <script src="{{ asset('frontend/js/jquery.lazy.min.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>
 
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script>
     var player = new Plyr('#player');
 </script>
@@ -107,14 +113,37 @@ const Toast = Swal.mixin({
     toast.onmouseleave = Swal.resumeTimer;
   }
 });
+
 document.addEventListener('DOMContentLoaded', function() {
     @if (session('message'))
-        Toast.fire({
+    Toast.fire({
             icon: '{{ session('alert-type') }}',
             title: '{{ session('message') }}'
         });
     @endif
 });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const message = localStorage.getItem('toastr_message');
+        const type = localStorage.getItem('toastr_type');
+
+        if (message) {
+            if (type === 'success') {
+                toastr.success(message);
+            } else if (type === 'error') {
+                toastr.error(message);
+            } else if (type === 'info') {
+                toastr.info(message);
+            } else if (type === 'warning') {
+                toastr.warning(message);
+            }
+
+            localStorage.removeItem('toastr_message');
+            localStorage.removeItem('toastr_type');
+        }
+    });
 </script>
 
 </body>

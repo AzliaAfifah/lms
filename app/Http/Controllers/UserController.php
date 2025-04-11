@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\QuizResult;
+use App\Models\Quiz;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -111,6 +114,14 @@ class UserController extends Controller
 
     public function QuizAttempt()
     {
-        return view('frontend.dashboard.quiz_attempt');
+        $quizResult = QuizResult::latest()->get();
+
+        $total_questions = Quiz::select('course_id', DB::raw('COUNT(*) as total_questions'))
+                            ->groupBy('course_id')
+                            ->get();
+
+        $quiz = QuizResult::latest()->paginate(10);
+
+        return view('frontend.dashboard.quiz_attempt', compact('quizResult', 'total_questions','quiz'));
     }
 }

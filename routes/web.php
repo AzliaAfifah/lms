@@ -22,6 +22,8 @@ use App\Http\Controllers\Frontend\WishListController;
 use App\Http\Controllers\Frontend\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use Illuminate\Http\Request;
+use App\Models\QuizResult;
 
 
 // Route::get('/', function () {
@@ -343,6 +345,8 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
 Route::post('/payment', [CartController::class, 'Payment'])->name('payment');
 Route::post('/stripe_order', [CartController::class, 'StripeOrder'])->name('stripe_order');
 
+Route::post('/midtrans_order', [CartController::class, 'MidtransOrder'])->name('midtrans_order');
+
 Route::post('/store/review', [ReviewController::class, 'StoreReview'])->name('store.review');
 
 Route::get('/blog/details/{slug}', [BlogController::class, 'BlogDetails']);
@@ -364,6 +368,27 @@ Route::get('/instructor/live/chat', [ChatController::class, 'InstructorLiveChat'
 
 // Quiz Route
 Route::get('/quiz/course/{id}', [IndexController::class, 'QuizCourse'])->name('quiz.course');
+Route::get('/quiz/result/{id}/{score}/{total}/{correct}/{wrong}', [IndexController::class, 'QuizResult'])->name('quiz.result');
+
+Route::post('/quiz/result/store', function (Request $request){
+    $request->validate([
+        'course_id' => 'required|exists:courses,id',
+        'correct_answers' => 'required|integer',
+        'wrong_answers' => 'required|integer',
+        'score' => 'required|integer',
+    ]);
+
+    QuizResult::create([
+        'user_id' => auth()->id(),
+        'course_id' => $request->course_id,
+        'correct_answers' => $request->score,
+        'wrong_answers' => $request->correct_answers,
+        'score' => $request->wrong_answers,
+    ]);
+
+    return response()->json(['message' => 'Quiz result saved succesfully!']);
+
+});
 
 Route::get('/search/course/', [CourseController::class, 'SearchCourse'])->name('search_course');
 
