@@ -147,11 +147,12 @@ class AdminController extends Controller
         return view('frontend.instructor.instructor_register', compact('categories'));
     }
 
-    public function EducationBackground() {
+    public function EducationBackground() 
+    {
         $categories = Category::get();
         $instructorId = session('instructor_id');
 
-        return view('frontend.instructor.education_background', compact('categories','instructorId'));
+        return view('frontend.instructor.education_background', compact('categories', 'instructorId'));
     }
 
     public function StoreEducationBackground(Request $request)
@@ -169,8 +170,10 @@ class AdminController extends Controller
         $pdf->move(public_path('upload/cv/'),$pdfName);
         $save_pdf = 'upload/course/pdf/'. $pdfName;
 
+        $instructorId = session('instructor_id');
+
         InstructorProfile::insert([
-            'instructor_id' => Auth::user()->id,
+            'instructor_id' => $instructorId,
             'degree' => $request->degree,
             'field_of_study' => $request->field_of_study,
             'university_name' => $request->university_name,
@@ -191,7 +194,7 @@ class AdminController extends Controller
             'alert-type' => 'success'
         );
 
-        return redirect()->route('/')->with($notification);
+        return redirect()->route('index')->with($notification);
     }
 
     public function InstructorRegister(Request $request)
@@ -201,7 +204,7 @@ class AdminController extends Controller
             'email' => ['required','string', 'unique:users'],
         ]);
 
-        User::insert([
+        $instructor = User::create([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
@@ -212,8 +215,9 @@ class AdminController extends Controller
             'status' => '0',
         ]);
 
-        $instructorId = User::latest()->first()->id;
-        session(['instructor_id' => $instructorId]);
+        session(['instructor_id' => $instructor->id]);
+        // $instructorId = User::latest()->first()->id;
+        // session(['instructor_id' => $instructorId]);
 
         // $notification = array(
         //     'message' => 'Instructor Registered Successfully!',

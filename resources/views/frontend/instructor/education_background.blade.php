@@ -47,7 +47,7 @@
                         <h4><strong>Education Background</strong></h4>
                         <form method="POST" action="{{ route('store.education.background') }}" class="row" enctype="multipart/form-data">
                             @csrf
-                            <input type="text" name="instructor_id" value="{{ $instructorId }}">
+                            <input type="hidden" name="instructor_id" value="{{ $instructorId }}">
                             {{-- <input type="text" name="instructor_id" value="{{ $instructor }}"> --}}
                             <div class="input-box col-lg-6">
                                 <label class="label-text">Highest Degree Obtained</label>
@@ -175,8 +175,8 @@
                                 <div class="form-group d-flex align-items-center">
                                     @foreach ($categories as $item)
                                     <div class="custom-control custom-radio fs-15 mr-3">
-                                        <input type="radio" class="custom-control-input" name="language" id="{{ $item->category_name }}RadioCheck" name="radio-stacked" required>
-                                        <label class="custom-control-label custom--control-label" for="{{ $item->category_name }}RadioCheck">{{ $item->category_name }}</label>
+                                        <input type="radio" class="custom-control-input" name="language" id="{{ $item->id }}RadioCheck" name="radio-stacked" required>
+                                        <label class="custom-control-label custom--control-label" for="{{ $item->id }}RadioCheck">{{ $item->category_name }}</label>
                                     </div>
                                     @endforeach
                                 </div>
