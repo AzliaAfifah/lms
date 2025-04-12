@@ -147,7 +147,7 @@ class AdminController extends Controller
         return view('frontend.instructor.instructor_register', compact('categories'));
     }
 
-    public function EducationBackground() 
+    public function EducationBackground()
     {
         $categories = Category::get();
         $instructorId = session('instructor_id');
@@ -168,7 +168,7 @@ class AdminController extends Controller
         $pdf = $request->file('curriculum_vitae');
         $pdfName = time().'.'. $pdf->getClientOriginalExtension();
         $pdf->move(public_path('upload/cv/'),$pdfName);
-        $save_pdf = 'upload/course/pdf/'. $pdfName;
+        $save_pdf = 'upload/cv/'. $pdfName;
 
         $instructorId = session('instructor_id');
 
@@ -232,6 +232,21 @@ class AdminController extends Controller
         $allinstructor = User::where('role', 'instructor')->latest()->get();
 
         return view('admin.backend.instructor.all_instructor', compact('allinstructor'));
+    }
+
+    public function PendingInstructor()
+    {
+        $allinstructor = User::where('role', 'instructor')->where('status','0')->latest()->get();
+
+        return view('admin.backend.instructor.pending_instructor', compact('allinstructor'));
+    }
+
+    public function InstructorDetailsPage($user_id)
+    {
+        $user = User::findOrFail($user_id);
+        $instructor = InstructorProfile::with('languageCategory')->where('instructor_id', $user_id)->first();
+
+        return view('admin.backend.instructor.instructor_details', compact('instructor','user'));
     }
 
     public function UpdateUserStatus(Request $request)

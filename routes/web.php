@@ -97,6 +97,8 @@ Route::middleware(['auth','roles:admin'])->group(function(){
     Route::controller(AdminController::class)->group(function (){
         Route::get('/all/instructor','AllInstructor')->name('all.instructor');
         Route::post('/update/user/status','UpdateUserStatus')->name('update.user.status');
+        Route::get('/pending/instructor','PendingInstructor')->name('pending.instructor');
+        Route::get('/instructor/details/page/{user_id}','InstructorDetailsPage')->name('instructor.details.page');
     });
 
     // Admin Course All Route

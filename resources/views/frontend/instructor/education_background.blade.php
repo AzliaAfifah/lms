@@ -174,10 +174,10 @@
                                 <label class="label-text">Which language do you intend to tutor in? (You may only select one language)</label>
                                 <div class="form-group d-flex align-items-center">
                                     @foreach ($categories as $item)
-                                    <div class="custom-control custom-radio fs-15 mr-3">
-                                        <input type="radio" class="custom-control-input" name="language" id="{{ $item->id }}RadioCheck" name="radio-stacked" required>
-                                        <label class="custom-control-label custom--control-label" for="{{ $item->id }}RadioCheck">{{ $item->category_name }}</label>
-                                    </div>
+                                        <div class="custom-control custom-radio fs-15 mr-3">
+                                            <input type="radio" class="custom-control-input" name="language" id="{{ $item->id }}RadioCheck" value="{{ $item->id }}" required>
+                                            <label class="custom-control-label custom--control-label" for="{{ $item->id }}RadioCheck">{{ $item->category_name }}</label>
+                                        </div>
                                     @endforeach
                                 </div>
                             </div><!-- end input-box -->

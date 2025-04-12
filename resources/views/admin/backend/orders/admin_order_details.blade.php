@@ -68,13 +68,13 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                     </div>
-                     
+
                 </div>
                 <div class="col-lg-6">
                     <div class="card">
-                        
+
                             <div class="card-body">
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
@@ -119,10 +119,10 @@
                                         @elseif($payment->status == 'confirm')
                                             <a href="" class="btn btn-block btn-success">Confirm Order</a>
                                         @endif
-                                    </div>
+                                    </div>  
                                 </div>
                             </div>
-                        
+
                     </div>
 
                 </div>

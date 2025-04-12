@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2025 at 01:31 PM
+-- Generation Time: Apr 12, 2025 at 12:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -379,6 +379,15 @@ CREATE TABLE `instructor_profiles` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `instructor_profiles`
+--
+
+INSERT INTO `instructor_profiles` (`id`, `instructor_id`, `degree`, `field_of_study`, `university_name`, `graduation_year`, `organization_name`, `position`, `subject_taught`, `years_experience`, `start_date`, `end_date`, `description`, `language`, `curriculum_vitae`, `created_at`, `updated_at`) VALUES
+(1, 22, 'High School Diploma', 'bbbb', 'ffff', '2003', 'qweqwe', 'qwrqwrqw', 'sdfsdfs', '23', '2025-04-24', '2025-04-07', 'asfsadfasd', '4', 'upload/cv/1744425953.pdf', NULL, NULL),
+(2, 37, 'High School Diploma', 'bbbb', 'ffff', '2001', 'qweqwe', 'qwrqwrqw', 'fff', '12', '2025-04-12', '2025-04-19', 'ASFASDFSDF', '4', 'upload/cv/1744426118.pdf', NULL, NULL),
+(3, 38, 'High School Diploma', 'bbbb', 'ffff', '2000', 'qweqwe', 'ffff', 'fff', '123', '2025-04-11', '2025-04-30', 'ASDFDVASDVSD', '4', 'upload/cv/1744426312.pdf', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -529,13 +538,6 @@ CREATE TABLE `password_reset_tokens` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `password_reset_tokens`
---
-
-INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('user@gmail.com', '$2y$10$5xMQ3l5.Px46gGID6hn4Zeg3EEO8Q/8CNwjbN.DZHZcs.F9VCfina', '2025-02-13 23:55:56');
 
 -- --------------------------------------------------------
 
@@ -819,6 +821,7 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (5, 9),
 (6, 7),
 (6, 9),
+(7, 7),
 (7, 9),
 (7, 10),
 (8, 9),
@@ -977,9 +980,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-05 14:18:34', NULL, NULL, '2025-04-05 07:18:34'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-11 10:29:39', NULL, '2025-02-04 07:11:01', '2025-04-11 03:29:39'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-11 07:26:49', NULL, NULL, '2025-04-11 00:26:49'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-12 10:18:17', NULL, NULL, '2025-04-12 03:18:17'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-12 05:46:18', NULL, '2025-02-04 07:11:01', '2025-04-11 22:46:18'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-12 04:04:02', 'YoCB6L5fyymSOhA55LDBikMxzd55Ci7a5misLM0tRNN9lp3TFdW4VrbMGdRV', NULL, '2025-04-11 21:04:02'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-31 08:59:45', NULL, '2024-12-19 05:30:18', '2025-03-31 01:59:45'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
@@ -987,7 +990,9 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (10, 'oyen', 'Oyen', 'oyen@gmail.com', NULL, '$2y$10$TM3/bOPbaB89f6Hy/Ks8Nu9eBbDB4meNHeMpGflvDtO96S.UtgpbO', NULL, '1111', 'Ciwidey', 'admin', '1', '2025-03-09 11:41:36', NULL, '2025-03-08 00:02:36', '2025-03-09 04:41:36'),
 (20, 'Muhammad Abyan', 'Byndewan', 'abyan@abyan.com', NULL, '$2y$10$.STjJSbW2C6mP742jD5rEeTdLyW3dv8xOdTk1/3j90UkXO5bnBFDW', '202503090535WhatsApp Image 2024-08-27 at 22.52.41_b131a581.jpg', '1234567890', 'kepo', 'admin', '1', '2025-03-09 05:37:50', NULL, '2025-03-08 00:40:40', '2025-03-08 22:37:50'),
 (22, 'Ainun Nabila Ramadhita', NULL, 'ainun@gmail.com', NULL, '$2y$10$eAUog/ORTdTWUsCFQ36WPOKkYVoWze8khY/5sIqyGkhZTFplxDH0.', NULL, NULL, NULL, 'user', '1', '2025-03-23 03:58:41', NULL, '2025-03-22 20:11:17', '2025-03-22 20:58:41'),
-(23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28');
+(23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '1', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28'),
+(37, 'AAAAA', 'AAAAAA', 'AAA@AAAA.AAA', NULL, '$2y$10$yt3HSAiSb5AckymH2nYed.4Iw9dfdpTcJ2w.nAwG/94gSGOyeZxjG', NULL, '12121212', 'bbbbb', 'instructor', '0', NULL, NULL, '2025-04-11 19:48:11', '2025-04-11 19:48:11'),
+(38, 'BBBBB', 'BBBBB', 'BBB@BBB.BBB', NULL, '$2y$10$eeiz0DfPx9gauLtKDMBdrOMmXnpq2Fw7QhaMr41ssO/LRr3MT2oDu', NULL, '1231313112312', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', NULL, NULL, '2025-04-11 19:51:24', '2025-04-11 19:51:24');
 
 -- --------------------------------------------------------
 
@@ -1321,7 +1326,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `instructor_profiles`
 --
 ALTER TABLE `instructor_profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1417,7 +1422,7 @@ ALTER TABLE `testimonials`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `wishlists`

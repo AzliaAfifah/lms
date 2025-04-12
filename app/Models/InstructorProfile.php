@@ -10,4 +10,9 @@ class InstructorProfile extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function languageCategory()
+{
+    return $this->belongsTo(Category::class, 'language');
+}
 }

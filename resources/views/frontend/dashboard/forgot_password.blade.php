@@ -1,7 +1,7 @@
 @extends('frontend.master')
 @section('home')
 @section('title')
-Register Page | Linguana
+Forgot Password Page | Linguana
 @endsection
 <!-- ================================
     START BREADCRUMB AREA
@@ -41,15 +41,16 @@ Register Page | Linguana
             <div class="col-lg-7 mx-auto">
                 <div class="card card-item">
                     <div class="card-body">
-                        <h3 class="card-title fs-24 lh-35 pb-2">Reset Password!</h3>
+                        <h3 class="card-title fs-24 lh-35 pb-2">Forgot Password!</h3>
                         <p class="fs-15 lh-24 pb-3">Enter the email of your account to reset password. Then you will
-                            receive a link to email to reset the password.If you have any issue about reset password <a href="contact.html" class="text-color hover-underline">contact us</a></p>
+                            receive a link to email to reset the password.
                         <div class="section-block"></div>
-                        <form method="post" class="pt-4">
+                        <form method="POST" {{ route('password.email') }} class="pt-4">
+                            @csrf
                             <div class="input-box">
                                 <label class="label-text">Email Address</label>
                                 <div class="form-group">
-                                    <input class="form-control form--control" type="text" name="name" placeholder="Enter email Address">
+                                    <input class="form-control form--control" id="email" type="email" name="email" :value="old('email')" placeholder="Enter email Address">
                                     <span class="la la-user input-icon"></span>
                                 </div>
                             </div><!-- end input-box -->

@@ -20,7 +20,7 @@
 					</a>
 				</li>
 
-				
+
 				<li class="menu-label">UI Elements</li>
 				@if (Auth::user()->can('category.menu'))
 					<li>
@@ -36,7 +36,7 @@
 					</ul>
 				</li>
 				@endif
-				
+
 				@if (Auth::user()->can('instructor.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
@@ -46,6 +46,14 @@
 					</a>
 					<ul>
 						<li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a>
+						</li>
+					</ul>
+					<ul>
+						<li> <a href="{{ route('pending.instructor') }}"><i class='bx bx-radio-circle'></i>Pending Instructor</a>
+						</li>
+					</ul>
+					<ul>
+						<li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>Rejected Instructor</a>
 						</li>
 					</ul>
 				</li>
@@ -171,7 +179,7 @@
 						<li> <a href="{{ route('blog.post') }}"><i class='bx bx-radio-circle'></i>Blog Post</a></li>
 					</ul>
 				</li>
-				
+
 				<li class="menu-label">Role & Permission</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
@@ -196,7 +204,7 @@
 					<ul>
 						<li> <a href="{{ route('all.admin') }}"><i class='bx bx-radio-circle'></i>All Admin</a></li>
 					</ul>
-				</li> 	
+				</li>
 				{{-- <li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-map-alt"></i>
@@ -210,7 +218,7 @@
 						</li>
 					</ul>
 				</li>
-				
+
 				<li>
 					<a href="https://themeforest.net/user/codervent" target="_blank">
 						<div class="parent-icon"><i class="bx bx-support"></i>
