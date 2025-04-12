@@ -229,7 +229,7 @@ class AdminController extends Controller
 
     public function AllInstructor()
     {
-        $allinstructor = User::where('role', 'instructor')->latest()->get();
+        $allInstructor = User::where('role', 'instructor')->where('status', 1)->latest()->get();
 
         return view('admin.backend.instructor.all_instructor', compact('allinstructor'));
     }
@@ -247,6 +247,11 @@ class AdminController extends Controller
         $instructor = InstructorProfile::with('languageCategory')->where('instructor_id', $user_id)->first();
 
         return view('admin.backend.instructor.instructor_details', compact('instructor','user'));
+    }
+
+    public function InstructorApproved($id)
+    {
+
     }
 
     public function UpdateUserStatus(Request $request)

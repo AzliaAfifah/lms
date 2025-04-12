@@ -99,6 +99,8 @@ Route::middleware(['auth','roles:admin'])->group(function(){
         Route::post('/update/user/status','UpdateUserStatus')->name('update.user.status');
         Route::get('/pending/instructor','PendingInstructor')->name('pending.instructor');
         Route::get('/instructor/details/page/{user_id}','InstructorDetailsPage')->name('instructor.details.page');
+
+        Route::post('/instructor/{id}/approve', 'InstructorApproved')->name('instructor.approve');
     });
 
     // Admin Course All Route

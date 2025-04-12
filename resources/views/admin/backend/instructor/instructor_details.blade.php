@@ -149,10 +149,10 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         @if($user->status == '0')
-                                            <a href="{{ route('pending-confirm',$user->id) }}" class="btn btn-block btn-warning" id="confirm">Approved</a>
+                                            <a href="{{ route('instructor.approve', $instructor->id) }}" class="btn btn-block btn-warning" id="confirm">Approved</a>
                                             <a href="{{ route('pending-confirm',$user->id) }}" class="btn btn-block btn-danger" id="confirm">Rejected</a>
                                         @elseif($user->status == '1')
-                                            <a href="" class="btn btn-block btn-success">Confirm Order</a>
+                                            {{-- <a href="" class="btn btn-block btn-success">Confirm Order</a> --}}
                                         @endif
                                     </div>
                                 </div>
