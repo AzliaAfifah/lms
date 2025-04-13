@@ -275,13 +275,14 @@ class BlogController extends Controller
              return redirect()->back()->with($notification);
         }
 
-        
+
     }
 
     public function AdminPendingComment()
     {
         $comment = Comment::where('status',0)->orderBy('id','DESC')->get();
-        return view('admin.backend.comment.pending_comment', compact('comment'));
+        $reply = Reply::where('status',0)->orderBy('id','DESC')->get();
+        return view('admin.backend.comment.pending_comment', compact('comment','reply'));
     }
 
     public function UpdateCommentStatus(Request $request)
@@ -298,9 +299,24 @@ class BlogController extends Controller
         return response()->json(['message' => 'Comment Status Updated Successfully']);
     }
 
+    public function UpdateReplyStatus(Request $request)
+    {
+        $replyId = $request->input('reply_id');
+        $isChecked = $request->input('is_checked',0);
+
+        $reply = Reply::find($replyId);
+        if($reply) {
+            $reply->status = $isChecked;
+            $reply->save();
+        }
+
+        return response()->json(['message' => 'Reply Status Updated Successfully']);
+    }
+
     public function AdminActiveComment()
     {
         $comment = Comment::where('status',1)->orderBy('id','DESC')->get();
-        return view('admin.backend.comment.active_comment', compact('comment'));
+        $reply = Reply::where('status',1)->orderBy('id','DESC')->get();
+        return view('admin.backend.comment.active_comment', compact('comment','reply'));
     }
 }

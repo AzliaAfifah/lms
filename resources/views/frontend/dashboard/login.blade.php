@@ -42,14 +42,14 @@ Login Page | Linguana
                         <div class="section-block"></div>
                         <form method="POST" class="pt-4" action="{{ route('login') }}">
                             @csrf
-                            <div class="d-flex flex-wrap align-items-center pb-4">
+                            {{-- <div class="d-flex flex-wrap align-items-center pb-4">
                                 <button class="btn theme-btn flex-grow-1 mx-2 mb-2"><i class="la la-google mr-2"></i>Google</button>
                                 <button class="btn theme-btn flex-grow-1 mx-2 mb-2"><i class="la la-facebook mr-2"></i>Facebook</button>
                                 <button class="btn theme-btn flex-grow-1 mx-2 mb-2"><i class="la la-twitter mr-2"></i>Twitter</button>
                             </div>
                             <div class="text-center pt-3 pb-4">
                                 <div class="icon-element icon-element-md fs-25 shadow-sm">Or</div>
-                            </div>
+                            </div> --}}
                             <div class="input-box">
                                 <label class="label-text">Email or Username</label>
                                 <div class="form-group">

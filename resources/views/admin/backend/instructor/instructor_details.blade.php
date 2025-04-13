@@ -148,12 +148,23 @@
                                         <h6 class="mb-0">Status</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        @if($user->status == '0')
-                                            <a href="{{ route('instructor.approve', $instructor->id) }}" class="btn btn-block btn-warning" id="confirm">Approved</a>
-                                            <a href="{{ route('pending-confirm',$user->id) }}" class="btn btn-block btn-danger" id="confirm">Rejected</a>
-                                        @elseif($user->status == '1')
+                                        {{-- @if($user->status == '0') --}}
+
+                                        <form method="post" action="{{ route('instructor.approve', $instructor->instructor_id) }}" style="display:inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-block btn-warning">Approved</button>
+                                        </form>
+
+                                        <form method="post" action="{{ route('instructor.rejected', $instructor->instructor_id) }}" style="display:inline;">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-block btn-danger">Rejected</button>
+                                        </form>
+
+                                        {{-- @elseif($user->status == '1') --}}
                                             {{-- <a href="" class="btn btn-block btn-success">Confirm Order</a> --}}
-                                        @endif
+                                        {{-- @endif --}}
                                     </div>
                                 </div>
                             </div>

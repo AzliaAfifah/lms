@@ -18,6 +18,9 @@ use App\Models\InstructorProfile;
 use App\Models\Payment;
 use App\Models\BlogCategory;
 use Carbon\Carbon;
+use App\Mail\ApprovedMail;
+use App\Mail\RejectedMail;
+use Illuminate\Support\Facades\Mail;
 class AdminController extends Controller
 {
     public function AdminDashboard()
@@ -229,7 +232,7 @@ class AdminController extends Controller
 
     public function AllInstructor()
     {
-        $allInstructor = User::where('role', 'instructor')->where('status', 1)->latest()->get();
+        $allInstructor = User::where('role', 'instructor')->latest()->get();
 
         return view('admin.backend.instructor.all_instructor', compact('allinstructor'));
     }
@@ -249,10 +252,41 @@ class AdminController extends Controller
         return view('admin.backend.instructor.instructor_details', compact('instructor','user'));
     }
 
-    public function InstructorApproved($id)
+    public function InstructorApproved(Request $request, $user_id)
     {
+        $instructor = User::findOrFail($user_id);
+
+        $instructor->update([
+            'status' => 1,
+        ]);
+
+        Mail::to($instructor->email)->send(new ApprovedMail($instructor));
+
+        $notification = array(
+            'message' => 'Instructor approved successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('all.instructor')->with($notification);
 
     }
+
+    public function InstructorRejected(Request $request, $user_id){
+        $instructor = User::findOrFail($user_id);
+
+        Mail::to($instructor->email)->send(new RejectedMail($instructor));
+
+        $instructor->delete();
+
+        $notification = array(
+            'message' => 'Instructor Rejected successfully!',
+            'alert-type' => 'info'
+        );
+
+        return redirect()->route('pending.instructor')->with($notification);
+
+    }
+
 
     public function UpdateUserStatus(Request $request)
     {

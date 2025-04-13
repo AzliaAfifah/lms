@@ -12,7 +12,13 @@ class InstructorProfile extends Model
     protected $guarded = [];
 
     public function languageCategory()
-{
-    return $this->belongsTo(Category::class, 'language');
-}
+    {
+        return $this->belongsTo(Category::class, 'language');
+    }
+
+    public function instructor()
+    {
+        return $this->belongsTo(User::class, 'instructor_id');
+    }
+
 }

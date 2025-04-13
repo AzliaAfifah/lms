@@ -21,7 +21,7 @@
 				</li>
 
 
-				<li class="menu-label">UI Elements</li>
+				<li class="menu-label">Admin Menu</li>
 				@if (Auth::user()->can('category.menu'))
 					<li>
 					<a href="javascript:;" class="has-arrow">
@@ -50,10 +50,6 @@
 					</ul>
 					<ul>
 						<li> <a href="{{ route('pending.instructor') }}"><i class='bx bx-radio-circle'></i>Pending Instructor</a>
-						</li>
-					</ul>
-					<ul>
-						<li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>Rejected Instructor</a>
 						</li>
 					</ul>
 				</li>
@@ -164,7 +160,7 @@
 					</a>
 					<ul>
 						<li> <a href="{{ route('all.user') }}"><i class='bx bx-radio-circle'></i>All User</a></li>
-						<li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a></li>
+						{{-- <li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a></li> --}}
 					</ul>
 				</li>
 
@@ -180,7 +176,7 @@
 					</ul>
 				</li>
 
-				<li class="menu-label">Role & Permission</li>
+				{{-- <li class="menu-label">Role & Permission</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-lock"></i>
@@ -204,7 +200,7 @@
 					<ul>
 						<li> <a href="{{ route('all.admin') }}"><i class='bx bx-radio-circle'></i>All Admin</a></li>
 					</ul>
-				</li>
+				</li> --}}
 				{{-- <li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-map-alt"></i>

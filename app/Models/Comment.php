@@ -22,6 +22,6 @@ class Comment extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class, 'comment_id'); // Ganti 'comment_id' dengan nama kolom yang sesuai
+        return $this->hasMany(Reply::class, 'comment_id')->where('status',1); // Ganti 'comment_id' dengan nama kolom yang sesuai
     }
 }

@@ -55,7 +55,7 @@
             <div class="col-lg-4">
                 <div class="sidebar mb-5">
                     <div class="card card-item">
-                        <div class="card-body">
+                        {{-- <div class="card-body">
                             <h3 class="card-title fs-18 pb-2">Search Field</h3>
                             <div class="divider"><span></span></div>
                             <form method="get">
@@ -64,7 +64,7 @@
                                     <span class="la la-search search-icon"></span>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                     </div><!-- end card -->
                     <div class="card card-item">
                         <div class="card-body">
@@ -77,7 +77,7 @@
                             </ul>
                         </div>
                     </div><!-- end card -->
-                    <div class="card card-item">
+                    {{-- <div class="card card-item">
                         <div class="card-body">
                             <h3 class="card-title fs-18 pb-2">Level</h3>
                             <div class="divider"><span></span></div>
@@ -106,7 +106,7 @@
                                 </label>
                             </div><!-- end custom-control -->
                         </div>
-                    </div><!-- end card -->
+                    </div><!-- end card --> --}}
                 </div><!-- end sidebar -->
             </div><!-- end col-lg-4 -->
             <div class="col-lg-8">

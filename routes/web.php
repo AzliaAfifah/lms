@@ -95,12 +95,12 @@ Route::middleware(['auth','roles:admin'])->group(function(){
 
     // Instructor All Route
     Route::controller(AdminController::class)->group(function (){
-        Route::get('/all/instructor','AllInstructor')->name('all.instructor');
         Route::post('/update/user/status','UpdateUserStatus')->name('update.user.status');
         Route::get('/pending/instructor','PendingInstructor')->name('pending.instructor');
         Route::get('/instructor/details/page/{user_id}','InstructorDetailsPage')->name('instructor.details.page');
 
-        Route::post('/instructor/{id}/approve', 'InstructorApproved')->name('instructor.approve');
+        Route::put('/instructor/{user_id}/approve', [AdminController::class, 'InstructorApproved'])->name('instructor.approve');
+        Route::put('/instructor/{user_id}/rejected', [AdminController::class, 'InstructorRejected'])->name('instructor.rejected');
     });
 
     // Admin Course All Route
@@ -177,6 +177,7 @@ Route::middleware(['auth','roles:admin'])->group(function(){
         Route::get('/delete/blog/category/{id}','DeleteBlogCategory')->name('delete.blog.category');
         Route::get('/admin/pending/comment','AdminPendingComment')->name('admin.pending.comment');
         Route::post('/update/comment/status','UpdateCommentStatus')->name('update.comment.status');
+        Route::post('/update/reply/status','UpdateReplyStatus')->name('update.reply.status');
         Route::get('/admin/active/comment','AdminActiveComment')->name('admin.active.comment');
     });
 
