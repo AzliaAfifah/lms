@@ -1,3 +1,4 @@
+@guest
 <section class="get-started-area pt-30px pb-90px position-relative">
     <span class="ring-shape ring-shape-1"></span>
     <span class="ring-shape ring-shape-2"></span>
@@ -34,3 +35,8 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end get-started-area -->
+@else
+
+@endguest
+
+

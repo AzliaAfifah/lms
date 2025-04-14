@@ -72,16 +72,16 @@
                         <div class="payment-option-wrap">
                             <div class="payment-tab is-active">
                                 <div class="payment-tab-toggle">
-                                    <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="handcash">
-                                    <label for="bankTransfer">Direct Payment</label>
+                                    <input checked id="directPayment" name="cash_delivery" type="radio" value="handcash">
+                                    <label for="directPayment">Direct Payment</label>
                                 </div>
                                 <div class="payment-tab-toggle">
-                                    <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="stripe">
-                                    <label for="bankTransfer">Stripe Payment</label>
+                                    <input id="stripePayment" name="cash_delivery" type="radio" value="stripe">
+                                    <label for="stripePayment">Stripe Payment</label>
                                 </div>
                                 <div class="payment-tab-toggle">
-                                    <input checked="" id="bankTransfer" name="cash_delivery" type="radio" value="midtrans">
-                                    <label for="bankTransfer">Indo Payment</label>
+                                    <input id="indoPayment" name="cash_delivery" type="radio" value="midtrans">
+                                    <label for="indoPayment">Indo Payment</label>
                                 </div>
                             </div><!-- end payment-tab -->
                         </div>

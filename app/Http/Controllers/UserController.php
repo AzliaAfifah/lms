@@ -114,13 +114,13 @@ class UserController extends Controller
 
     public function QuizAttempt()
     {
-        $quizResult = QuizResult::latest()->get();
+        $quizResult = QuizResult::where('user_id', auth()->id())->latest()->get();
 
         $total_questions = Quiz::select('course_id', DB::raw('COUNT(*) as total_questions'))
                             ->groupBy('course_id')
                             ->get();
 
-        $quiz = QuizResult::latest()->paginate(10);
+        $quiz = QuizResult::where('user_id', auth()->id())->latest()->paginate(10);
 
         return view('frontend.dashboard.quiz_attempt', compact('quizResult', 'total_questions','quiz'));
     }

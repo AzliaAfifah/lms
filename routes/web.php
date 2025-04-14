@@ -378,9 +378,11 @@ Route::get('/quiz/result/{id}/{score}/{total}/{correct}/{wrong}', [IndexControll
 Route::post('/quiz/result/store', function (Request $request){
     $request->validate([
         'course_id' => 'required|exists:courses,id',
-        'correct_answers' => 'required|integer',
-        'wrong_answers' => 'required|integer',
+        'correct_answers' => 'required|numeric',
+        'wrong_answers' => 'required|numeric',
         'score' => 'required|integer',
+        'correct_answer_data' => 'nullable|array',
+        'wrong_answer_data' => 'nullable|array',
     ]);
 
     QuizResult::create([
@@ -389,11 +391,14 @@ Route::post('/quiz/result/store', function (Request $request){
         'correct_answers' => $request->score,
         'wrong_answers' => $request->correct_answers,
         'score' => $request->wrong_answers,
+        'correct_answer_data' => json_encode($request->correct_answer_data),
+        'wrong_answer_data' => json_encode($request->wrong_answer_data),
     ]);
 
-    return response()->json(['message' => 'Quiz result saved succesfully!']);
 
-});
+    return response()->json(['message' => 'Quiz result saved successfully!']);
+
+})->middleware('auth');
 
 Route::get('/search/course/', [CourseController::class, 'SearchCourse'])->name('search_course');
 

@@ -29,7 +29,7 @@
 
     .btn-group {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         margin-top: 50px;
     }
 
@@ -43,9 +43,6 @@
         <div class="btn-group">
             <div>
                 <a href="{{ route('index') }}" class="btn theme-btn">Back to home</a>
-            </div>
-            <div>
-                <a href="javascript:void(0);" id="saveQuizBtn" class="btn theme-btn">Save the Quiz</a>
             </div>
         </div>
     </div>
@@ -81,18 +78,25 @@
                 console.error(error);
             }
         };
+        document.addEventListener('DOMContentLoaded', function() {
+            const message = localStorage.getItem('toastr_message');
+            const type = localStorage.getItem('toastr_type');
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const btn = document.getElementById("saveQuizBtn");
-            if (btn) {
-                btn.addEventListener("click", function () {
-                    saveQuizResult({{ $course->id }}, {{ $correct }}, {{ $wrong }}, {{ $score }});
-                });
-            } else {
-                console.error("Tombol Save Quiz tidak ditemukan!");
+            if (message) {
+                if (type === 'success') {
+                    toastr.success(message);
+                } else if (type === 'error') {
+                    toastr.error(message);
+                } else if (type === 'info') {
+                    toastr.info(message);
+                } else if (type === 'warning') {
+                    toastr.warning(message);
+                }
+
+                localStorage.removeItem('toastr_message');
+                localStorage.removeItem('toastr_type');
             }
         });
-
     </script>
 
 @endsection

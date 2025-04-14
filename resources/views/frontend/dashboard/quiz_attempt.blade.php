@@ -39,18 +39,21 @@
                 </td>
                 <td>
                     <ul class="generic-list-item">
-                        <li>{{ $item->correct_answers }}</li>
+                        <li>{{ $item->score }}</li>
                     </ul>
                 </td>
                 <td>
                     <ul class="generic-list-item">
-                        <li>{{ $item->wrong_answers }}</li>
+                        <li>{{ round($item->wrong_answers,'2') }}</li>
                     </ul>
                 </td>
                 <td>
                     <ul class="">
-                        <div class="progress-circle">
-                            <li class="score-text">{{ $item->score }}%</li>
+                        <div class="progress-circle" style="background: conic-gradient(
+                            #4caf50 {{ round($item->correct_answers) }}%,
+                            #e0e0e0 0
+                        );">
+                            <li class="score-text">{{ round($item->correct_answers) }}%</li>
                         </div>
                     </ul>
                 </td>
@@ -59,10 +62,6 @@
                         width: 80px;
                         height: 80px;
                         border-radius: 50%;
-                        background: conic-gradient(
-                            #4caf50 {{ $item->score }}%,
-                            #e0e0e0 0
-                        );
                         position: relative;
                         display: flex;
                         align-items: center;

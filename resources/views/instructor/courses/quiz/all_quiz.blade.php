@@ -42,13 +42,13 @@
                                 <td>{{ $quiz->correct_answer }}</td>
                                 <td>
                                     @if ($quiz->type == 'pg_text')
-                                        <span class="btn btn-primary btn-sm">Multiple Choice</span>
+                                        <span class="badge badge-primary">Multiple Choice</span>
                                     @elseif ($quiz->type == 'essay_text')
-                                        <span class="btn btn-primary btn-sm">Filled Text</span>
+                                        <span class="badge badge-primary">Filled Text</span>
                                     @elseif ($quiz->type == 'pg_audio')
-                                        <span class="btn btn-primary btn-sm">Audio Multiple Choice</span>
+                                        <span class="badge badge-primary">Audio Multiple Choice</span>
                                     @elseif ($quiz->type == 'essay_audio')
-                                        <span class="btn btn-primary btn-sm">Filled Audio</span>
+                                        <span class="badge badge-primary">Filled Audio</span>
                                     @endif
                                 </td>
                                 <td>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2025 at 12:20 PM
+-- Generation Time: Apr 14, 2025 at 12:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,7 +101,8 @@ INSERT INTO `categories` (`id`, `category_name`, `category_slug`, `image`, `crea
 (5, 'French', 'french', 'upload/category/1826448342843813.png', NULL, '2025-03-12 20:34:35'),
 (6, 'Korean', 'korean', 'upload/category/1826448368551030.png', NULL, '2025-03-12 20:35:00'),
 (7, 'Japanese', 'japanese', 'upload/category/1826448390452066.png', NULL, '2025-03-12 20:35:20'),
-(11, 'German', 'german', 'upload/category/1826815900010092.png', NULL, NULL);
+(11, 'German', 'german', 'upload/category/1826815900010092.png', NULL, NULL),
+(12, 'Indonesia', 'indonesia', 'upload/category/1829372818563656.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,8 @@ CREATE TABLE `comments` (
 INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
 (5, 1, 3, 'I know this is a really great blog to read', '0', '2025-03-29 07:29:16', NULL),
 (6, 2, 4, 'Hello, i\'m from spanish', '0', '2025-03-29 07:31:07', NULL),
-(7, 1, 4, 'This is so wonderful', '1', '2025-03-31 00:28:10', '2025-03-31 04:57:18');
+(7, 1, 4, 'This is so wonderful', '1', '2025-03-31 00:28:10', '2025-04-13 00:19:24'),
+(8, 5, 4, 'Wow, this is amazing', '1', '2025-04-14 02:49:54', '2025-04-14 02:55:17');
 
 -- --------------------------------------------------------
 
@@ -183,7 +185,7 @@ INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`
 (4, 'AFIFAH', '30', '2025-02-16', 1, NULL, NULL, '2025-02-16 06:35:01', NULL),
 (5, 'DISKON', '20', '2025-03-31', 1, NULL, NULL, '2025-02-16 19:30:23', NULL),
 (6, 'LINGUANA', '30', '2025-04-30', 1, 2, 5, '2025-02-27 08:29:00', '2025-02-27 08:29:00'),
-(8, 'INS', '10', '2025-04-30', 1, 2, 6, '2025-02-28 07:20:53', NULL);
+(8, 'UJIKOM', '10', '2025-04-30', 1, 2, 6, '2025-04-14 03:21:45', '2025-04-14 03:21:45');
 
 -- --------------------------------------------------------
 
@@ -228,7 +230,7 @@ INSERT INTO `courses` (`id`, `category_id`, `instructor_id`, `course_image`, `co
 (18, 5, 2, 'upload/course/thambnail/1826454350080884.jpg', 'French Pronunciation Bootcamp: Sound Like a Native!', 'French Pronunciation Bootcamp: Sound Like a Native!', 'french-pronunciation-bootcamp:-sound-like-a-native!', '<p>hello</p>', 'upload/course/video/1741842603.mp4', 'Middle', '12', '4', 'Yes', 200, 100, 'hello', '1', NULL, NULL, 1, '2025-03-12 22:10:03', NULL),
 (19, 7, 2, 'upload/course/thambnail/1826454584828241.jpg', 'Hiragana & Katakana Mastery: Your First Step to Japanese', 'Hiragana & Katakana Mastery: Your First Step to Japanese', 'hiragana-&-katakana-mastery:-your-first-step-to-japanese', '<p>hai</p>', 'upload/course/video/1741842827.mp4', 'Middle', '38', '4', 'No', 400, 300, 'hai', '1', NULL, '1', 1, '2025-03-12 22:13:47', NULL),
 (21, 1, 2, 'upload/course/thambnail/1826901462580135.jpg', 'TOEFL Mastery: Crush the Exam with Confidence', 'TOEFL Mastery: Crush the Exam with Confidence', 'toefl-mastery:-crush-the-exam-with-confidence', '<p>qqqq</p>', 'upload/course/video/1742269004.mp4', 'Advance', '12', '3', 'Yes', 500, NULL, 'qqqq', '1', NULL, NULL, 1, '2025-03-17 20:36:44', NULL),
-(22, 1, 2, 'upload/course/thambnail/1826901533205258.jpg', 'Business English: Communicate Like a Pro', 'Business English: Communicate Like a Pro', 'business-english:-communicate-like-a-pro', '<p>123</p>', 'upload/course/video/1742269070.mp4', 'Middle', '12', '3', 'Yes', 500, NULL, '123', '1', NULL, '1', 1, '2025-03-17 20:37:50', '2025-03-25 20:12:00');
+(22, 1, 2, 'upload/course/thambnail/1826901533205258.jpg', 'Business English: Communicate Like a Pro', 'Business English: Communicate Like a Pro', 'business-english:-communicate-like-a-pro', '<p>123</p>', 'upload/course/video/1742269070.mp4', 'Middle', '12', '3', 'Yes', 500, NULL, '123', '1', NULL, '1', 1, '2025-03-17 20:37:50', '2025-04-14 03:21:11');
 
 -- --------------------------------------------------------
 
@@ -386,7 +388,8 @@ CREATE TABLE `instructor_profiles` (
 INSERT INTO `instructor_profiles` (`id`, `instructor_id`, `degree`, `field_of_study`, `university_name`, `graduation_year`, `organization_name`, `position`, `subject_taught`, `years_experience`, `start_date`, `end_date`, `description`, `language`, `curriculum_vitae`, `created_at`, `updated_at`) VALUES
 (1, 22, 'High School Diploma', 'bbbb', 'ffff', '2003', 'qweqwe', 'qwrqwrqw', 'sdfsdfs', '23', '2025-04-24', '2025-04-07', 'asfsadfasd', '4', 'upload/cv/1744425953.pdf', NULL, NULL),
 (2, 37, 'High School Diploma', 'bbbb', 'ffff', '2001', 'qweqwe', 'qwrqwrqw', 'fff', '12', '2025-04-12', '2025-04-19', 'ASFASDFSDF', '4', 'upload/cv/1744426118.pdf', NULL, NULL),
-(3, 38, 'High School Diploma', 'bbbb', 'ffff', '2000', 'qweqwe', 'ffff', 'fff', '123', '2025-04-11', '2025-04-30', 'ASDFDVASDVSD', '4', 'upload/cv/1744426312.pdf', NULL, NULL);
+(3, 38, 'High School Diploma', 'bbbb', 'ffff', '2000', 'qweqwe', 'ffff', 'fff', '123', '2025-04-11', '2025-04-30', 'ASDFDVASDVSD', '4', 'upload/cv/1744426312.pdf', NULL, NULL),
+(4, 39, 'Bachelor\'s Degree', 'bbbb', 'ffff', '2003', 'qweqwe', 'qwrqwrqw', 'fff', '3', '2025-04-04', '2025-04-19', 'fwetwe4t', '5', 'upload/cv/1744531360.pdf', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -495,9 +498,14 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('2a48200f-5f83-4c86-a958-62badaeab9e0', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 06:12:19', '2025-03-16 06:12:19'),
 ('67d514db-db69-4aa5-a466-338f452d965f', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 20:52:49', '2025-03-05 20:52:49'),
 ('6b041dd1-51bf-4dbb-b284-fd8995b6628b', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:34', '2025-03-16 20:33:23', '2025-03-28 05:24:34'),
+('6e0e5b9a-05fe-4db3-9fc9-6665b94cf2ce', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 37, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('836586f7-2308-43d7-ad7b-7e1922a5629a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 19:42:33', '2025-03-05 19:42:33'),
+('99e0f2c1-dcb0-4e12-8c7b-6748c84b1aa8', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('9e3bee8f-6757-480e-acde-9cd711459353', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:36', '2025-03-16 06:12:19', '2025-03-28 05:24:36'),
+('c18597c7-5aa6-46a0-83f6-4e4585767dc3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('cbb166c8-83db-49a6-91e5-d7b204bca2c3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:36', '2025-03-05 20:52:49', '2025-03-05 23:06:36'),
+('d373d5c8-a71c-4fda-bf2c-d072e80497e6', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 40, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
+('d4be61f4-8e49-4a66-bbf3-af413c1a62e1', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 23, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('ea1088a1-b54d-4c91-9782-4aef547483c2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23');
 
 -- --------------------------------------------------------
@@ -525,7 +533,11 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id`, `course_title`, `price`, `created_at`, `updated_at`) VALUES
 (20, 34, 3, 19, 2, 'Hiragana & Katakana Mastery: Your First Step to Japanese', 400, '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
 (21, 35, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 300, '2025-03-16 20:33:17', '2025-03-16 20:33:17'),
-(22, 36, 3, 16, 2, 'Mandarin Tones & Characters: A Beginner’s Guide', 7582500, '2025-04-11 00:24:25', NULL);
+(22, 36, 3, 16, 2, 'Mandarin Tones & Characters: A Beginner’s Guide', 7582500, '2025-04-11 00:24:25', NULL),
+(23, 37, 4, 15, 2, 'Spanish in Action: Essential Phrases & Vocabulary for Daily Life', 6740000, '2025-04-13 22:51:58', NULL),
+(24, 39, 4, 17, 2, 'Hangul 101: Learn to Read & Write Korean in a Week', 8425000, '2025-04-14 03:09:30', NULL),
+(25, 40, 4, 19, 2, NULL, 400, NULL, NULL),
+(26, 41, 4, 18, 2, 'French Pronunciation Bootcamp: Sound Like a Native!', 200, '2025-04-14 03:13:19', '2025-04-14 03:13:19');
 
 -- --------------------------------------------------------
 
@@ -577,7 +589,10 @@ INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_deliver
 (33, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS43575614', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 20:52:40', '2025-03-05 20:52:40'),
 (34, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '320', 'Direct Payment', 'EOS27562089', '16 March 2025', 'March', '2025', 'pending', '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
 (35, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '240', 'Direct Payment', 'EOS43547443', '17 March 2025', 'March', '2025', 'pending', '2025-03-16 20:33:17', '2025-03-16 20:33:17'),
-(36, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'midtrans', '7582500', 'Midtrans', 'EOS9020bc7a-9fa0-458c-90ea-6776c30c48ff', '11 April 2025', 'April', '2025', 'confirm', '2025-04-11 00:24:00', '2025-04-11 00:24:25');
+(38, 'Onis', 'onis@gmail.com', '123', 'Korea', 'midtrans', '6740000', 'Midtrans', 'EOS64041951', '14 April 2025', 'April', '2025', 'pending', '2025-04-13 23:00:45', '2025-04-13 23:00:45'),
+(39, 'Onis', 'onis@gmail.com', '123', 'Korea', 'midtrans', '8425000', 'Midtrans', 'EOSc75436f1-5596-4cec-9834-2afc0059e693', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 03:08:46', '2025-04-14 03:09:30'),
+(40, 'Onis', 'onis@gmail.com', '123', 'Korea', NULL, '400', 'Stripe', 'EOS37726098', '14 April 2025', 'April', '2025', 'pending', '2025-04-14 03:10:47', NULL),
+(41, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '200', 'Direct Payment', 'EOS47374111', '14 April 2025', 'April', '2025', 'pending', '2025-04-14 03:13:19', '2025-04-14 03:13:19');
 
 -- --------------------------------------------------------
 
@@ -689,7 +704,8 @@ CREATE TABLE `quizzes` (
 INSERT INTO `quizzes` (`id`, `course_id`, `question`, `type`, `options`, `correct_answer`, `audio_path`, `created_at`, `updated_at`) VALUES
 (1, 14, 'Which sentence is in the present perfect tense?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"I have eaten breakfast already.\\\",\\\"I will eat breakfast later.\\\",\\\"I was eating breakfast.\\\"]\"', 'I have eaten breakfast already.', NULL, '2025-04-09 23:29:45', '2025-04-09 23:29:45'),
 (2, 14, 'By the time you arrive, we __________ (eat) dinner.', 'essay_text', NULL, 'will have eaten', NULL, '2025-04-09 23:30:48', '2025-04-09 23:30:48'),
-(4, 14, '22', 'pg_text', '\"[\\\"11\\\",\\\"22\\\",\\\"33\\\"]\"', '22', NULL, '2025-04-10 20:48:03', '2025-04-10 20:48:03');
+(4, 14, '22', 'pg_text', '\"[\\\"11\\\",\\\"22\\\",\\\"33\\\"]\"', '22', NULL, '2025-04-10 20:48:03', '2025-04-10 20:48:03'),
+(5, 15, 'What is You in spanish?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"b\\\",\\\"c\\\"]\"', 'I eat breakfast every day.', NULL, '2025-04-12 21:07:02', '2025-04-12 21:07:02');
 
 -- --------------------------------------------------------
 
@@ -701,21 +717,35 @@ CREATE TABLE `quiz_results` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `course_id` bigint(20) UNSIGNED NOT NULL,
-  `correct_answers` int(11) NOT NULL,
-  `wrong_answers` int(11) NOT NULL,
+  `correct_answers` decimal(11,5) NOT NULL,
+  `wrong_answers` decimal(11,5) NOT NULL,
   `score` int(11) NOT NULL,
-  `correctids` text DEFAULT NULL,
-  `wrongids` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `correct_answer_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`correct_answer_data`)),
+  `wrong_answer_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`wrong_answer_data`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `quiz_results`
 --
 
-INSERT INTO `quiz_results` (`id`, `user_id`, `course_id`, `correct_answers`, `wrong_answers`, `score`, `correctids`, `wrongids`, `created_at`, `updated_at`) VALUES
-(5, 3, 14, 3, 0, 100, '0', '0', '2025-04-10 21:25:33', '2025-04-10 21:25:33');
+INSERT INTO `quiz_results` (`id`, `user_id`, `course_id`, `correct_answers`, `wrong_answers`, `score`, `created_at`, `updated_at`, `correct_answer_data`, `wrong_answer_data`) VALUES
+(7, 3, 14, 2.00000, 1.00000, 67, '2025-04-11 07:56:49', '2025-04-11 07:56:49', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"12\",\"correct\":\"will have eaten\"}]'),
+(8, 3, 14, 2.00000, 1.00000, 67, '2025-04-11 08:01:53', '2025-04-11 08:01:53', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"12\",\"correct\":\"will have eaten\"}]'),
+(9, 3, 14, 2.00000, 1.00000, 67, '2025-04-11 08:03:58', '2025-04-11 08:03:58', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"11\",\"correct\":\"will have eaten\"}]'),
+(11, 3, 14, 67.00000, 2.00000, 1, '2025-04-12 17:58:26', '2025-04-12 17:58:26', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"12\",\"correct\":\"will have eaten\"}]'),
+(13, 3, 14, 100.00000, 3.00000, 0, '2025-04-12 18:07:17', '2025-04-12 18:07:17', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"will have eaten\",\"correct\":\"will have eaten\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(14, 3, 14, 67.00000, 2.00000, 1, '2025-04-12 18:19:05', '2025-04-12 18:19:05', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"eaten\",\"correct\":\"will have eaten\"}]'),
+(15, 3, 14, 83.00000, 3.00000, 0, '2025-04-12 18:29:10', '2025-04-12 18:29:10', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(16, 3, 14, 83.00000, 3.00000, 0, '2025-04-12 18:31:59', '2025-04-12 18:31:59', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(17, 3, 14, 83.00000, 3.00000, 0, '2025-04-12 18:36:20', '2025-04-12 18:36:20', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(18, 3, 14, 83.00000, 3.00000, 0, '2025-04-13 18:13:27', '2025-04-13 18:13:27', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(19, 3, 14, 83.00000, 3.00000, 0, '2025-04-13 18:14:35', '2025-04-13 18:14:35', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(20, 3, 14, 83.00000, 2.50000, 0, '2025-04-13 18:18:00', '2025-04-13 18:18:00', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(21, 3, 14, 83.00000, 2.50000, 0, '2025-04-13 18:27:12', '2025-04-13 18:27:12', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(22, 3, 14, 83.00000, 2.50000, 0, '2025-04-13 18:31:59', '2025-04-13 18:31:59', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
+(23, 3, 14, 50.00000, 2.00000, 2, '2025-04-13 18:37:12', '2025-04-13 18:37:12', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"eaten\",\"correct\":\"will have eaten\"},{\"question\":\"What is You in spanish?\",\"selected\":\"c\",\"correct\":\"I eat breakfast every day.\"}]');
 
 -- --------------------------------------------------------
 
@@ -740,8 +770,8 @@ CREATE TABLE `replies` (
 
 INSERT INTO `replies` (`id`, `blogpost_id`, `user_id`, `comment_id`, `reply`, `status`, `created_at`, `updated_at`) VALUES
 (11, 1, 4, 5, 'HI', '0', '2025-03-29 07:32:57', NULL),
-(12, 2, 3, 6, 'Really? me too', '0', '2025-03-29 07:33:46', NULL),
-(13, 1, 4, 7, 'Yeah', '0', '2025-03-31 02:00:13', NULL);
+(12, 2, 3, 6, 'Really? me too', '0', '2025-03-29 07:33:46', '2025-04-12 23:43:06'),
+(13, 1, 4, 7, 'Yeah', '1', '2025-03-31 02:00:13', '2025-04-14 02:55:21');
 
 -- --------------------------------------------------------
 
@@ -770,7 +800,7 @@ INSERT INTO `reviews` (`id`, `course_id`, `user_id`, `comment`, `rating`, `instr
 (7, 14, 3, 'I love this course so much', '5', 2, '1', '2025-03-22 23:37:19', '2025-03-22 23:38:27'),
 (8, 14, 4, 'I really need this course so much. Thanks!', '5', 2, '1', '2025-03-22 23:38:05', '2025-03-22 23:38:27'),
 (9, 14, 3, 'This is a really wonderful course. Thanks!', '4', 2, '1', '2025-03-23 20:33:34', '2025-03-23 20:38:05'),
-(10, 14, 3, 'THIS IS GONNA BE THE BEST COURSE EVER!', '5', 2, '0', '2025-03-23 20:34:19', NULL);
+(10, 14, 3, 'THIS IS GONNA BE THE BEST COURSE EVER!', '5', 2, '0', '2025-03-23 20:34:19', '2025-04-14 03:25:18');
 
 -- --------------------------------------------------------
 
@@ -867,7 +897,7 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`id`, `logo`, `phone`, `email`, `address`, `facebook`, `twitter`, `copyright`, `created_at`, `updated_at`) VALUES
-(1, 'upload/logo/1826127615411278.png', '08814580036', 'azlia@gmail.com', 'Canberra, Australia, 105 South Park Avenue', '#', '#', '© 2025 Aduca. All Rights Reserved. by Azlia', NULL, '2025-03-09 07:36:48');
+(1, 'upload/logo/1826127615411278.png', '08814580036', 'azlia@gmail.com', 'Canberra, Australia, 105 South Park Avenue', '#', '#', '© 2025 Linguana. All Rights Reserved. by Azlia', NULL, '2025-04-13 02:32:19');
 
 -- --------------------------------------------------------
 
@@ -949,7 +979,8 @@ INSERT INTO `testimonials` (`id`, `user_id`, `rating`, `comment`, `status`, `cre
 (2, 3, '4', 'I love this course so much, it has a different type of learning method', '1', '2025-03-19 00:34:30', '2025-03-19 08:08:26'),
 (3, 3, '5', 'Linguana is a really great language course', '1', '2025-03-19 00:42:09', '2025-03-19 08:02:12'),
 (6, 4, '4', 'I\'m in love with this course, thank you for teaching me.', '1', '2025-03-19 20:57:59', '2025-03-19 21:01:16'),
-(7, 3, '4', 'Linguana is a really great language course', '0', '2025-03-24 00:20:27', NULL);
+(7, 3, '4', 'Linguana is a really great language course', '0', '2025-03-24 00:20:27', NULL),
+(8, 3, '4', 'I love this', '1', '2025-04-14 02:38:29', '2025-04-14 02:39:04');
 
 -- --------------------------------------------------------
 
@@ -980,10 +1011,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-12 10:18:17', NULL, NULL, '2025-04-12 03:18:17'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-12 05:46:18', NULL, '2025-02-04 07:11:01', '2025-04-11 22:46:18'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-12 04:04:02', 'YoCB6L5fyymSOhA55LDBikMxzd55Ci7a5misLM0tRNN9lp3TFdW4VrbMGdRV', NULL, '2025-04-11 21:04:02'),
-(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-03-31 08:59:45', NULL, '2024-12-19 05:30:18', '2025-03-31 01:59:45'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-14 10:25:36', NULL, NULL, '2025-04-14 03:25:36'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-13 08:02:50', NULL, '2025-02-04 07:11:01', '2025-04-13 01:02:50'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-14 10:07:00', 'FYIDmy8tazBEP9JpJYrjTraFZRARsQFHzoF8Youkiv1MAaSeuV7jGW6HQayk', NULL, '2025-04-14 03:07:00'),
+(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-04-14 10:13:53', NULL, '2024-12-19 05:30:18', '2025-04-14 03:13:53'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
 (9, 'afifah', 'Afifah', 'afifah@gmail.com', NULL, '$2y$10$7vVTRlak4RE0qYlJycLvheRr5pvAjtguMVX.XG1FEn1uE1BvphHO6', NULL, '1212', 'Ciwidey', 'admin', '1', NULL, NULL, '2025-03-07 23:59:41', '2025-03-07 23:59:41'),
@@ -991,8 +1022,9 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (20, 'Muhammad Abyan', 'Byndewan', 'abyan@abyan.com', NULL, '$2y$10$.STjJSbW2C6mP742jD5rEeTdLyW3dv8xOdTk1/3j90UkXO5bnBFDW', '202503090535WhatsApp Image 2024-08-27 at 22.52.41_b131a581.jpg', '1234567890', 'kepo', 'admin', '1', '2025-03-09 05:37:50', NULL, '2025-03-08 00:40:40', '2025-03-08 22:37:50'),
 (22, 'Ainun Nabila Ramadhita', NULL, 'ainun@gmail.com', NULL, '$2y$10$eAUog/ORTdTWUsCFQ36WPOKkYVoWze8khY/5sIqyGkhZTFplxDH0.', NULL, NULL, NULL, 'user', '1', '2025-03-23 03:58:41', NULL, '2025-03-22 20:11:17', '2025-03-22 20:58:41'),
 (23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '1', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28'),
-(37, 'AAAAA', 'AAAAAA', 'AAA@AAAA.AAA', NULL, '$2y$10$yt3HSAiSb5AckymH2nYed.4Iw9dfdpTcJ2w.nAwG/94gSGOyeZxjG', NULL, '12121212', 'bbbbb', 'instructor', '0', NULL, NULL, '2025-04-11 19:48:11', '2025-04-11 19:48:11'),
-(38, 'BBBBB', 'BBBBB', 'BBB@BBB.BBB', NULL, '$2y$10$eeiz0DfPx9gauLtKDMBdrOMmXnpq2Fw7QhaMr41ssO/LRr3MT2oDu', NULL, '1231313112312', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '0', NULL, NULL, '2025-04-11 19:51:24', '2025-04-11 19:51:24');
+(37, 'AAAAA', 'AAAAAA', 'AAA@AAAA.AAA', NULL, '$2y$10$yt3HSAiSb5AckymH2nYed.4Iw9dfdpTcJ2w.nAwG/94gSGOyeZxjG', NULL, '12121212', 'bbbbb', 'instructor', '1', NULL, NULL, '2025-04-11 19:48:11', '2025-04-12 22:17:50'),
+(40, 'HHHHH', 'HHHHH', 'HHHHHH@gmail.com', NULL, '$2y$10$273bOTBT6Xrm2UXJvNwwwuS02akJEkxUignaSuQBkME18KLO6a2M.', NULL, '7777', 'JJJJ', 'instructor', '0', NULL, NULL, '2025-04-13 03:40:32', '2025-04-13 03:40:32'),
+(41, 'shine', NULL, 'shine@gmail.com', NULL, '$2y$10$B3rRq0Is/TMR8UHCXgIOF.k7/0vHDwMnpYyklUL6BFB5AXCrpzY6y', NULL, NULL, NULL, 'user', '1', '2025-04-14 10:14:54', NULL, '2025-04-14 03:14:53', '2025-04-14 03:14:54');
 
 -- --------------------------------------------------------
 
@@ -1013,15 +1045,8 @@ CREATE TABLE `wishlists` (
 --
 
 INSERT INTO `wishlists` (`id`, `user_id`, `course_id`, `created_at`, `updated_at`) VALUES
-(5, 3, 9, '2025-02-15 22:28:31', NULL),
-(6, 3, 12, '2025-02-15 22:28:53', NULL),
-(7, 1, 18, '2025-03-17 00:05:48', NULL),
-(8, 1, 15, '2025-03-17 00:09:35', NULL),
-(9, 1, 19, '2025-03-17 00:09:49', NULL),
-(10, 1, 16, '2025-03-17 00:10:33', NULL),
-(11, 3, 18, '2025-03-17 00:19:32', NULL),
-(12, 3, 17, '2025-03-17 00:21:01', NULL),
-(13, 3, 22, '2025-04-11 02:19:03', NULL);
+(15, 3, 22, '2025-04-14 02:41:41', NULL),
+(16, 4, 15, '2025-04-14 02:57:41', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1272,7 +1297,7 @@ ALTER TABLE `blog_posts`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `chat_messages`
@@ -1284,7 +1309,7 @@ ALTER TABLE `chat_messages`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `coupons`
@@ -1326,7 +1351,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `instructor_profiles`
 --
 ALTER TABLE `instructor_profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1338,13 +1363,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1368,13 +1393,13 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `quiz_results`
 --
 ALTER TABLE `quiz_results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `replies`
@@ -1416,19 +1441,19 @@ ALTER TABLE `sub_categories`
 -- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
 
     <!-- Toastr CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -16,6 +17,17 @@
     <!-- Toastr JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+    <script src="{{ asset('frontend/js/main.js') }}"></script>
+
+    <!-- start cssload-loader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+            </svg>
+        </div>
+    </div>
+    <!-- end cssload-loader -->
 
     <style>
         * {
@@ -167,7 +179,7 @@
         }
         .navigation {
             display: flex;
-            justify-content: end;
+            justify-content: space-between;
             margin-top: 50px;
             width: 80%;
             justify-self: center;
@@ -187,6 +199,21 @@
             border: 2px solid #2ea59d;
             color: #2ea59d;
         }
+        .change {
+            background: transparent;
+            border: 2px solid #2ea59d;
+            color: #2ea59d;
+            border-radius: 15px;
+            transform: scale(0.9);
+            margin-top: 10px;
+            display: none;
+        }
+        .change:hover {
+            background: #2ea59d;
+            color: white;
+            border-radius: 25px;
+            transform: scale(1);
+        }
         .back:hover {
             background: #2ea59d;
             color: white;
@@ -196,6 +223,14 @@
             color: #2ea59d;
             border: 1px solid #2ea59d;
         }
+
+        .option.selected {
+            background-color: #25f3e5;
+            border: 4px solid #4caf50;
+            color: white;
+            font-weight: bold;
+        }
+
 
         @media screen and (min-width: 300px) {
             .question-audio {
@@ -227,6 +262,8 @@
         </div>
         <div class="line"></div>
         <div class="navigation">
+            <button class="back" id="back-button">&#8592; Back</button>
+            <button class="change btn" id="change-button">Change Answer</button>
             <button class="next" id="submit-answer">Next &#8594;</button>
         </div>
 
@@ -240,7 +277,8 @@
     let correctAnswers = 0;
     let wrongAnswers = 0;
     let answered = false;
-
+    let userAnswers = [];
+    let currentQuestionIndex = 0;
 
 
 
@@ -251,6 +289,9 @@
             totalQuestions = questions.length;
             currentQuestionIndex = 0;
             courseId = {{ $course->id }};
+            correctAnswerDataArray = [];
+            wrongAnswerDataArray = [];
+            userAnswers = [];
             score = 0;
 
 
@@ -272,6 +313,12 @@
         }
     });
 
+    // let changeButton = document.getElementById("change-button");
+    // if (userAnswers[currentQuestionIndex] !== undefined && userAnswers[currentQuestionIndex] !== null) {
+    //     changeButton.style.display = "block";
+    // } else {
+    //     changeButton.style.display = "none";
+    // }
 
     function loadQuestion(question) {
         const container = document.getElementById("quiz-container");
@@ -416,8 +463,90 @@
             }
         }
 
+
+        const savedAnswer = userAnswers[currentQuestionIndex];
+
+        if (question.type.includes("pg") && savedAnswer) {
+            const buttons = document.querySelectorAll(".option");
+            buttons.forEach(button => {
+                if (button.textContent.trim() === savedAnswer.trim()) {
+                    button.classList.add("selected");
+                }
+                button.disabled = true;
+            });
+        }
+
+        if (question.type.includes("essay") && savedAnswer) {
+            const textarea = document.getElementById("essay-answer");
+            if (textarea) {
+                textarea.value = savedAnswer;
+                textarea.disabled = true;
+            }
+        }
+
+        if (userAnswers[currentQuestionIndex] !== undefined && userAnswers[currentQuestionIndex] !== null) {
+            const optionButtons = document.querySelectorAll(".option");
+            optionButtons.forEach(button => {
+                button.disabled = true;
+
+                const selectedText = button.textContent.trim();
+                if (selectedText === userAnswers[currentQuestionIndex]) {
+                    button.classList.add("selected");
+                }
+            });
+
+            const changeButton = document.getElementById("change-button");
+            changeButton.style.display = "block";
+        } else {
+            document.getElementById("change-button").style.display = "none";
+        }
+
+
         updateQuestionNumber();
     }
+
+    document.getElementById("change-button").addEventListener("click", () => {
+        const question = questions[currentQuestionIndex];
+        const prevAnswer = userAnswers[currentQuestionIndex];
+        const correctAnswer = question.correct_answer;
+        answered = false;
+
+        if (prevAnswer !== undefined && prevAnswer !== null) {
+            if (prevAnswer === correctAnswer) {
+                correctAnswers--;
+                correctAnswerDataArray = correctAnswerDataArray.filter(
+                    d => d.question !== question.question
+                );
+                console.log("SKOR BERKURANG DARI CORRECTANSWERS 🎯");
+            } else {
+                wrongAnswers--;
+                wrongAnswerDataArray = wrongAnswerDataArray.filter(
+                    d => d.question !== question.question
+                );
+                console.log("SKOR BERKURANG DARI WRONGANSWERS ❌");
+            }
+        }
+
+        if (question.type.includes("pg")) {
+            const buttons = document.querySelectorAll(".option");
+            buttons.forEach(button => {
+                button.disabled = false;
+                button.classList.remove("selected");
+            });
+        }
+
+        if (question.type.includes("essay")) {
+            const textarea = document.getElementById("essay-answer");
+            if (textarea) {
+                textarea.disabled = false;
+                textarea.value = "";
+            }
+        }
+
+        userAnswers[currentQuestionIndex] = undefined;
+        document.getElementById("change-button").style.display = "none";
+    });
+
 
 
 
@@ -449,16 +578,27 @@
         document.querySelector(".next").addEventListener("click", nextQuestion);
     });
 
+    document.getElementById('back-button').addEventListener('click', function () {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        loadQuestion(questions[currentQuestionIndex]);
+        const changeButton = document.getElementById("change-button");
+        changeButton.style.display = "block";
+    }
+    });
+
+    function updateBackButtonState() {
+        const backButton = document.getElementById('back-button');
+        backButton.disabled = currentQuestionIndex === 0;
+    }
+
+
 
     function getSelectedAnswer() {
         let currentQuestion = questions[currentQuestionIndex];
 
         if (currentQuestion.type === "essay_text" || currentQuestion.type === "essay_audio") {
             let textarea = document.querySelector(".answer-box");
-
-            // if (textarea) {
-            //     selectedAnswer = textarea.value.trim();
-            // }
 
             let answer = textarea.value;
 
@@ -538,33 +678,72 @@
     }
 
 
+    function getSimilarityScore(userAnswer, correctAnswer) {
+        const userWords = userAnswer.toLowerCase().split(/\s+/);
+        const correctWords = correctAnswer.toLowerCase().split(/\s+/);
+
+        let matchCount = 0;
+
+        correctWords.forEach(word => {
+            if (userWords.includes(word)) {
+                matchCount++;
+            }
+        });
+
+        return matchCount / correctWords.length;
+    }
 
 
     function checkAnswer(selectedAnswer) {
-
-        if (answered) {
-            console.log("Soal ini sudah dijawab, tidak perlu dihitung lagi.");
-            return;
-        }
-
+        if (answered) return;
         answered = true;
 
-        if (!questions[currentQuestionIndex]) {
-            console.error("Pertanyaan tidak ditemukan!");
-            return;
-        }
+        if (!questions[currentQuestionIndex]) return;
+
+        if (userAnswers[currentQuestionIndex] !== undefined && userAnswers[currentQuestionIndex] !== null) return;
+
+        userAnswers[currentQuestionIndex] = selectedAnswer;
 
         let correctAnswer = questions[currentQuestionIndex].correct_answer;
 
-        if (selectedAnswer === correctAnswer) {
-            correctAnswers++;
-            console.log("✅ Jawaban benar! Skor bertambah.");
+        if (questions[currentQuestionIndex].type.includes("essay")) {
+            const similarity = getSimilarityScore(selectedAnswer, correctAnswer);
+            console.log("💡 SIMILARITY SCORE:", similarity);
+
+            if (similarity >= 0.8) {
+                correctAnswers++;
+                correctAnswerDataArray.push({ question: questions[currentQuestionIndex].question, selected: selectedAnswer, correct: correctAnswer });
+            } else if (similarity >= 0.4) {
+                correctAnswers += 0.5;
+                correctAnswerDataArray.push({ question: questions[currentQuestionIndex].question, selected: selectedAnswer, correct: correctAnswer, partial: true });
+            } else {
+                wrongAnswers++;
+                wrongAnswerDataArray.push({ question: questions[currentQuestionIndex].question, selected: selectedAnswer, correct: correctAnswer });
+            }
         } else {
-            wrongAnswers++;
-            console.log("❌ Jawaban salah!");
+            if (selectedAnswer === correctAnswer) {
+                correctAnswers++;
+                correctAnswerDataArray.push({
+                    question: questions[currentQuestionIndex].question,
+                    selected: selectedAnswer,
+                    correct: correctAnswer
+                });
+            } else {
+                wrongAnswers++;
+                wrongAnswerDataArray.push({
+                    question: questions[currentQuestionIndex].question,
+                    selected: selectedAnswer,
+                    correct: correctAnswer
+                });
+            }
         }
 
+        const changeButton = document.getElementById("change-button");
+        changeButton.style.display = "block";
     }
+
+
+
 
 
 
@@ -578,24 +757,95 @@
     });
 
 
-    function nextQuestion() {
+    async function nextQuestion() {
+        if (!isCurrentQuestionAnswered()) {
+            alert("Silakan jawab soal ini sebelum melanjutkan.");
+            return;
+        }
 
         answered = false;
 
-        if (isCurrentQuestionAnswered()) {
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                loadQuestion(questions[currentQuestionIndex]);
-                updateProgressBar();
-            } else {
-                const score = (correctAnswers / totalQuestions) * 100;
-                window.location.href = `/quiz/result/${courseId}/${score}/${totalQuestions}/${correctAnswers}/${wrongAnswers}`;
-
+        if (questions[currentQuestionIndex].type.includes("essay")) {
+            const essayInput = document.getElementById("essay-answer");
+            if (essayInput) {
+                userAnswers[currentQuestionIndex] = essayInput.value;
             }
+        }
+
+
+        if (currentQuestionIndex < questions.length - 1) {
+            currentQuestionIndex++;
+            loadQuestion(questions[currentQuestionIndex]);
+            updateProgressBar();
+            const changeButton = document.getElementById("change-button");
+            changeButton.style.display = "none";
         } else {
-            alert("Silakan jawab soal ini sebelum melanjutkan.");
+            const score = Math.round((correctAnswers / totalQuestions) * 100);
+            await saveQuizResult(courseId, score, parseFloat(correctAnswers.toFixed(2)), wrongAnswers, correctAnswerDataArray, wrongAnswerDataArray);
+            window.location.href = `/quiz/result/${courseId}/${score}/${totalQuestions}/${correctAnswers}/${wrongAnswers}`;
         }
     }
+
+
+
+
+
+    const saveQuizResult = async (courseId, score, correct, wrong, correctData, wrongData) => {
+    try {
+        const response = await fetch('/quiz/result/store', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            },
+            body: JSON.stringify({
+                course_id: courseId,
+                score: score,
+                correct_answers: correct,
+                wrong_answers: wrong,
+                correct_answer_data: correctData,
+                wrong_answer_data: wrongData
+            }),
+        });
+
+        if (!response.ok) {
+            const text = await response.text();
+            console.error("Error response from server:", text);
+            toastr.error("Server error!");
+            return;
+        }
+
+        const contentType = response.headers.get('Content-Type');
+        if (contentType && contentType.includes('text/html')) {
+            const text = await response.text();
+            console.error("HTML response received: ", text);
+            toastr.error("Terjadi kesalahan pada server, halaman HTML diterima.");
+            return;
+        }
+
+        const data = await response.json();
+
+            if (data && data.message) {
+                localStorage.setItem('toastr_message', data.message);
+                localStorage.setItem('toastr_type', 'success');
+                window.location.href = "{{ route('index') }}";
+            } else {
+                toastr.error("Tidak ada pesan dari server!");
+            }
+
+        } catch (error) {
+            toastr.error("Gagal menyimpan kuis!");
+            console.error("Error while saving quiz result:", error);
+        }
+    };
+
+
+
+
+
+
+
+
 
 
     function updateQuestionNumber() {

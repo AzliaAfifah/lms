@@ -2,6 +2,8 @@
     $setting = App\Models\SiteSetting::find(1);
 @endphp
 
+
+
 <header class="header-menu-area bg-white">
     <div class="header-top pr-150px pl-150px border-bottom border-bottom-gray py-1">
         <div class="container-fluid">

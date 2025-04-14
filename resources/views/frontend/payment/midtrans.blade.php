@@ -30,7 +30,7 @@
 
     <div class="container-result">
         <h2 class="mb-3">Confirm the Payment</h2>
-        <p class="mb-3">Note: After completing the payment, please click “Ok” promptly.</p>
+        <p class="mb-3">Note: After completing the payment, you can click "Ok" or just leave it.</p>
         <label>
             <input type="checkbox" id="confirm-read" /><strong>
             Please check this box to continue and confirm that you have read the note.</strong>

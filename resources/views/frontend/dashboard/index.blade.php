@@ -5,6 +5,8 @@
 @php
     $id = Auth::user()->id;
     $profileData = App\Models\User::find($id);
+    $courEnroll = App\Models\Order::where('user_id',$id)->count();
+    $quizResult = App\Models\QuizResult::where('correct_answers','100')->where('user_id',$id)->count();
 @endphp
 
 <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between mb-5">
@@ -17,7 +19,7 @@
             <div class="rating-wrap d-flex align-items-center pt-2">
                 {{-- <div class="review-stars">
                     <span class="rating-number">4.4</span>
-                    <span class="la la-star"></span>
+                    <span class="la la-star"></span>    
                     <span class="la la-star"></span>
                     <span class="la la-star"></span>
                     <span class="la la-star"></span>
@@ -50,7 +52,7 @@
                 </div>
                 <div class="pl-4">
                     <p class="card-text fs-18">Enrolled Courses</p>
-                    <h5 class="card-title pt-2 fs-26">11</h5>
+                    <h5 class="card-title pt-2 fs-26">{{ $courEnroll }}</h5>
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
@@ -93,13 +95,13 @@
                     </svg>
                 </div>
                 <div class="pl-4">
-                    <p class="card-text fs-18">Active Courses</p>
-                    <h5 class="card-title pt-2 fs-26">5</h5>
+                    <p class="card-text fs-18">Total Completed Quiz</p>
+                    <h5 class="card-title pt-2 fs-26">{{ $quizResult }}</h5>
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
     </div><!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column-half">
+    {{-- <div class="col-lg-4 responsive-column-half">
         <div class="card card-item dashboard-info-card">
             <div class="card-body d-flex align-items-center">
                 <div class="icon-element flex-shrink-0 bg-3 text-white">
@@ -142,8 +144,8 @@
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
-    </div><!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column-half">
+    </div><!-- end col-lg-4 --> --}}
+    {{-- <div class="col-lg-4 responsive-column-half">
         <div class="card card-item dashboard-info-card">
             <div class="card-body d-flex align-items-center">
                 <div class="icon-element flex-shrink-0 bg-4 text-white">
@@ -198,8 +200,8 @@
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
-    </div><!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column-half">
+    </div><!-- end col-lg-4 --> --}}
+    {{-- <div class="col-lg-4 responsive-column-half">
         <div class="card card-item dashboard-info-card">
             <div class="card-body d-flex align-items-center">
                 <div class="icon-element flex-shrink-0 bg-5 text-white">
@@ -242,8 +244,8 @@
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
-    </div><!-- end col-lg-4 -->
-    <div class="col-lg-4 responsive-column-half">
+    </div><!-- end col-lg-4 --> --}}
+    {{-- <div class="col-lg-4 responsive-column-half">
         <div class="card card-item dashboard-info-card">
             <div class="card-body d-flex align-items-center">
                 <div class="icon-element flex-shrink-0 bg-6 text-white">
@@ -262,7 +264,7 @@
                 </div>
             </div><!-- end card-body -->
         </div><!-- end card -->
-    </div><!-- end col-lg-4 -->
+    </div><!-- end col-lg-4 --> --}}
 
 </div><!-- end row -->
 
