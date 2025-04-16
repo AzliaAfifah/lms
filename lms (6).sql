@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2025 at 12:27 PM
--- Server version: 10.4.32-MariaDB
+-- Generation Time: Apr 16, 2025 at 06:54 AM
+-- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `blog_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_name` varchar(255) DEFAULT NULL,
-  `category_slug` varchar(255) DEFAULT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `category_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -44,7 +44,8 @@ INSERT INTO `blog_categories` (`id`, `category_name`, `category_slug`, `created_
 (3, 'Grammar', 'grammar', NULL, NULL),
 (4, 'Vocabulary', 'vocabulary', NULL, NULL),
 (5, 'Pronunciation', 'pronunciation', NULL, '2025-03-04 06:46:17'),
-(6, 'Bilingual', 'bilingual', NULL, NULL);
+(6, 'Bilingual', 'bilingual', NULL, NULL),
+(7, 'Happy', 'happy', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -55,11 +56,11 @@ INSERT INTO `blog_categories` (`id`, `category_name`, `category_slug`, `created_
 CREATE TABLE `blog_posts` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `blogcat_id` int(11) NOT NULL,
-  `post_title` varchar(255) DEFAULT NULL,
-  `post_slug` varchar(255) DEFAULT NULL,
-  `post_image` varchar(255) DEFAULT NULL,
-  `long_descp` text DEFAULT NULL,
-  `post_tags` varchar(255) DEFAULT NULL,
+  `post_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `long_descp` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `post_tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -83,9 +84,9 @@ INSERT INTO `blog_posts` (`id`, `blogcat_id`, `post_title`, `post_slug`, `post_i
 
 CREATE TABLE `categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `category_name` varchar(255) NOT NULL,
-  `category_slug` varchar(255) NOT NULL,
-  `image` varchar(255) DEFAULT NULL,
+  `category_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -114,7 +115,7 @@ CREATE TABLE `chat_messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `sender_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'user_id',
   `receiver_id` bigint(20) UNSIGNED DEFAULT NULL COMMENT 'instructor_id',
-  `msg` text NOT NULL,
+  `msg` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -129,7 +130,10 @@ INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `msg`, `created_a
 (3, 2, 3, 'What can I help you?', '2025-03-11 20:45:28', '2025-03-11 20:45:28'),
 (4, 3, 2, 'I want you to fix my error', '2025-03-11 20:47:29', '2025-03-11 20:47:29'),
 (5, 2, 3, 'what kind of error do you have?', '2025-03-11 20:52:05', '2025-03-11 20:52:05'),
-(6, 3, 2, 'Hmm I don\'t know', '2025-03-11 20:52:47', '2025-03-11 20:52:47');
+(6, 3, 2, 'Hmm I don\'t know', '2025-03-11 20:52:47', '2025-03-11 20:52:47'),
+(7, 4, 2, 'Hello, I\'m Onis', '2025-04-14 08:19:21', '2025-04-14 08:19:21'),
+(8, 2, 4, 'Hello Onis, what can i help you?', '2025-04-14 08:19:49', '2025-04-14 08:19:49'),
+(9, 4, 2, 'I had some bugs in my website', '2025-04-14 08:20:26', '2025-04-14 08:20:26');
 
 -- --------------------------------------------------------
 
@@ -141,8 +145,8 @@ CREATE TABLE `comments` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `blogpost_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -152,10 +156,10 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(5, 1, 3, 'I know this is a really great blog to read', '0', '2025-03-29 07:29:16', NULL),
-(6, 2, 4, 'Hello, i\'m from spanish', '0', '2025-03-29 07:31:07', NULL),
+(5, 1, 3, 'I know this is a really great blog to read', '0', '2025-03-29 07:29:16', '2025-04-14 17:33:24'),
+(6, 2, 4, 'Hello, i\'m from spanish', '1', '2025-03-29 07:31:07', '2025-04-14 17:31:36'),
 (7, 1, 4, 'This is so wonderful', '1', '2025-03-31 00:28:10', '2025-04-13 00:19:24'),
-(8, 5, 4, 'Wow, this is amazing', '1', '2025-04-14 02:49:54', '2025-04-14 02:55:17');
+(8, 5, 4, 'Wow, this is amazing', '1', '2025-04-14 02:49:54', '2025-04-15 00:04:25');
 
 -- --------------------------------------------------------
 
@@ -165,9 +169,9 @@ INSERT INTO `comments` (`id`, `blogpost_id`, `user_id`, `comment`, `status`, `cr
 
 CREATE TABLE `coupons` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `coupon_name` varchar(255) NOT NULL,
-  `coupon_discount` varchar(255) NOT NULL,
-  `coupon_validity` varchar(255) NOT NULL,
+  `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_discount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_validity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(11) NOT NULL DEFAULT 1,
   `instructor_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
@@ -184,8 +188,8 @@ INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_discount`, `coupon_validity`
 (3, 'ADMIN', '10', '2025-02-15', 1, NULL, NULL, '2025-02-12 23:21:56', NULL),
 (4, 'AFIFAH', '30', '2025-02-16', 1, NULL, NULL, '2025-02-16 06:35:01', NULL),
 (5, 'DISKON', '20', '2025-03-31', 1, NULL, NULL, '2025-02-16 19:30:23', NULL),
-(6, 'LINGUANA', '30', '2025-04-30', 1, 2, 5, '2025-02-27 08:29:00', '2025-02-27 08:29:00'),
-(8, 'UJIKOM', '10', '2025-04-30', 1, 2, 6, '2025-04-14 03:21:45', '2025-04-14 03:21:45');
+(9, 'UJIKOM', '20', '2025-05-10', 1, 2, 21, '2025-04-14 08:28:23', NULL),
+(10, 'BISMILLAH', '30', '2025-04-30', 1, NULL, NULL, '2025-04-14 17:36:25', '2025-04-14 17:36:25');
 
 -- --------------------------------------------------------
 
@@ -197,22 +201,22 @@ CREATE TABLE `courses` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
   `instructor_id` int(11) NOT NULL,
-  `course_image` varchar(255) DEFAULT NULL,
-  `course_title` text DEFAULT NULL,
-  `course_name` text DEFAULT NULL,
-  `course_name_slug` varchar(255) DEFAULT NULL,
-  `description` longtext DEFAULT NULL,
-  `video` varchar(255) DEFAULT NULL,
-  `label` varchar(255) DEFAULT NULL,
-  `duration` varchar(255) DEFAULT NULL,
-  `resources` varchar(255) DEFAULT NULL,
-  `certificate` varchar(255) DEFAULT NULL,
+  `course_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_title` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `course_name_slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `label` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `duration` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `resources` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `certificate` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `selling_price` int(11) DEFAULT NULL,
   `discount_price` int(11) DEFAULT NULL,
-  `prerequisite` text DEFAULT NULL,
-  `bestseller` varchar(255) DEFAULT NULL,
-  `featured` varchar(255) DEFAULT NULL,
-  `highestrated` varchar(255) DEFAULT NULL,
+  `prerequisite` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bestseller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `featured` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `highestrated` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=Inactive',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -241,7 +245,7 @@ INSERT INTO `courses` (`id`, `category_id`, `instructor_id`, `course_image`, `co
 CREATE TABLE `course_goals` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` int(11) NOT NULL,
-  `goal_name` text DEFAULT NULL,
+  `goal_name` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -288,10 +292,10 @@ CREATE TABLE `course_lectures` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` int(11) DEFAULT NULL,
   `section_id` bigint(20) UNSIGNED NOT NULL,
-  `lecture_title` varchar(255) DEFAULT NULL,
-  `video` varchar(255) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL,
-  `content` text DEFAULT NULL,
+  `lecture_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -305,13 +309,14 @@ INSERT INTO `course_lectures` (`id`, `course_id`, `section_id`, `lecture_title`,
 (2, 5, 1, 'Simple Past Tense', NULL, 'https://youtu.be/PdbBP0F8GK8?si=FU1o1gA1EoLo4ZGd', 'Simple Past Tense', '2025-01-18 03:41:17', '2025-01-18 03:41:17'),
 (3, 5, 1, 'Simple Future Tense', NULL, 'https://www.youtube.com/embed/4Ae7O57Itu8?si=Bi2Pk19U4J1-asB6', 'Simple Future Tense', '2025-01-18 03:42:53', '2025-02-18 21:35:01'),
 (7, 5, 4, 'Understanding', NULL, 'https://www.youtube.com/embed/WioL50vGE04?si=I2iBOqWKhNjnI9QG', 'Understanding', '2025-01-22 06:25:53', '2025-01-22 06:25:53'),
-(8, 14, 8, 'Learn English Tenses (complete course)', NULL, 'https://www.youtube.com/embed/UdbvTP4rCxc?si=38nC6E_NAEC3HSog', 'Learn English Tenses (complete course)', '2025-03-16 20:43:50', '2025-03-16 20:46:06'),
-(9, 14, 8, 'How to learn ALL 12 tenses', NULL, 'https://www.youtube.com/embed/mScixcyubUY?si=H_MsvHSXsr-y1vea', 'How to learn ALL 12 tenses', '2025-03-16 20:44:27', '2025-03-16 20:46:19'),
-(10, 14, 9, 'PRESENT SIMPLE', NULL, 'https://www.youtube.com/embed/Z19NAX_gWxI?si=1v4wghWmR-w52bVD', 'PRESENT SIMPLE', '2025-03-16 20:45:08', '2025-03-16 20:46:30'),
-(11, 14, 9, 'PRESENT CONTINUOUS (PRESENT PROGRESSIVE)', NULL, 'https://www.youtube.com/embed/w04YVmJR4w4?si=GIk2tzk4bljEuo4a', 'PRESENT CONTINUOUS (PRESENT PROGRESSIVE)', '2025-03-16 20:45:38', '2025-03-16 20:46:40'),
-(12, 14, 9, 'Present Simple or Present Continuous?', NULL, 'https://www.youtube.com/embed/SL3ciyAEcms?si=YhslkkeXm_cOipNH', 'Present Simple or Present Continuous?', '2025-03-16 20:47:34', '2025-03-16 20:47:34'),
-(13, 14, 10, 'PAST SIMPLE', NULL, 'https://www.youtube.com/embed/dmJrYbDjxQY?si=VH4_eYbuMrVkOStc', 'PAST SIMPLE', '2025-03-16 20:48:17', '2025-03-16 20:48:17'),
-(14, 14, 10, 'PAST CONTINUOUS', NULL, 'https://www.youtube.com/embed/bTWa5M4UMO8?si=yKNbrg4cDti6SUoe', 'PAST CONTINUOUS', '2025-03-16 20:48:52', '2025-03-16 20:48:52');
+(8, 14, 8, 'Learn English Tenses (complete course)', NULL, 'https://www.youtube.com/embed/Ljjiw9mC_Cg?si=DVDltMn_nI7gis4Z', 'Learn English Tenses (complete course)', '2025-03-16 20:43:50', '2025-04-14 07:56:10'),
+(9, 14, 8, 'How to learn ALL 12 tenses', NULL, 'https://www.youtube.com/embed/d0wV9EC3t14?si=iZGwkhQfyW6MNf6s', 'How to learn ALL 12 tenses', '2025-03-16 20:44:27', '2025-04-14 07:59:23'),
+(10, 14, 9, 'PRESENT SIMPLE', NULL, 'https://www.youtube.com/embed/uEj9fX5_5AI?si=uhm3kMTd-hNrfxZf', 'PRESENT SIMPLE', '2025-03-16 20:45:08', '2025-04-14 08:01:14'),
+(11, 14, 9, 'PRESENT CONTINUOUS (PRESENT PROGRESSIVE)', NULL, 'https://www.youtube.com/embed/7O-Ye9HF2DI?si=Q3NUHp0A_w5V5CFy', 'PRESENT CONTINUOUS (PRESENT PROGRESSIVE)', '2025-03-16 20:45:38', '2025-04-14 08:02:31'),
+(12, 14, 9, 'Present Simple or Present Continuous?', NULL, 'https://www.youtube.com/embed/GV9IFkjsQkE?si=VH7oN642gRoNqFpQ', 'Present Simple or Present Continuous?', '2025-03-16 20:47:34', '2025-04-14 08:03:21'),
+(13, 14, 10, 'PAST SIMPLE', NULL, 'https://www.youtube.com/embed/LkyCYeDdvgI?si=InVcI_fP0JjmSCVS', 'PAST SIMPLE', '2025-03-16 20:48:17', '2025-04-14 08:04:32'),
+(14, 14, 10, 'PAST CONTINUOUS', NULL, 'https://www.youtube.com/embed/zBDdCy4_3O4?si=7IHx3gefmfFHRqhq', 'PAST CONTINUOUS', '2025-03-16 20:48:52', '2025-04-14 08:05:21'),
+(15, 23, 11, 'Introduction', NULL, 'https://www.youtube.com/embed/fYZP95y2mgM?si=c5FReWDVXC4Za1jF', 'Introduction', '2025-04-14 16:46:00', '2025-04-14 16:46:00');
 
 -- --------------------------------------------------------
 
@@ -322,7 +327,7 @@ INSERT INTO `course_lectures` (`id`, `course_id`, `section_id`, `lecture_title`,
 CREATE TABLE `course_sections` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` int(11) NOT NULL,
-  `section_title` varchar(255) NOT NULL,
+  `section_title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -337,7 +342,9 @@ INSERT INTO `course_sections` (`id`, `course_id`, `section_title`, `created_at`,
 (4, 5, 'Section 2 : Speaking', NULL, NULL),
 (8, 14, 'Introduction to English Tenses', NULL, NULL),
 (9, 14, 'Present Tenses: Talking About Now', NULL, NULL),
-(10, 14, 'Past Tenses: Talking About the Past', NULL, NULL);
+(10, 14, 'Past Tenses: Talking About the Past', NULL, NULL),
+(11, 23, 'Section 1 : Introduction', NULL, NULL),
+(12, 23, 'Section 2 : Grammar', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -347,11 +354,11 @@ INSERT INTO `course_sections` (`id`, `course_id`, `section_title`, `created_at`,
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -364,19 +371,19 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `instructor_profiles` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `instructor_id` int(11) NOT NULL,
-  `degree` varchar(255) NOT NULL,
-  `field_of_study` varchar(255) NOT NULL,
-  `university_name` varchar(255) NOT NULL,
-  `graduation_year` varchar(255) NOT NULL,
-  `organization_name` varchar(255) DEFAULT NULL,
-  `position` varchar(255) DEFAULT NULL,
-  `subject_taught` varchar(255) DEFAULT NULL,
-  `years_experience` varchar(255) DEFAULT NULL,
-  `start_date` varchar(255) DEFAULT NULL,
-  `end_date` varchar(255) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `language` varchar(255) NOT NULL,
-  `curriculum_vitae` varchar(255) NOT NULL,
+  `degree` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `field_of_study` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `university_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `graduation_year` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `organization_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `position` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `subject_taught` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `years_experience` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `end_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `language` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `curriculum_vitae` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -399,7 +406,7 @@ INSERT INTO `instructor_profiles` (`id`, `instructor_id`, `degree`, `field_of_st
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -446,7 +453,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -458,7 +465,7 @@ CREATE TABLE `model_has_permissions` (
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -479,11 +486,11 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 --
 
 CREATE TABLE `notifications` (
-  `id` char(36) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `notifiable_type` varchar(255) NOT NULL,
+  `id` char(36) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notifiable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `notifiable_id` bigint(20) UNSIGNED NOT NULL,
-  `data` text NOT NULL,
+  `data` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `read_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -496,17 +503,22 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `data`, `read_at`, `created_at`, `updated_at`) VALUES
 ('1b6ce814-3210-4bf2-b6da-a661e0649f6c', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:47', '2025-03-05 19:42:33', '2025-03-05 23:06:47'),
 ('2a48200f-5f83-4c86-a958-62badaeab9e0', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 06:12:19', '2025-03-16 06:12:19'),
+('3c73752f-646c-4fba-b904-8896791906d2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49'),
+('4a99950c-6ff3-4d80-a542-54a60249c43c', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 37, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49'),
 ('67d514db-db69-4aa5-a466-338f452d965f', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 20:52:49', '2025-03-05 20:52:49'),
 ('6b041dd1-51bf-4dbb-b284-fd8995b6628b', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:34', '2025-03-16 20:33:23', '2025-03-28 05:24:34'),
 ('6e0e5b9a-05fe-4db3-9fc9-6665b94cf2ce', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 37, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
+('7c3b200b-f9fe-4b88-8e8f-0ef69f28d4ba', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 23, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49'),
 ('836586f7-2308-43d7-ad7b-7e1922a5629a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 19:42:33', '2025-03-05 19:42:33'),
 ('99e0f2c1-dcb0-4e12-8c7b-6748c84b1aa8', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('9e3bee8f-6757-480e-acde-9cd711459353', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:36', '2025-03-16 06:12:19', '2025-03-28 05:24:36'),
+('b2a88e19-b4d2-4fa6-b84d-dec101dda121', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 40, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49'),
 ('c18597c7-5aa6-46a0-83f6-4e4585767dc3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('cbb166c8-83db-49a6-91e5-d7b204bca2c3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:36', '2025-03-05 20:52:49', '2025-03-05 23:06:36'),
 ('d373d5c8-a71c-4fda-bf2c-d072e80497e6', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 40, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('d4be61f4-8e49-4a66-bbf3-af413c1a62e1', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 23, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
-('ea1088a1-b54d-4c91-9782-4aef547483c2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23');
+('ea1088a1-b54d-4c91-9782-4aef547483c2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23'),
+('fdc61a8c-aae2-4cd6-a9b8-ebd5296f9f0a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49');
 
 -- --------------------------------------------------------
 
@@ -520,7 +532,7 @@ CREATE TABLE `orders` (
   `user_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `instructor_id` int(11) DEFAULT NULL,
-  `course_title` varchar(255) DEFAULT NULL,
+  `course_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -531,13 +543,10 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id`, `course_title`, `price`, `created_at`, `updated_at`) VALUES
-(20, 34, 3, 19, 2, 'Hiragana & Katakana Mastery: Your First Step to Japanese', 400, '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
-(21, 35, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 300, '2025-03-16 20:33:17', '2025-03-16 20:33:17'),
-(22, 36, 3, 16, 2, 'Mandarin Tones & Characters: A Beginner’s Guide', 7582500, '2025-04-11 00:24:25', NULL),
-(23, 37, 4, 15, 2, 'Spanish in Action: Essential Phrases & Vocabulary for Daily Life', 6740000, '2025-04-13 22:51:58', NULL),
-(24, 39, 4, 17, 2, 'Hangul 101: Learn to Read & Write Korean in a Week', 8425000, '2025-04-14 03:09:30', NULL),
-(25, 40, 4, 19, 2, NULL, 400, NULL, NULL),
-(26, 41, 4, 18, 2, 'French Pronunciation Bootcamp: Sound Like a Native!', 200, '2025-04-14 03:13:19', '2025-04-14 03:13:19');
+(28, 43, 4, 14, 2, NULL, 300, NULL, NULL),
+(29, 44, 4, 22, 2, 'Business English: Communicate Like a Pro', 500, '2025-04-14 15:10:40', '2025-04-14 15:10:40'),
+(30, 45, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 5055000, '2025-04-14 16:53:26', NULL),
+(31, 46, 3, 16, 2, NULL, 450, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -546,8 +555,8 @@ INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -559,18 +568,18 @@ CREATE TABLE `password_reset_tokens` (
 
 CREATE TABLE `payments` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `cash_delivery` varchar(255) DEFAULT NULL,
-  `total_amount` varchar(255) DEFAULT NULL,
-  `payment_type` varchar(255) DEFAULT NULL,
-  `invoice_no` varchar(255) DEFAULT NULL,
-  `order_date` varchar(255) DEFAULT NULL,
-  `order_month` varchar(255) DEFAULT NULL,
-  `order_year` varchar(255) DEFAULT NULL,
-  `status` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cash_delivery` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payment_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `invoice_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_date` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_month` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_year` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -580,19 +589,10 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_delivery`, `total_amount`, `payment_type`, `invoice_no`, `order_date`, `order_month`, `order_year`, `status`, `created_at`, `updated_at`) VALUES
-(27, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '160', 'Direct Payment', 'EOS32586939', '19 February 2025', 'February', '2025', 'confirm', '2025-02-18 20:30:14', '2025-02-18 20:33:03'),
-(28, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '300', 'Direct Payment', 'EOS64596179', '19 February 2025', 'February', '2025', 'confirm', '2025-02-18 20:35:33', '2025-02-18 20:36:34'),
-(29, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', NULL, '320', 'Stripe', 'EOS87789229', '24 February 2025', 'February', '2025', 'pending', '2025-02-24 02:27:05', NULL),
-(30, 'Onis', 'onis@gmail.com', NULL, NULL, NULL, '160', 'Stripe', 'EOS56938313', '24 February 2025', 'February', '2025', 'pending', '2025-02-24 02:34:35', NULL),
-(31, 'Instructor', 'instructor@gmail.com', '993', 'Indonesia', 'handcash', '140', 'Direct Payment', 'EOS11996117', '28 February 2025', 'February', '2025', 'pending', '2025-02-28 08:22:22', '2025-02-28 08:22:22'),
-(32, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS70790250', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 19:42:20', '2025-03-05 19:42:20'),
-(33, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '300', 'Direct Payment', 'EOS43575614', '06 March 2025', 'March', '2025', 'pending', '2025-03-05 20:52:40', '2025-03-05 20:52:40'),
-(34, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '320', 'Direct Payment', 'EOS27562089', '16 March 2025', 'March', '2025', 'pending', '2025-03-16 06:12:10', '2025-03-16 06:12:10'),
-(35, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '240', 'Direct Payment', 'EOS43547443', '17 March 2025', 'March', '2025', 'pending', '2025-03-16 20:33:17', '2025-03-16 20:33:17'),
-(38, 'Onis', 'onis@gmail.com', '123', 'Korea', 'midtrans', '6740000', 'Midtrans', 'EOS64041951', '14 April 2025', 'April', '2025', 'pending', '2025-04-13 23:00:45', '2025-04-13 23:00:45'),
-(39, 'Onis', 'onis@gmail.com', '123', 'Korea', 'midtrans', '8425000', 'Midtrans', 'EOSc75436f1-5596-4cec-9834-2afc0059e693', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 03:08:46', '2025-04-14 03:09:30'),
-(40, 'Onis', 'onis@gmail.com', '123', 'Korea', NULL, '400', 'Stripe', 'EOS37726098', '14 April 2025', 'April', '2025', 'pending', '2025-04-14 03:10:47', NULL),
-(41, 'Onis', 'onis@gmail.com', '123', 'Korea', 'handcash', '200', 'Direct Payment', 'EOS47374111', '14 April 2025', 'April', '2025', 'pending', '2025-04-14 03:13:19', '2025-04-14 03:13:19');
+(43, 'Onis', 'onis@gmail.com', '089525907023', 'Indonesia', NULL, '240', 'Stripe', 'EOS48039773', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 15:01:09', '2025-04-14 15:01:58'),
+(44, 'Onis', 'onis@gmail.com', '089525907023', 'Indonesia', 'handcash', '500', 'Direct Payment', 'EOS41044549', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 15:10:40', '2025-04-14 17:35:09'),
+(45, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'midtrans', '5055000', 'Midtrans', 'EOSb0807fec-2afd-4e1f-9fd2-e7dabd20479b', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 16:52:48', '2025-04-14 16:53:26'),
+(46, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', NULL, '450', 'Stripe', 'EOS52738324', '15 April 2025', 'April', '2025', 'confirm', '2025-04-14 23:57:05', '2025-04-14 23:58:10');
 
 -- --------------------------------------------------------
 
@@ -602,9 +602,9 @@ INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_deliver
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
-  `group_name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `group_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -642,11 +642,11 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `group_name`, `created_at
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -665,8 +665,8 @@ CREATE TABLE `questions` (
   `user_id` int(11) DEFAULT NULL,
   `instructor_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `subject` text DEFAULT NULL,
-  `question` text DEFAULT NULL,
+  `subject` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `question` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -676,8 +676,8 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `course_id`, `user_id`, `instructor_id`, `parent_id`, `subject`, `question`, `created_at`, `updated_at`) VALUES
-(1, 5, 3, 2, NULL, 'I need your help', 'plz check on my error', '2025-02-19 20:47:56', NULL),
-(2, 5, 3, 2, 1, NULL, 'okay let me see that', '2025-02-21 19:14:57', NULL);
+(7, 14, 4, 2, NULL, 'About grammar', 'I have a question for you', '2025-04-14 15:05:52', NULL),
+(8, 14, 4, 2, 7, NULL, 'okay what is it?', '2025-04-14 15:06:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -688,11 +688,11 @@ INSERT INTO `questions` (`id`, `course_id`, `user_id`, `instructor_id`, `parent_
 CREATE TABLE `quizzes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` bigint(20) UNSIGNED NOT NULL,
-  `question` varchar(255) DEFAULT NULL,
-  `type` enum('pg_text','essay_text','pg_audio','essay_audio') NOT NULL,
+  `question` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` enum('pg_text','essay_text','pg_audio','essay_audio') COLLATE utf8mb4_unicode_ci NOT NULL,
   `options` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`options`)),
-  `correct_answer` varchar(255) DEFAULT NULL,
-  `audio_path` varchar(255) DEFAULT NULL,
+  `correct_answer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `audio_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -705,7 +705,8 @@ INSERT INTO `quizzes` (`id`, `course_id`, `question`, `type`, `options`, `correc
 (1, 14, 'Which sentence is in the present perfect tense?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"I have eaten breakfast already.\\\",\\\"I will eat breakfast later.\\\",\\\"I was eating breakfast.\\\"]\"', 'I have eaten breakfast already.', NULL, '2025-04-09 23:29:45', '2025-04-09 23:29:45'),
 (2, 14, 'By the time you arrive, we __________ (eat) dinner.', 'essay_text', NULL, 'will have eaten', NULL, '2025-04-09 23:30:48', '2025-04-09 23:30:48'),
 (4, 14, '22', 'pg_text', '\"[\\\"11\\\",\\\"22\\\",\\\"33\\\"]\"', '22', NULL, '2025-04-10 20:48:03', '2025-04-10 20:48:03'),
-(5, 15, 'What is You in spanish?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"b\\\",\\\"c\\\"]\"', 'I eat breakfast every day.', NULL, '2025-04-12 21:07:02', '2025-04-12 21:07:02');
+(5, 15, 'What is You in spanish?', 'pg_text', '\"[\\\"I eat breakfast every day.\\\",\\\"b\\\",\\\"c\\\"]\"', 'I eat breakfast every day.', NULL, '2025-04-12 21:07:02', '2025-04-12 21:07:02'),
+(6, 14, NULL, 'essay_audio', NULL, 'Die', 'http://127.0.0.1:8000/quizzes_audio/GLp90pH6qOYOxOg6VBcZI45ObmI1ZinDefiz8DoG.mp3', '2025-04-14 16:46:42', '2025-04-14 16:46:42');
 
 -- --------------------------------------------------------
 
@@ -731,21 +732,10 @@ CREATE TABLE `quiz_results` (
 --
 
 INSERT INTO `quiz_results` (`id`, `user_id`, `course_id`, `correct_answers`, `wrong_answers`, `score`, `created_at`, `updated_at`, `correct_answer_data`, `wrong_answer_data`) VALUES
-(7, 3, 14, 2.00000, 1.00000, 67, '2025-04-11 07:56:49', '2025-04-11 07:56:49', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"12\",\"correct\":\"will have eaten\"}]'),
-(8, 3, 14, 2.00000, 1.00000, 67, '2025-04-11 08:01:53', '2025-04-11 08:01:53', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"12\",\"correct\":\"will have eaten\"}]'),
-(9, 3, 14, 2.00000, 1.00000, 67, '2025-04-11 08:03:58', '2025-04-11 08:03:58', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"11\",\"correct\":\"will have eaten\"}]'),
-(11, 3, 14, 67.00000, 2.00000, 1, '2025-04-12 17:58:26', '2025-04-12 17:58:26', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"12\",\"correct\":\"will have eaten\"}]'),
-(13, 3, 14, 100.00000, 3.00000, 0, '2025-04-12 18:07:17', '2025-04-12 18:07:17', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"will have eaten\",\"correct\":\"will have eaten\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(14, 3, 14, 67.00000, 2.00000, 1, '2025-04-12 18:19:05', '2025-04-12 18:19:05', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"eaten\",\"correct\":\"will have eaten\"}]'),
-(15, 3, 14, 83.00000, 3.00000, 0, '2025-04-12 18:29:10', '2025-04-12 18:29:10', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(16, 3, 14, 83.00000, 3.00000, 0, '2025-04-12 18:31:59', '2025-04-12 18:31:59', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(17, 3, 14, 83.00000, 3.00000, 0, '2025-04-12 18:36:20', '2025-04-12 18:36:20', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(18, 3, 14, 83.00000, 3.00000, 0, '2025-04-13 18:13:27', '2025-04-13 18:13:27', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(19, 3, 14, 83.00000, 3.00000, 0, '2025-04-13 18:14:35', '2025-04-13 18:14:35', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(20, 3, 14, 83.00000, 2.50000, 0, '2025-04-13 18:18:00', '2025-04-13 18:18:00', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(21, 3, 14, 83.00000, 2.50000, 0, '2025-04-13 18:27:12', '2025-04-13 18:27:12', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(22, 3, 14, 83.00000, 2.50000, 0, '2025-04-13 18:31:59', '2025-04-13 18:31:59', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"have eaten\",\"correct\":\"will have eaten\",\"partial\":true},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[]'),
-(23, 3, 14, 50.00000, 2.00000, 2, '2025-04-13 18:37:12', '2025-04-13 18:37:12', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"eaten\",\"correct\":\"will have eaten\"},{\"question\":\"What is You in spanish?\",\"selected\":\"c\",\"correct\":\"I eat breakfast every day.\"}]');
+(26, 4, 14, 75.00000, 3.00000, 1, '2025-04-14 15:04:16', '2025-04-14 15:04:16', NULL, NULL),
+(27, 3, 14, 60.00000, 3.00000, 2, '2025-04-14 16:54:18', '2025-04-14 16:54:18', NULL, NULL),
+(28, 3, 14, 100.00000, 5.00000, 0, '2025-04-14 17:00:13', '2025-04-14 17:00:13', NULL, NULL),
+(29, 3, 14, 60.00000, 3.00000, 2, '2025-04-14 19:35:01', '2025-04-14 19:35:01', '[{\"question\":\"Which sentence is in the present perfect tense?\",\"selected\":\"I have eaten breakfast already.\",\"correct\":\"I have eaten breakfast already.\"},{\"question\":\"22\",\"selected\":\"22\",\"correct\":\"22\"},{\"question\":\"What is You in spanish?\",\"selected\":\"I eat breakfast every day.\",\"correct\":\"I eat breakfast every day.\"}]', '[{\"question\":\"By the time you arrive, we __________ (eat) dinner.\",\"selected\":\"djeuwfh\",\"correct\":\"will have eaten\"},{\"question\":null,\"selected\":\"der\",\"correct\":\"Die\"}]');
 
 -- --------------------------------------------------------
 
@@ -758,8 +748,8 @@ CREATE TABLE `replies` (
   `blogpost_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `comment_id` bigint(20) UNSIGNED NOT NULL,
-  `reply` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `reply` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -770,8 +760,8 @@ CREATE TABLE `replies` (
 
 INSERT INTO `replies` (`id`, `blogpost_id`, `user_id`, `comment_id`, `reply`, `status`, `created_at`, `updated_at`) VALUES
 (11, 1, 4, 5, 'HI', '0', '2025-03-29 07:32:57', NULL),
-(12, 2, 3, 6, 'Really? me too', '0', '2025-03-29 07:33:46', '2025-04-12 23:43:06'),
-(13, 1, 4, 7, 'Yeah', '1', '2025-03-31 02:00:13', '2025-04-14 02:55:21');
+(12, 2, 3, 6, 'Really? me too', '1', '2025-03-29 07:33:46', '2025-04-15 00:02:46'),
+(13, 1, 4, 7, 'Yeah', '0', '2025-03-31 02:00:13', '2025-04-15 00:03:20');
 
 -- --------------------------------------------------------
 
@@ -783,10 +773,10 @@ CREATE TABLE `reviews` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `course_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `comment` text NOT NULL,
-  `rating` varchar(255) NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rating` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `instructor_id` int(11) DEFAULT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -800,7 +790,7 @@ INSERT INTO `reviews` (`id`, `course_id`, `user_id`, `comment`, `rating`, `instr
 (7, 14, 3, 'I love this course so much', '5', 2, '1', '2025-03-22 23:37:19', '2025-03-22 23:38:27'),
 (8, 14, 4, 'I really need this course so much. Thanks!', '5', 2, '1', '2025-03-22 23:38:05', '2025-03-22 23:38:27'),
 (9, 14, 3, 'This is a really wonderful course. Thanks!', '4', 2, '1', '2025-03-23 20:33:34', '2025-03-23 20:38:05'),
-(10, 14, 3, 'THIS IS GONNA BE THE BEST COURSE EVER!', '5', 2, '0', '2025-03-23 20:34:19', '2025-04-14 03:25:18');
+(10, 14, 3, 'THIS IS GONNA BE THE BEST COURSE EVER!', '5', 2, '0', '2025-03-23 20:34:19', '2025-04-15 00:01:48');
 
 -- --------------------------------------------------------
 
@@ -810,8 +800,8 @@ INSERT INTO `reviews` (`id`, `course_id`, `user_id`, `comment`, `rating`, `instr
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -881,13 +871,13 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 
 CREATE TABLE `site_settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `logo` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `address` text DEFAULT NULL,
-  `facebook` varchar(255) DEFAULT NULL,
-  `twitter` varchar(255) DEFAULT NULL,
-  `copyright` varchar(255) DEFAULT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `facebook` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `twitter` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `copyright` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -897,7 +887,7 @@ CREATE TABLE `site_settings` (
 --
 
 INSERT INTO `site_settings` (`id`, `logo`, `phone`, `email`, `address`, `facebook`, `twitter`, `copyright`, `created_at`, `updated_at`) VALUES
-(1, 'upload/logo/1826127615411278.png', '08814580036', 'azlia@gmail.com', 'Canberra, Australia, 105 South Park Avenue', '#', '#', '© 2025 Linguana. All Rights Reserved. by Azlia', NULL, '2025-04-13 02:32:19');
+(1, 'upload/logo/1826127615411278.png', '08814580036', 'azlia@gmail.com', 'Canberra, Australia, 105 South Park Avenue', '#', '#', '© 2025 Linguana. All Rights Reserved. by Azlia', NULL, '2025-04-14 17:35:42');
 
 -- --------------------------------------------------------
 
@@ -907,13 +897,13 @@ INSERT INTO `site_settings` (`id`, `logo`, `phone`, `email`, `address`, `faceboo
 
 CREATE TABLE `smtp_settings` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `mailer` varchar(255) DEFAULT NULL,
-  `host` varchar(255) DEFAULT NULL,
-  `port` varchar(255) DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `encryption` varchar(255) DEFAULT NULL,
-  `from_address` varchar(255) DEFAULT NULL,
+  `mailer` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `host` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `port` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `encryption` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `from_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -934,8 +924,8 @@ INSERT INTO `smtp_settings` (`id`, `mailer`, `host`, `port`, `username`, `passwo
 CREATE TABLE `sub_categories` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` int(11) NOT NULL,
-  `subcategory_name` varchar(255) NOT NULL,
-  `subcategory_slug` varchar(255) NOT NULL,
+  `subcategory_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subcategory_slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -963,9 +953,9 @@ INSERT INTO `sub_categories` (`id`, `category_id`, `subcategory_name`, `subcateg
 CREATE TABLE `testimonials` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `rating` varchar(255) NOT NULL,
-  `comment` text NOT NULL,
-  `status` varchar(255) NOT NULL DEFAULT '0',
+  `rating` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -990,18 +980,18 @@ INSERT INTO `testimonials` (`id`, `user_id`, `rating`, `comment`, `status`, `cre
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `email` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `role` enum('admin','instructor','user') DEFAULT 'user',
-  `status` enum('1','0') NOT NULL DEFAULT '1',
-  `last_seen` varchar(255) DEFAULT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `role` enum('admin','instructor','user') COLLATE utf8mb4_unicode_ci DEFAULT 'user',
+  `status` enum('1','0') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '1',
+  `last_seen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1011,10 +1001,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-14 10:25:36', NULL, NULL, '2025-04-14 03:25:36'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-13 08:02:50', NULL, '2025-02-04 07:11:01', '2025-04-13 01:02:50'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-14 10:07:00', 'FYIDmy8tazBEP9JpJYrjTraFZRARsQFHzoF8Youkiv1MAaSeuV7jGW6HQayk', NULL, '2025-04-14 03:07:00'),
-(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '20241227150120240130_050807.jpg', '123', 'Korea', 'user', '1', '2025-04-14 10:13:53', NULL, '2024-12-19 05:30:18', '2025-04-14 03:13:53'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-15 07:04:25', NULL, NULL, '2025-04-15 00:04:25'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-15 07:07:38', NULL, '2025-02-04 07:11:01', '2025-04-15 00:07:38'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-15 06:57:28', 'wfazt47PIYEVuzC5zWzFPT4azq7y87KlzX5GlpgRA80Tk83HQTYM7ns2SFML', NULL, '2025-04-14 23:57:28'),
+(4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$atY1WAY3AQTlkhxLlKpGWeUnFk.Q9I8vWk6ruXM9Ars7bBcUvDAfS', '20241227150120240130_050807.jpg', '089525907023', 'Indonesia', 'user', '1', '2025-04-14 23:54:59', NULL, '2024-12-19 05:30:18', '2025-04-14 16:54:59'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
 (9, 'afifah', 'Afifah', 'afifah@gmail.com', NULL, '$2y$10$7vVTRlak4RE0qYlJycLvheRr5pvAjtguMVX.XG1FEn1uE1BvphHO6', NULL, '1212', 'Ciwidey', 'admin', '1', NULL, NULL, '2025-03-07 23:59:41', '2025-03-07 23:59:41'),
@@ -1023,7 +1013,6 @@ INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `pa
 (22, 'Ainun Nabila Ramadhita', NULL, 'ainun@gmail.com', NULL, '$2y$10$eAUog/ORTdTWUsCFQ36WPOKkYVoWze8khY/5sIqyGkhZTFplxDH0.', NULL, NULL, NULL, 'user', '1', '2025-03-23 03:58:41', NULL, '2025-03-22 20:11:17', '2025-03-22 20:58:41'),
 (23, 'Lena Holloway', 'Lena Holloway', 'lena@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', NULL, '081234567890', '157 Hollowbrook Lane, Ravenshire, NY 12847, USA', 'instructor', '1', '2025-03-31 07:23:28', NULL, NULL, '2025-03-31 00:23:28'),
 (37, 'AAAAA', 'AAAAAA', 'AAA@AAAA.AAA', NULL, '$2y$10$yt3HSAiSb5AckymH2nYed.4Iw9dfdpTcJ2w.nAwG/94gSGOyeZxjG', NULL, '12121212', 'bbbbb', 'instructor', '1', NULL, NULL, '2025-04-11 19:48:11', '2025-04-12 22:17:50'),
-(40, 'HHHHH', 'HHHHH', 'HHHHHH@gmail.com', NULL, '$2y$10$273bOTBT6Xrm2UXJvNwwwuS02akJEkxUignaSuQBkME18KLO6a2M.', NULL, '7777', 'JJJJ', 'instructor', '0', NULL, NULL, '2025-04-13 03:40:32', '2025-04-13 03:40:32'),
 (41, 'shine', NULL, 'shine@gmail.com', NULL, '$2y$10$B3rRq0Is/TMR8UHCXgIOF.k7/0vHDwMnpYyklUL6BFB5AXCrpzY6y', NULL, NULL, NULL, 'user', '1', '2025-04-14 10:14:54', NULL, '2025-04-14 03:14:53', '2025-04-14 03:14:54');
 
 -- --------------------------------------------------------
@@ -1046,7 +1035,8 @@ CREATE TABLE `wishlists` (
 
 INSERT INTO `wishlists` (`id`, `user_id`, `course_id`, `created_at`, `updated_at`) VALUES
 (15, 3, 22, '2025-04-14 02:41:41', NULL),
-(16, 4, 15, '2025-04-14 02:57:41', NULL);
+(16, 4, 15, '2025-04-14 02:57:41', NULL),
+(17, 4, 14, '2025-04-14 07:34:44', NULL);
 
 --
 -- Indexes for dumped tables
@@ -1285,13 +1275,13 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `blog_categories`
 --
 ALTER TABLE `blog_categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `blog_posts`
 --
 ALTER TABLE `blog_posts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1303,7 +1293,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `comments`
@@ -1315,31 +1305,31 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `course_goals`
 --
 ALTER TABLE `course_goals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `course_lectures`
 --
 ALTER TABLE `course_lectures`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `course_sections`
 --
 ALTER TABLE `course_sections`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1363,13 +1353,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1387,19 +1377,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `quiz_results`
 --
 ALTER TABLE `quiz_results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `replies`
@@ -1453,7 +1443,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
