@@ -39,12 +39,12 @@
                 </td>
                 <td>
                     <ul class="generic-list-item">
-                        <li>{{ $item->score }}</li>
+                        <li>{{ round($item->wrong_answers,'2') }}</li>
                     </ul>
                 </td>
                 <td>
                     <ul class="generic-list-item">
-                        <li>{{ round($item->wrong_answers,'2') }}</li>
+                        <li>{{ round($item->score,'2') }}</li>
                     </ul>
                 </td>
                 <td>

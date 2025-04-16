@@ -216,15 +216,15 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link active" id="about-me-tab" data-toggle="tab" href="#about-me" role="tab" aria-controls="about-me" aria-selected="false">
+                    <a class="nav-link" data-toggle="tab" role="tab" aria-controls="about-me" aria-selected="false">
                         About Me
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" id="experience-tab" data-toggle="tab" href="#experience" role="tab" aria-controls="experience" aria-selected="false">
                         Experience
                     </a>
-                </li>
+                </li> --}}
             </ul>
             <div class="tab-content pt-40px" id="myTabContent">
                 <div class="tab-pane fade show active" id="about-me" role="tabpanel" aria-labelledby="about-me-tab">

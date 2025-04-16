@@ -36,13 +36,13 @@
 									<div class="chat-list">
 										<div class="list-group list-group-flush">
 											<a href="javascript:;" class="list-group-item">
-												<div class="d-flex">
+												<div class="d-flex">	
 													<div class="chat-user-online">
 														<img src="{{ (!empty($question->user->photo)) ? url('upload/user_images/'.$question->user->photo) : url('upload/no_image.jpg') }}" width="42" height="42" class="rounded-circle" alt="" />
 													</div>
 													<div class="flex-grow-1 ms-2">
 														<h6 class="mb-0 chat-title">{{ $question['user']['name'] }}</h6>
-														<p class="mb-0 chat-msg">Student</p>
+														<p class="mb-0">Student</p>
 													</div>
 													<div class="chat-time">{{ Carbon\Carbon::parse($question->created_at)->diffForHumans() }}</div>
 												</div>

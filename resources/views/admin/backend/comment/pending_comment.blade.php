@@ -49,7 +49,7 @@
                             <td>{{ $item->comment }}</td>
                             <td>
                                 <div class="form-check-danger form-check form-switch">
-                                    <input class="form-check-input status-toggle large-checkbox" type="checkbox" id="flexSwitchCheckCheckedDanger" data-comment-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }} >
+                                    <input class="form-check-input status-toggle-comment large-checkbox" type="checkbox" id="flexSwitchCheckCheckedDanger" data-comment-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }} >
                                     <label class="form-check-label" for="flexSwitchCheckCheckedDanger"></label>
                                 </div>
                             </td>
@@ -105,7 +105,7 @@
                             <td>{{ $item->reply }}</td>
                             <td>
                                 <div class="form-check-danger form-check form-switch">
-                                    <input class="form-check-input status-toggle large-checkbox" type="checkbox" id="flexSwitchCheckCheckedDanger" data-reply-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }} >
+                                    <input class="form-check-input status-toggle-reply large-checkbox" type="checkbox" id="flexSwitchCheckCheckedDanger" data-reply-id="{{ $item->id }}" {{ $item->status ? 'checked' : '' }} >
                                     <label class="form-check-label" for="flexSwitchCheckCheckedDanger"></label>
                                 </div>
                             </td>
@@ -123,7 +123,7 @@
 
 <script>
     $(document).ready(function() {
-        $('.status-toggle').on('change', function(){
+        $('.status-toggle-comment').on('change', function(){
             var commentId = $(this).data('comment-id');
             var isChecked = $(this).is(':checked') ? 1 : 0;
 
@@ -149,7 +149,7 @@
 
 <script>
     $(document).ready(function() {
-        $('.status-toggle').on('change', function(){
+        $('.status-toggle-reply').on('change', function(){
             var replyId = $(this).data('reply-id');
             var isChecked = $(this).is(':checked') ? 1 : 0;
 

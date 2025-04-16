@@ -19,6 +19,7 @@
 
     <!-- inject:css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('frontend/css/line-awesome.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
@@ -55,7 +56,7 @@
 ======================================-->
 
 <style>
-
+ 
 .StripeElement {
   box-sizing: border-box;
   height: 40px;
@@ -90,7 +91,7 @@
                 <h2 class="section__title text-white">Stripe</h2>
             </div>
             <ul class="generic-list-item generic-list-item-white generic-list-item-arrow d-flex flex-wrap align-items-center">
-                <li><a href="index.html">Home</a></li>
+                <li><a style="text-decoration: none;" href="index.html">Home</a></li>
                 <li>Pages</li>
                 <li>Stripe</li>
             </ul>
@@ -112,7 +113,7 @@
                     <div class="card-body">
                         <h3 class="card-title fs-22 pb-3">Billing Details</h3>
                         <div class="divider"><span></span></div>
-
+                        <div class="row">
                             <div class="input-box col-lg-6">
                                 <label class="label-text">Name</label>
                                 <div class="form-group">
@@ -127,6 +128,7 @@
                                     <span class="la la-envelope input-icon"></span>
                                 </div>
                             </div><!-- end input-box -->
+                        </div>
                             <div class="input-box col-lg-12">
                                 <label class="label-text">Address</label>
                                 <div class="form-group">
@@ -154,7 +156,7 @@
                                         <form action="{{ route('stripe_order') }}" method="post" id="payment-form">
                                         @csrf
                                         <div class="form-row">
-                                            <label for="card-element">Credit or Debit Cart</label>
+                                            <label for="card-element">Credit or Debit Card</label>
 
                                             <input type="hidden" name="name" value="{{ $data['name'] }}">
                                             <input type="hidden" name="email" value="{{ $data['email'] }}">
@@ -195,13 +197,13 @@
                                     <img src="{{ asset($item->options->image) }}" alt="Cart image">
                                 </a>
                                 <div class="media-body">
-                                    <h5 class="fs-15 pb-2"><a href="{{ url('course/details/'.$item->id.'/'.$item->options->slug) }}">{{ $item->name }}</a></h5>
+                                    <h5 class="fs-15 pb-2"><a style="text-decoration: none;" href="{{ url('course/details/'.$item->id.'/'.$item->options->slug) }}">{{ $item->name }}</a></h5>
                                     <p class="text-black font-weight-semi-bold lh-18">${{ $item->price }} </p>
                                 </div>
                             </div><!-- end media -->
                             @endforeach
                         </div><!-- end order-details-lists -->
-                        <a href="{{ route('mycart') }}" class="btn-text"><i class="la la-edit mr-1"></i>Edit</a>
+                        <a style="text-decoration: none;" href="{{ route('mycart') }}" class="btn-text"><i class="la la-edit mr-1"></i>Edit</a>
                     </div><!-- end card-body -->
                 </div><!-- end card -->
                 <div class="card card-item">
@@ -240,7 +242,7 @@
                         @endif
 
                         <div class="btn-box border-top border-top-gray pt-3">
-                            <p class="fs-14 lh-22 mb-2">Linguana is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
+                            <p class="fs-14 lh-22 mb-2">Aduca is required by law to collect applicable transaction taxes for purchases made in certain tax jurisdictions.</p>
                             <p class="fs-14 lh-22 mb-3">By completing your purchase you agree to these <a href="#" class="text-color hover-underline">Terms of Service.</a></p>
                             <button type="submit" class="btn theme-btn w-100">Proceed <i class="la la-arrow-right icon ml-1"></i></button>
                         </div>
@@ -249,7 +251,7 @@
             </div><!-- end col-lg-5 -->
         </div><!-- end row -->
     </div><!-- end container -->
-
+    
 </section>
 <!-- ================================
        END CONTACT AREA

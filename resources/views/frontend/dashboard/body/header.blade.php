@@ -5,7 +5,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-12">
                         <div class="logo-box logo--box">
-                            <a href="index.html" class="logo"><img src="{{ asset('frontend/images/linguana.png') }}" alt="logo"></a>
+                            <a href="{{ route('index') }}" class="logo"><img src="{{ asset('frontend/images/linguana.png') }}" alt="logo"></a>
                             <div class="user-btn-action">
                                 <div class="search-menu-toggle icon-element icon-element-sm shadow-sm mr-2" data-toggle="tooltip" data-placement="top" title="Search">
                                     <i class="la la-search"></i>
@@ -204,7 +204,7 @@
                                                                 </a>
                                                             </li>
                                                             <li>
-                                                                <a href="index.html">
+                                                                <a href="{{ route('logout') }}">
                                                                     <i class="la la-power-off mr-1"></i> Logout
                                                                 </a>
                                                             </li>
@@ -254,7 +254,7 @@
         <ul class="generic-list-item off-canvas-menu-list pt-1 pb-2 border-bottom border-bottom-gray">
             <li><a href="student-detail.html">Public profile</a></li>
             <li><a href="dashboard-settings.html">Edit profile</a></li>
-            <li><a href="index.html">Log out</a></li>
+            <li><a href="{{ route('index') }}">Log out</a></li>
         </ul>
         <h4 class="off-canvas-menu-heading pt-20px">More from Linguana</h4>
         <ul class="generic-list-item off-canvas-menu-list pt-1">

@@ -38,8 +38,8 @@
                                         <td>{{ $course['category']['category_name'] }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>SubCategory : </strong> </td>
-                                        <td>{{ $course['subcategory']['subcategory_name'] }}</td>
+                                        {{-- <td><strong>SubCategory : </strong> </td>
+                                        <td>{{ $course['subcategory']['subcategory_name'] }}</td> --}}
                                     </tr>
                                     <tr>
                                         <td><strong>Instructor : </strong> </td>
