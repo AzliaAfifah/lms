@@ -118,7 +118,7 @@
 
 				<li>
 					<a class="has-arrow" href="javascript:;">
-						<div class="parent-icon"><i class="lni lni-comments"></i>
+						<div class="parent-icon"><i class="lni lni-bubble"></i>
 						</div>
 						<div class="menu-title">Manage Review</div>
 					</a>

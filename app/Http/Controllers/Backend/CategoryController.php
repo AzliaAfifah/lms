@@ -67,7 +67,7 @@ class CategoryController extends Controller
             ]);
 
             $notification = array(
-                'message' => 'Category Updated with image Successfully!',
+                'message' => 'Category Updated Successfully!',
                 'alert-type' => 'success'
             );
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
             ]);
 
             $notification = array(
-                'message' => 'Category Updated without image Successfully!',
+                'message' => 'Category Updated Successfully!',
                 'alert-type' => 'success'
             );
 

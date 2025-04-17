@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Coupon;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Reply;
 use App\Models\Review;
 use App\Models\Testimonial;
 use App\Models\BlogPost;
@@ -40,7 +42,11 @@ class AdminController extends Controller
         $instructors = User::where('role','instructor')->latest()->get();
         $Blog = BlogPost::get();
         $BlogCategory = BlogCategory::get();
-        return view('admin.index', compact('coupons','category','course','courses','coupon','pendingReview','activeReview','pendingTestimonial','activeTestimonial','users','Blog','BlogCategory','activeOrder','pendingOrder','instructors'));
+        $pendingComment = Comment::where('status', '0')->get();
+        $activeComment = Comment::where('status', '1')->get();
+        $pendingReply = Reply::where('status', '0')->get();
+        $activeReply = Reply::where('status', '1')->get();
+        return view('admin.index', compact('coupons','category','course','courses','coupon','pendingReview','activeReview','pendingTestimonial','activeTestimonial','users','Blog','BlogCategory','activeOrder','pendingOrder','instructors','pendingComment','activeComment','pendingReply','activeReply'));
     }
 
     public function AdminLogout(Request $request)

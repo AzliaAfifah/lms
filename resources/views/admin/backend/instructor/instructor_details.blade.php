@@ -75,7 +75,7 @@
                                         <h6 class="mb-0">Organization Name</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        <strong>${{ $instructor->organization_name }}</strong>
+                                        <strong>{{ $instructor->organization_name }}</strong>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

@@ -164,8 +164,7 @@
                             <div class="input-box col-lg-12">
                                 <label class="label-text">Description</label>
                                 <div class="form-group">
-                                    <textarea class="form-control form--control" type="text" rows="10" name="description" placeholder="e.g., Math Teacher"></textarea>
-                                    <span class="la la-user input-icon"></span>
+                                    <textarea class="form-control form--control2" type="text" rows="10" name="description" placeholder="Write Description"></textarea>
                                 </div>
                             </div><!-- end input-box -->
 

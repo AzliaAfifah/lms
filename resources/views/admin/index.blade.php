@@ -81,7 +81,35 @@
                     <div class="d-flex align-items-center">
                         <div>
                             <p class="mb-0 text-secondary">Total Pending Review</p>
-                            <h4 class="my-1 text-warning">{{ count($pendingReview) }}</h4>
+                            <h4 class="my-1 text-danger">{{ count($pendingReview) }}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-ibiza text-white ms-auto"><i class="lni lni-bubble"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Active Review</p>
+                            <h4 class="my-1 text-danger">{{ count($activeReview) }}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-ibiza text-white ms-auto"><i class="lni lni-bubble"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Pending Comment</p>
+                            <h4 class="my-1 text-warning">{{ count($pendingComment) }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-kyoto text-white ms-auto"><i class="lni lni-comments"></i>
                         </div>
@@ -94,10 +122,38 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div>
-                            <p class="mb-0 text-secondary">Total Active Review</p>
-                            <h4 class="my-1 text-warning">{{ count($activeReview) }}</h4>
+                            <p class="mb-0 text-secondary">Total Active Comment</p>
+                            <h4 class="my-1 text-warning">{{ count($activeComment) }}</h4>
                         </div>
                         <div class="widgets-icons-2 rounded-circle bg-gradient-kyoto text-white ms-auto"><i class="lni lni-comments"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Pending Reply</p>
+                            <h4 class="my-1 text-pink">{{ count($pendingReply) }}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-pink text-white ms-auto"><i class="lni lni-comments"></i>
+                        </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card radius-10 border-info">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <p class="mb-0 text-secondary">Total Active Reply</p>
+                            <h4 class="my-1 text-pink">{{ count($activeReply) }}</h4>
+                        </div>
+                        <div class="widgets-icons-2 rounded-circle bg-gradient-pink text-white ms-auto"><i class="lni lni-comments"></i>
                         </div>
                     </div>
                 </div>
