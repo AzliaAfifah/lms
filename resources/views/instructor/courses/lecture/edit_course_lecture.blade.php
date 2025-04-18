@@ -40,6 +40,10 @@
                     <label class="form-label">Video Url</label>
                     <input type="text" name="url" class="form-control" value="{{ $clecture->url }}">
                 </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label">File Video</label>
+                    <input type="file" name="video" class="form-control" value="{{ $clecture->video }}">
+                </div>
                 <div class="form-group col-md-12">
                     <label class="form-label">Lecture Content</label>
                     <textarea name="content" class="form-control">{{ $clecture->content }}</textarea>

@@ -25,16 +25,14 @@
                     @endphp
 
                     <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" data-bs-toggle="dropdown"><span class="alert-count" id="notification-count">{{ $ncount }}</span>
-                            <i class='bx bx-bell'></i>
-                        </a>
+
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="javascript:;">
                                 <div class="msg-header">
                                     <p class="msg-header-title">Notifications</p>
                                 </div>
                             </a>
-                            
+
                             @php
                             $user = Auth::user();
                             @endphp
@@ -51,7 +49,7 @@
                                     </div>
                                 </a>
                             @empty
-                                
+
                             @endforelse
                             </div>
                             <a href="javascript:;">
@@ -62,9 +60,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown dropdown-large">
-                        <a class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span class="alert-count">8</span>
-                            <i class='bx bx-shopping-bag'></i>
-                        </a>
+
                         <div class="dropdown-menu dropdown-menu-end">
                             <a href="javascript:;">
                                 <div class="msg-header">
@@ -250,7 +246,7 @@
                 </ul>
             </div>
 
-            @php 
+            @php
             $id = Auth::user()->id;
             $profileData = App\Models\User::find($id);
             @endphp
@@ -266,12 +262,6 @@
                     <li><a class="dropdown-item d-flex align-items-center" href="{{ route('instructor.profile') }}"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
                     </li>
                     <li><a class="dropdown-item d-flex align-items-center" href="{{ route('instructor.change.password') }}"><i class="bx bx-cog fs-5"></i><span>Change Password</span></a>
-                    </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-home-circle fs-5"></i><span>Dashboard</span></a>
-                    </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-dollar-circle fs-5"></i><span>Earnings</span></a>
-                    </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i class="bx bx-download fs-5"></i><span>Downloads</span></a>
                     </li>
                     <li>
                         <div class="dropdown-divider mb-0"></div>
@@ -290,7 +280,7 @@ function markNotificationRead(notificationId){
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': '{{ csrf_token() }}' 
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
         },
         body: JSON.stringify({})
     })

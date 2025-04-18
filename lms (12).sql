@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 17, 2025 at 02:02 PM
+-- Generation Time: Apr 18, 2025 at 12:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -316,7 +316,8 @@ INSERT INTO `course_lectures` (`id`, `course_id`, `section_id`, `lecture_title`,
 (12, 14, 9, 'Present Simple or Present Continuous?', NULL, 'https://www.youtube.com/embed/GV9IFkjsQkE?si=VH7oN642gRoNqFpQ', 'Present Simple or Present Continuous?', '2025-03-16 20:47:34', '2025-04-14 08:03:21'),
 (13, 14, 10, 'PAST SIMPLE', NULL, 'https://www.youtube.com/embed/LkyCYeDdvgI?si=InVcI_fP0JjmSCVS', 'PAST SIMPLE', '2025-03-16 20:48:17', '2025-04-14 08:04:32'),
 (14, 14, 10, 'PAST CONTINUOUS', NULL, 'https://www.youtube.com/embed/zBDdCy4_3O4?si=7IHx3gefmfFHRqhq', 'PAST CONTINUOUS', '2025-03-16 20:48:52', '2025-04-14 08:05:21'),
-(15, 23, 11, 'Introduction', NULL, 'https://www.youtube.com/embed/fYZP95y2mgM?si=c5FReWDVXC4Za1jF', 'Introduction', '2025-04-14 16:46:00', '2025-04-14 16:46:00');
+(15, 23, 11, 'Introduction', NULL, 'https://www.youtube.com/embed/fYZP95y2mgM?si=c5FReWDVXC4Za1jF', 'Introduction', '2025-04-14 16:46:00', '2025-04-14 16:46:00'),
+(28, 14, 8, 'AAAAA', 'upload/lecture_videos/1744967022_1742269070.mp4', NULL, 'AAAAA', '2025-04-18 02:03:42', '2025-04-18 02:03:42');
 
 -- --------------------------------------------------------
 
@@ -510,6 +511,7 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('67d514db-db69-4aa5-a466-338f452d965f', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 20:52:49', '2025-03-05 20:52:49'),
 ('6b041dd1-51bf-4dbb-b284-fd8995b6628b', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-28 05:24:34', '2025-03-16 20:33:23', '2025-03-28 05:24:34'),
 ('6e0e5b9a-05fe-4db3-9fc9-6665b94cf2ce', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 37, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
+('70d973a8-50db-4b88-bb71-fd18b67defeb', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 43, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-17 19:25:21', '2025-04-17 19:25:21'),
 ('7c3b200b-f9fe-4b88-8e8f-0ef69f28d4ba', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 23, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49'),
 ('836586f7-2308-43d7-ad7b-7e1922a5629a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-05 19:42:33', '2025-03-05 19:42:33'),
 ('99e0f2c1-dcb0-4e12-8c7b-6748c84b1aa8', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
@@ -517,9 +519,13 @@ INSERT INTO `notifications` (`id`, `type`, `notifiable_type`, `notifiable_id`, `
 ('b2a88e19-b4d2-4fa6-b84d-dec101dda121', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 40, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49'),
 ('c18597c7-5aa6-46a0-83f6-4e4585767dc3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('cbb166c8-83db-49a6-91e5-d7b204bca2c3', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', '2025-03-05 23:06:36', '2025-03-05 20:52:49', '2025-03-05 23:06:36'),
+('d00a3a0a-663e-4e33-8afe-13c403c2bd94', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 2, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-17 19:25:21', '2025-04-17 19:25:21'),
+('d1acce43-c587-4ca3-9ce4-849b9c2fce7a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 37, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-17 19:25:21', '2025-04-17 19:25:21'),
 ('d373d5c8-a71c-4fda-bf2c-d072e80497e6', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 40, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('d4be61f4-8e49-4a66-bbf3-af413c1a62e1', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 23, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 03:13:26', '2025-04-14 03:13:26'),
 ('ea1088a1-b54d-4c91-9782-4aef547483c2', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-03-16 20:33:23', '2025-03-16 20:33:23'),
+('ebc5c18b-138e-43aa-aef2-aea2c3713412', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 23, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-17 19:25:21', '2025-04-17 19:25:21'),
+('f32bfa63-18b0-46dd-a937-0d86f4140042', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-17 19:25:21', '2025-04-17 19:25:21'),
 ('fdc61a8c-aae2-4cd6-a9b8-ebd5296f9f0a', 'App\\Notifications\\OrderComplete', 'App\\Models\\User', 6, '{\"message\":\"New Cod Enrollment In Course\"}', NULL, '2025-04-14 15:10:49', '2025-04-14 15:10:49');
 
 -- --------------------------------------------------------
@@ -548,7 +554,8 @@ INSERT INTO `orders` (`id`, `payment_id`, `user_id`, `course_id`, `instructor_id
 (28, 43, 4, 14, 2, NULL, 300, NULL, NULL),
 (29, 44, 4, 22, 2, 'Business English: Communicate Like a Pro', 500, '2025-04-14 15:10:40', '2025-04-14 15:10:40'),
 (30, 45, 3, 14, 2, 'Grammar Made Simple: Master English Tenses Easily', 5055000, '2025-04-14 16:53:26', NULL),
-(31, 46, 3, 16, 2, NULL, 450, NULL, NULL);
+(31, 46, 3, 16, 2, NULL, 450, NULL, NULL),
+(32, 47, 3, 18, 2, 'French Pronunciation Bootcamp: Sound Like a Native!', 200, '2025-04-17 19:25:14', '2025-04-17 19:25:14');
 
 -- --------------------------------------------------------
 
@@ -594,7 +601,8 @@ INSERT INTO `payments` (`id`, `name`, `email`, `phone`, `address`, `cash_deliver
 (43, 'Onis', 'onis@gmail.com', '089525907023', 'Indonesia', NULL, '240', 'Stripe', 'EOS48039773', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 15:01:09', '2025-04-14 15:01:58'),
 (44, 'Onis', 'onis@gmail.com', '089525907023', 'Indonesia', 'handcash', '500', 'Direct Payment', 'EOS41044549', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 15:10:40', '2025-04-14 17:35:09'),
 (45, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'midtrans', '5055000', 'Midtrans', 'EOSb0807fec-2afd-4e1f-9fd2-e7dabd20479b', '14 April 2025', 'April', '2025', 'confirm', '2025-04-14 16:52:48', '2025-04-14 16:53:26'),
-(46, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', NULL, '450', 'Stripe', 'EOS52738324', '15 April 2025', 'April', '2025', 'confirm', '2025-04-14 23:57:05', '2025-04-14 23:58:10');
+(46, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', NULL, '450', 'Stripe', 'EOS52738324', '15 April 2025', 'April', '2025', 'confirm', '2025-04-14 23:57:05', '2025-04-14 23:58:10'),
+(47, 'User', 'user@gmail.com', '1234567890', 'Sukamaju', 'handcash', '200', 'Direct Payment', 'EOS39317248', '18 April 2025', 'April', '2025', 'confirm', '2025-04-17 19:25:14', '2025-04-17 19:26:01');
 
 -- --------------------------------------------------------
 
@@ -679,7 +687,8 @@ CREATE TABLE `questions` (
 
 INSERT INTO `questions` (`id`, `course_id`, `user_id`, `instructor_id`, `parent_id`, `subject`, `question`, `created_at`, `updated_at`) VALUES
 (7, 14, 4, 2, NULL, 'About grammar', 'I have a question for you', '2025-04-14 15:05:52', NULL),
-(8, 14, 4, 2, 7, NULL, 'okay what is it?', '2025-04-14 15:06:20', NULL);
+(8, 14, 4, 2, 7, NULL, 'okay what is it?', '2025-04-14 15:06:20', NULL),
+(9, 14, 3, 2, NULL, 'Hello', 'I have a question', '2025-04-18 00:39:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -1003,9 +1012,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-17 11:42:02', NULL, NULL, '2025-04-17 04:42:02'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-15 07:07:38', NULL, '2025-02-04 07:11:01', '2025-04-15 00:07:38'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-15 06:57:28', 'wfazt47PIYEVuzC5zWzFPT4azq7y87KlzX5GlpgRA80Tk83HQTYM7ns2SFML', NULL, '2025-04-14 23:57:28'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-18 05:22:33', NULL, NULL, '2025-04-17 22:22:33'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-18 09:07:45', NULL, '2025-02-04 07:11:01', '2025-04-18 02:07:45'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-18 08:02:05', 'wvT6TOnSe0Np4HsIxHY2Z7hyysuYqfdhM2di7NvlrPUyVJAAT9jYAGT4RNBb', NULL, '2025-04-18 01:02:05'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$atY1WAY3AQTlkhxLlKpGWeUnFk.Q9I8vWk6ruXM9Ars7bBcUvDAfS', '20241227150120240130_050807.jpg', '089525907023', 'Indonesia', 'user', '1', '2025-04-14 23:54:59', NULL, '2024-12-19 05:30:18', '2025-04-14 16:54:59'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
@@ -1326,7 +1335,7 @@ ALTER TABLE `course_goals`
 -- AUTO_INCREMENT for table `course_lectures`
 --
 ALTER TABLE `course_lectures`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `course_sections`
@@ -1356,13 +1365,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -1380,7 +1389,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `quizzes`

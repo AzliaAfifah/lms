@@ -4,7 +4,7 @@
         <ul class="user">
            <strong>Chat List</strong>
            <hr>
-        <li v-for="(user, index) in users" :key="index" >  
+        <li v-for="(user, index) in users" :key="index" >
           <a href="" @click.prevent="userMessage(user.id)" >
             <img v-if="user.role === 'user' " :src="'/upload/user_images/'+user.photo"
               alt="UserImage"
@@ -33,10 +33,10 @@
 
            <li class="sender clearfix" v-if="allmessages.user.id === msg.sender_id" >
               <span class="chat-img left clearfix mx-2">
-              <img :src="'/upload/instructor_images/'+msg.user.photo"
+              <!-- <img :src="'/upload/instructor_images/'+msg.user.photo"
                   class="userImg"
                   alt="userImg"
-                />
+                /> -->
               </span>
               <div class="chat-body2 clearfix">
                 <div class="header clearfix">
@@ -44,7 +44,7 @@
                   <small class="right text-date">
                     {{  formatDate(msg.created_at) }}
                   </small>
-                  
+
                 </div>
 
                 <p class="text-msg">{{ msg.msg }}</p>
@@ -54,22 +54,22 @@
         <!-- my part  -->
             <li class="buyer clearfix" v-else>
               <span class="chat-img right clearfix mx-2">
-                <img :src="'/upload/user_images/'+msg.user.photo"
+                <!-- <img :src="'/upload/user_images/'+msg.user.photo"
                   class="userImg"
                   alt="userImg"
-                />
+                /> -->
                  </span>
               <div class="chat-body clearfix">
                 <div class="header clearfix">
                   <small class="left text-date"
                     >{{  formatDate(msg.created_at) }}</small>
-                  <strong class="right primary-font">{{ msg.user.name }} </strong>  
-                  
+                  <strong class="right primary-font">{{ msg.user.name }} </strong>
+
                 </div>
                 <p class="text-msg">{{ msg.msg }}</p>
               </div>
             </li>
-        
+
             <li class="sender clearfix">
               <span class="chat-img left clearfix mx-2"> </span>
             </li>
@@ -96,7 +96,7 @@
 
   </div>
 </template>
-  
+
 <script>
 import axios from 'axios';
 
@@ -109,7 +109,7 @@ import axios from 'axios';
             msg: '',
         }
     },
-    
+
     created(){
         this.getAllUser();
 
@@ -154,17 +154,17 @@ import axios from 'axios';
     },
   };
   </script>
-  <style> 
-  
+  <style>
+
   .username {
     color: #000;
   }
-  
+
   .myrow{
       background: #F3F3F3;
       padding: 25px;
   }
-  
+
   .myUser{
        padding-top: 30px;
        overflow-y: scroll;
@@ -174,9 +174,9 @@ import axios from 'axios';
   .user li {
     list-style: none;
     margin-top: 20px;
-   
+
   }
-  
+
   .user li a:hover {
     text-decoration: none;
     color: red;
@@ -193,8 +193,8 @@ import axios from 'axios';
 
   .text-name {
     color: #E5E5E5;
-  } 
-  
+  }
+
   .chat li {
     margin-bottom: 40px;
     padding-bottom: 5px;
@@ -202,7 +202,7 @@ import axios from 'axios';
     width: 80%;
     height: 10px;
   }
-  
+
   .chat li .chat-body p {
     margin: 0;
   }
@@ -210,7 +210,7 @@ import axios from 'axios';
   .text-msg, .text-date{
     color: #fff;
   }
-  
+
   .chat-msg {
     overflow-y: scroll;
     height: 350px;
@@ -229,7 +229,7 @@ import axios from 'axios';
   .chat-msg .chat-body {
     display: inline-block;
     max-width: 45%;
-    margin-right: -73px; 
+    margin-right: -73px;
     background-color: #358FF7;
     border-radius: 12.5px;
     padding: 15px;
@@ -245,7 +245,7 @@ import axios from 'axios';
   .chat-msg .chat-body strong {
     color: #E5E5E5;
   }
-  
+
   .chat-msg .buyer {
     text-align: right;
     float: right;
@@ -263,10 +263,9 @@ import axios from 'axios';
   .chat-msg .right {
     float: right;
   }
-  
+
   .clearfix {
     clear: both;
   }
   </style>
-  
-  
+

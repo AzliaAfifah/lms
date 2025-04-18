@@ -294,15 +294,27 @@ class CourseController extends Controller
 
     public function SaveLecture(Request $request)
     {
+        $request->validate([
+            'lecture_video' => 'nullable|file|mimes:mp4,webm|max:102400', 
+        ]);
+
         $lecture = new CourseLecture();
         $lecture->course_id = $request->course_id;
         $lecture->section_id = $request->section_id;
         $lecture->lecture_title = $request->lecture_title;
         $lecture->url = $request->lecture_url;
         $lecture->content = $request->content;
+
+        if ($request->hasFile('lecture_video')) {
+            $video = $request->file('lecture_video');
+            $videoName = time().'_'.$video->getClientOriginalName();
+            $video->move(public_path('upload/lecture_videos'), $videoName);
+            $lecture->video = 'upload/lecture_videos/' . $videoName;
+        }
+
         $lecture->save();
 
-        return response()->json(['success' => 'Lecture Save Successfully']);
+        return response()->json(['success' => 'Lecture saved successfully']);
     }
 
     public function EditLecture($id)

@@ -50,7 +50,7 @@
                                                 <a href="{{ route('edit.lecture',['id' => $lecture->id]) }}" class="btn btn-sm btn-primary">Edit</a> &nbsp;
                                                 <a href="{{ route('delete.lecture',['id' => $lecture->id]) }}" class="btn btn-sm btn-danger" id="delete">Delete</a>
                                             </div>
-                                        </div>    
+                                        </div>
                                     @endforeach
 
                                     </div>
@@ -100,7 +100,7 @@
         const newLectureDiv = document.createElement('div');
         newLectureDiv.classList.add('lectureDiv', 'mb-3');
 
-        newLectureDiv.innerHTML = `                                                                          
+        newLectureDiv.innerHTML = `
             <div class="container">
                 <h6>Lecture Title</h6>
                 <input type="text" class="form-control" placeholder="Enter Lecture Title">
@@ -108,6 +108,8 @@
 
                 <h6 class="mt-3">Add Video Url</h6>
                 <input type="text" name="url" class="form-control" placeholder="Add URL">
+                <h6 class="mt-3">Add File Video</h6>
+                <input type="file" name="video" accept="video/*" class="form-control" placeholder="Add Video">
 
                 <button class="btn btn-primary mt-3" onclick="saveLecture('${courseId}',${sectionId},'${containerId}')">Save Lecture</button>
                 <button class="btn btn-secondary mt-3" onclick="hideLectureContainer('${containerId}')">Cancel</button>
@@ -126,62 +128,58 @@
 
 <script>
     function saveLecture(courseId, sectionId, containerId) {
-        const lectureContainer = document.getElementById(containerId);
-        const lectureTitle = lectureContainer.querySelector('input[type="text"]').value;
-        const lectureContent = lectureContainer.querySelector('textarea').value;
-        const lectureUrl = lectureContainer.querySelector('input[name="url"]').value;
+    const lectureContainer = document.getElementById(containerId);
+    const lectureTitle = lectureContainer.querySelector('input[type="text"]').value;
+    const lectureContent = lectureContainer.querySelector('textarea').value;
+    const lectureUrl = lectureContainer.querySelector('input[name="url"]').value;
+    const lectureVideo = lectureContainer.querySelector('input[name="video"]').files[0];
 
-        fetch('/save-lecture', {
-                method: 'POST', 
-                headers: {
-                    'Content-Type': 'application/json', 
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}', 
-                }, 
-                body: JSON.stringify({
-                    course_id: courseId,
-                    section_id: sectionId, 
-                    lecture_title: lectureTitle, 
-                    lecture_url: lectureUrl, 
-                    content: lectureContent,
-                }),
-             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+    const formData = new FormData();
+    formData.append('course_id', courseId);
+    formData.append('section_id', sectionId);
+    formData.append('lecture_title', lectureTitle);
+    formData.append('lecture_url', lectureUrl);
+    formData.append('lecture_video', lectureVideo);
+    formData.append('content', lectureContent);
 
-                lectureContainer.style.display = 'none';
-                location.reload();
+    fetch('/save-lecture', {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
 
-                // Start Message 
+        lectureContainer.style.display = 'none';
+        location.reload();
 
-            const Toast = Swal.mixin({
-                  toast: true,
-                  position: 'top-end',
-                  icon: 'success', 
-                  showConfirmButton: false,
-                  timer: 6000 
-            })
-            if ($.isEmptyObject(data.error)) {
-                    
-                    Toast.fire({
-                    type: 'success',
-                    title: data.success, 
-                    })
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 6000
+        });
 
-            }else{
-               
-           Toast.fire({
-                    type: 'error',
-                    title: data.error, 
-                    })
-                }
-
-              // End Message  
-            })
-            .catch(error => {
-                console.log(error);
+        if (!data.error) {
+            Toast.fire({
+                icon: 'success',
+                title: data.success,
             });
-    }
+        } else {
+            Toast.fire({
+                icon: 'error',
+                title: data.error,
+            });
+        }
+    })
+    .catch(error => {
+        console.log(error);
+    });
+}
 
 </script>
 
