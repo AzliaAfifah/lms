@@ -295,7 +295,7 @@ class CourseController extends Controller
     public function SaveLecture(Request $request)
     {
         $request->validate([
-            'lecture_video' => 'nullable|file|mimes:mp4,webm|max:102400', 
+            'lecture_video' => 'nullable|file|mimes:mp4,webm|max:102400',
         ]);
 
         $lecture = new CourseLecture();
@@ -325,12 +325,39 @@ class CourseController extends Controller
 
     public function UpdateCourseLecture(Request $request)
     {
-      $lid = $request->id;
-      CourseLecture::find($lid)->update([
-        'lecture_title' => $request->lecture_title,
-        'url' => $request->url,
-        'content' => $request->content,
-      ]);
+        $request->validate([
+            'video_type' => 'required|in:url,file',
+            'video' => 'nullable|file|mimes:mp4,webm|max:102400',
+            'url' => 'nullable|url',
+        ]);
+
+        $lecture = CourseLecture::findOrFail($request->id);
+
+        if ($request->video_type === 'file') {
+            $lecture->url = null;
+
+            if ($request->hasFile('video')) {
+                if ($lecture->video && file_exists(public_path($lecture->video))) {
+                    unlink(public_path($lecture->video));
+                }
+
+                $video = $request->file('video');
+                $videoName = time().'_'.$video->getClientOriginalName();
+                $video->move(public_path('upload/lecture_videos'), $videoName);
+                $lecture->video = 'upload/lecture_videos/' . $videoName;
+            }
+        } elseif ($request->video_type === 'url') {
+            if ($lecture->video && file_exists(public_path($lecture->video))) {
+                unlink(public_path($lecture->video));
+            }
+
+            $lecture->video = null;
+            $lecture->url = $request->url;
+        }
+
+        $lecture->lecture_title = $request->lecture_title;
+        $lecture->content = $request->content;
+        $lecture->save();
 
       $notification = array(
         'message' => 'Course Lecture Updated Successfully!',

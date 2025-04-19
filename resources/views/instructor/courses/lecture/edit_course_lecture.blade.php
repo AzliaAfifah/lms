@@ -32,11 +32,11 @@
 
             <input type="hidden" name="id" value="{{ $clecture->id }}">
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-12">
                     <label class="form-label">Lecture Title</label>
                     <input type="text" name="lecture_title" class="form-control" value="{{ $clecture->lecture_title }}">
                 </div>
-                <div class="form-group col-md-6">
+                {{-- <div class="form-group col-md-6">
                     <label class="form-label">Video Url</label>
                     <input type="text" name="url" class="form-control" value="{{ $clecture->url }}">
                 </div>
@@ -44,6 +44,36 @@
                     <label class="form-label">File Video</label>
                     <input type="file" name="video" class="form-control" value="{{ $clecture->video }}">
                 </div>
+                @if ($clecture->video)
+                    <small class="text-muted">Current video: {{ basename($clecture->video) }}</small>
+                @endif --}}
+                <div class="form-group col-md-6">
+                    <label class="form-label">Video Type</label>
+                    <select name="video_type" class="form-control" onchange="toggleVideoInput(this.value)">
+                        <option value="url" {{ $clecture->url ? 'selected' : '' }}>YouTube URL</option>
+                        <option value="file" {{ $clecture->video ? 'selected' : '' }}>Upload File</option>
+                    </select>
+                </div>
+
+                <div id="video_url_input" class="form-group col-md-6" style="{{ $clecture->url ? '' : 'display:none;' }}">
+                    <label class="form-label">Video URL</label>
+                    <input type="text" name="url" class="form-control" value="{{ $clecture->url }}">
+                </div>
+
+                <div id="video_file_input" class="form-group col-md-6" style="{{ $clecture->video ? '' : 'display:none;' }}">
+                    <label class="form-label">Upload Video</label>
+                    <input type="file" name="video" class="form-control">
+                    @if ($clecture->video)
+                        <small class="text-muted">Current video: {{ basename($clecture->video) }}</small>
+                    @endif
+                </div>
+
+                <script>
+                    function toggleVideoInput(type) {
+                        document.getElementById('video_url_input').style.display = type === 'url' ? '' : 'none';
+                        document.getElementById('video_file_input').style.display = type === 'file' ? '' : 'none';
+                    }
+                </script>
                 <div class="form-group col-md-12">
                     <label class="form-label">Lecture Content</label>
                     <textarea name="content" class="form-control">{{ $clecture->content }}</textarea>

@@ -3,6 +3,18 @@
 
 <body>
 
+    <style>
+        /* #videoContainer {
+            width: 100%;
+            max-width: 1145px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            display: block;
+            margin: 0 auto;
+            background: black;
+        } */
+    </style>
+
     <!-- start cssload-loader -->
     <div class="preloader">
         <div class="loader">
@@ -105,7 +117,6 @@
                             <div id="textLesson" class="fs-24 font-weight-semi-bold pb-2 text-center mt-4">
                                 <h3></h3>
                             </div>
-
                         </div>
                     </div><!-- end lecture-viewer-container -->
                     <div class="lecture-video-detail">
@@ -909,7 +920,7 @@
                                                             <label class="custom-control-label custom--control-label" for="courseCheckbox"></label>
                                                         </div><!-- end custom-control -->
                                                         <div class="course-item-content">
-                                                            <h4 class="fs-15 lecture-title" data-video-url="{{ $lect->url }}" data-content="{!! $lect->content !!}">{{ $lect->lecture_title }}</h4>
+                                                            <h4 class="fs-15 lecture-title" data-video-url="{{ $lect->url }}" data-video-file="{{ $lect->video }}" data-content="{!! $lect->content !!}">{{ $lect->lecture_title }}</h4>
                                                         </div><!-- end course-item-content -->
                                                     </div><!-- end course-item-content-wrap -->
                                                 </li>
@@ -1131,43 +1142,44 @@
     }
 
     // Function to handle lecture clicks and load content
-    function viewLesson(videoUrl, vimeoUrl, textContent) {
-        const video = document.getElementById("videoContainer");
-        const text = document.getElementById("textLesson");
-        const textContainer = document.createElement("div");
+    function viewLesson(videoUrl, videoFile, textContent) {
+    const video = document.getElementById("videoContainer");
+    const text = document.getElementById("textLesson");
+    const textContainer = document.createElement("div");
 
-        if (videoUrl && videoUrl.trim() !== "") {
-            video.classList.remove("d-none");
-            text.classList.add("d-none");
-            text.innerHTML = "";
-            video.setAttribute("src", videoUrl);
-        } else if (vimeoUrl && vimeoUrl.trim() !== "") {
-            video.classList.remove("d-none");
-            text.classList.add("d-none");
-            text.innerHTML = "";
-            video.setAttribute("src", vimeoUrl);
-        } else if (textContent && textContent.trim() !== "") {
-            video.classList.add("d-none");
-            text.classList.remove("d-none");
-            text.innerHTML = "";
-            textContainer.innerText = textContent;
-            textContainer.style.fontSize = "14px";
-            textContainer.style.textAlign = "left";
-            textContainer.style.paddingLeft = "40px";
-            textContainer.style.paddingRight = "40px";
-            text.appendChild(textContainer);
-        }
+    if (videoUrl && videoUrl.trim() !== "") {
+        video.classList.remove("d-none");
+        text.classList.add("d-none");
+        text.innerHTML = "";
+        video.setAttribute("src", videoUrl);
+    } else if (videoFile && videoFile.trim() !== "") {
+        video.classList.remove("d-none");
+        text.classList.add("d-none");
+        text.innerHTML = "";
+        video.setAttribute("src", "/" + videoFile); // pastikan pakai slash depan
+    } else if (textContent && textContent.trim() !== "") {
+        video.classList.add("d-none");
+        text.classList.remove("d-none");
+        text.innerHTML = "";
+        textContainer.innerText = textContent;
+        textContainer.style.fontSize = "14px";
+        textContainer.style.textAlign = "left";
+        textContainer.style.paddingLeft = "40px";
+        textContainer.style.paddingRight = "40px";
+        text.appendChild(textContainer);
     }
+}
+
 
     // Add a click event listener to all lecture elements
     document.querySelectorAll('.lecture-title').forEach((lectureTitle) => {
-        lectureTitle.addEventListener('click', () => {
-            const videoUrl = lectureTitle.getAttribute('data-video-url');
-            const vimeoUrl = lectureTitle.getAttribute('data-vimeo-url');
-            const textContent = lectureTitle.getAttribute('data-content');
-            viewLesson(videoUrl, vimeoUrl, textContent);
-        });
+    lectureTitle.addEventListener('click', () => {
+        const videoUrl = lectureTitle.getAttribute('data-video-url');
+        const videoFile = lectureTitle.getAttribute('data-video-file');
+        const textContent = lectureTitle.getAttribute('data-content');
+        viewLesson(videoUrl, videoFile, textContent);
     });
+});
 
     // Open the first lecture when the page loads
     window.addEventListener('load', () => {

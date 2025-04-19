@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 18, 2025 at 12:22 PM
+-- Generation Time: Apr 19, 2025 at 02:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -317,7 +317,7 @@ INSERT INTO `course_lectures` (`id`, `course_id`, `section_id`, `lecture_title`,
 (13, 14, 10, 'PAST SIMPLE', NULL, 'https://www.youtube.com/embed/LkyCYeDdvgI?si=InVcI_fP0JjmSCVS', 'PAST SIMPLE', '2025-03-16 20:48:17', '2025-04-14 08:04:32'),
 (14, 14, 10, 'PAST CONTINUOUS', NULL, 'https://www.youtube.com/embed/zBDdCy4_3O4?si=7IHx3gefmfFHRqhq', 'PAST CONTINUOUS', '2025-03-16 20:48:52', '2025-04-14 08:05:21'),
 (15, 23, 11, 'Introduction', NULL, 'https://www.youtube.com/embed/fYZP95y2mgM?si=c5FReWDVXC4Za1jF', 'Introduction', '2025-04-14 16:46:00', '2025-04-14 16:46:00'),
-(28, 14, 8, 'AAAAA', 'upload/lecture_videos/1744967022_1742269070.mp4', NULL, 'AAAAA', '2025-04-18 02:03:42', '2025-04-18 02:03:42');
+(28, 14, 8, 'BBB', 'upload/lecture_videos/1745043267_1741838931.mp4', NULL, 'BBB', '2025-04-18 02:03:42', '2025-04-18 23:14:58');
 
 -- --------------------------------------------------------
 
@@ -1012,9 +1012,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-18 05:22:33', NULL, NULL, '2025-04-17 22:22:33'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-18 09:07:45', NULL, '2025-02-04 07:11:01', '2025-04-18 02:07:45'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-18 08:02:05', 'wvT6TOnSe0Np4HsIxHY2Z7hyysuYqfdhM2di7NvlrPUyVJAAT9jYAGT4RNBb', NULL, '2025-04-18 01:02:05'),
+(1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-19 05:01:52', NULL, NULL, '2025-04-18 22:01:52'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202412241046profile photo.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-19 07:31:20', NULL, '2025-02-04 07:11:01', '2025-04-19 00:31:20'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-19 06:30:54', 'wvT6TOnSe0Np4HsIxHY2Z7hyysuYqfdhM2di7NvlrPUyVJAAT9jYAGT4RNBb', NULL, '2025-04-18 23:30:54'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$atY1WAY3AQTlkhxLlKpGWeUnFk.Q9I8vWk6ruXM9Ars7bBcUvDAfS', '20241227150120240130_050807.jpg', '089525907023', 'Indonesia', 'user', '1', '2025-04-14 23:54:59', NULL, '2024-12-19 05:30:18', '2025-04-14 16:54:59'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
