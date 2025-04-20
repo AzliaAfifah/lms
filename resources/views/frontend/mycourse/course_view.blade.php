@@ -1,20 +1,8 @@
 @include('frontend.mycourse.body.header')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+
 <body>
-
-    <style>
-        /* #videoContainer {
-            width: 100%;
-            max-width: 1145px;
-            height: auto;
-            aspect-ratio: 16 / 9;
-            display: block;
-            margin: 0 auto;
-            background: black;
-        } */
-    </style>
-
     <!-- start cssload-loader -->
     <div class="preloader">
         <div class="loader">
@@ -113,7 +101,8 @@
 
                     <div class="lecture-viewer-container">
                         <div class="lecture-video-item">
-                            <iframe width="100%" height="500" id="videoContainer" src="" title="The Best Way to Learn With Videos and Online Classes I Video Notebook" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <iframe width="100%" height="500" id="iframeVideo" src="" title="The Best Way to Learn With Videos and Online Classes I Video Notebook" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <video width="100%" height="500" id="videoContainer" src="" title="The Best Way to Learn With Videos and Online Classes I Video Notebook" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" controls></video>
                             <div id="textLesson" class="fs-24 font-weight-semi-bold pb-2 text-center mt-4">
                                 <h3></h3>
                             </div>
@@ -1143,19 +1132,24 @@
 
     // Function to handle lecture clicks and load content
     function viewLesson(videoUrl, videoFile, textContent) {
+    const iframe = document.getElementById("iframeVideo");
     const video = document.getElementById("videoContainer");
+    // const video = document.getElementById("videoContainer");
     const text = document.getElementById("textLesson");
     const textContainer = document.createElement("div");
 
     if (videoUrl && videoUrl.trim() !== "") {
         video.classList.remove("d-none");
         text.classList.add("d-none");
-        text.innerHTML = "";
+        //text.innerHTML = "";
+        text.classList.add("d-none");
+        iframe.src = videoUrl;
         video.setAttribute("src", videoUrl);
     } else if (videoFile && videoFile.trim() !== "") {
         video.classList.remove("d-none");
         text.classList.add("d-none");
-        text.innerHTML = "";
+        video.src = "/" + videoFile;
+        video.load();
         video.setAttribute("src", "/" + videoFile); // pastikan pakai slash depan
     } else if (textContent && textContent.trim() !== "") {
         video.classList.add("d-none");
@@ -1186,6 +1180,42 @@
         openFirstLecture();
     });
 </script>
+
+{{-- <script type="text/javascript">
+function viewLesson(videoUrl, videoFile, textContent) {
+    const iframe = document.getElementById("iframeVideo");
+    const video = document.getElementById("videoContainer");
+    const text = document.getElementById("textLesson");
+    const textContainer = document.createElement("div");
+
+    // Reset semuanya dulu
+    iframe.classList.add("d-none");
+    video.classList.add("d-none");
+    text.classList.add("d-none");
+
+    if (videoUrl && videoUrl.trim() !== "") {
+        // Tampilkan iframe, sembunyikan yang lain
+        iframe.classList.remove("d-none");
+        iframe.src = videoUrl;
+    } else if (videoFile && videoFile.trim() !== "") {
+        // Tampilkan video tag, sembunyikan yang lain
+        video.classList.remove("d-none");
+        video.src = "/" + videoFile;
+        video.load();
+    } else if (textContent && textContent.trim() !== "") {
+        // Tampilkan teks, sembunyikan video & iframe
+        text.classList.remove("d-none");
+        text.innerHTML = "";
+        textContainer.innerText = textContent;
+        textContainer.style.fontSize = "14px";
+        textContainer.style.textAlign = "left";
+        textContainer.style.paddingLeft = "40px";
+        textContainer.style.paddingRight = "40px";
+        text.appendChild(textContainer);
+    }
+}
+
+</script> --}}
 
     @include('frontend.mycourse.body.footer')
 </body>
