@@ -218,21 +218,24 @@
                                         <li><i class="la la-user mr-2 text-color-3"></i> {{ count($student) }} Students</li>
                                         <li><i class="la la-comment-o mr-2 text-color-3"></i> {{ count($review) }} Reviews</li>
                                         <li><i class="la la-play-circle-o mr-2 text-color-3"></i>{{ count($instructorCourses) }} Courses</li>
-                                        <li><a href="teacher-detail.html">View all Courses</a></li>
+                                        <li><a href="{{ route('instructor.details',$course->instructor_id) }}">Visit Instructor Profile</a></li>
                                     </ul>
                                 </div><!-- end instructor-img -->
                                 <div class="media-body">
+                                    @php
+                                        $description = optional($course->user->instructorDescription)->description;
+                                        $shortDesc = \Illuminate\Support\Str::limit(strip_tags($description), 200);
+                                    @endphp
                                     <h5><a href="teacher-detail.html">{{ $course['user']['name'] }}</a></h5>
                                     <span class="d-block lh-18 pt-2 pb-3">Joined {{ Carbon\Carbon::parse($course->user->created_at)->diffForHumans() }}</span>
                                     <p class="text-black lh-18 pb-3">{{ $course['user']['email'] }}</p>
-                                    <p class="pb-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-                                    <div class="collapse" id="collapseMoreTwo">
-                                        <p class="pb-3">After learning the hard way, Tim was determined to become the best teacher he could, and to make his training as painless as possible, so that you, or anyone else with the desire to become a software developer, could become one.</p>
-                                        <p class="pb-3">If you want to become a financial analyst, a finance manager, an FP&A analyst, an investment banker, a business executive, an entrepreneur, a business intelligence analyst, a data analyst, or a data scientist, <strong class="text-black font-weight-semi-bold">Tim Buchalka's courses are the perfect course to start</strong>.</p>
+                                    <p class="pb-3" id="shortDesc">{!! nl2br(e($shortDesc)) !!}</p>
+                                    <div class="collapse" id="fullDescription">
+                                        <p class="pb-3">{!! nl2br(e($description)) !!}</p>
                                     </div>
-                                    <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#collapseMoreTwo" role="button" aria-expanded="false" aria-controls="collapseMoreTwo">
+                                    <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#fullDescription" role="button" aria-expanded="false" aria-controls="fullDescription" onclick="toggleDescription(this)">
                                         <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>
-                                        <span class="collapse-btn-show">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
+                                        <span class="collapse-btn-show d-none">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
                                     </a>
                                 </div>
                             </div>
@@ -749,4 +752,19 @@
         </div><!-- end modal-content -->
     </div><!-- end modal-dialog -->
 </div><!-- end modal -->
+
+<script>
+    function toggleDescription(button) {
+        const show = button.querySelector('.collapse-btn-show');
+        const hide = button.querySelector('.collapse-btn-hide');
+        show.classList.toggle('d-none');
+        hide.classList.toggle('d-none');
+
+        // Optional: hide short desc saat show more ditekan
+        const shortDesc = document.getElementById('shortDesc');
+        if (shortDesc) {
+            shortDesc.classList.toggle('d-none');
+        }
+    }
+</script>
 @endsection

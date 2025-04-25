@@ -176,7 +176,7 @@
 					</ul>
 				</li>
 
-				{{-- <li class="menu-label">Role & Permission</li>
+				<li class="menu-label">Role & Permission</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-lock"></i>
@@ -200,7 +200,7 @@
 					<ul>
 						<li> <a href="{{ route('all.admin') }}"><i class='bx bx-radio-circle'></i>All Admin</a></li>
 					</ul>
-				</li> --}}
+				</li>
 				{{-- <li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-map-alt"></i>

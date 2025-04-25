@@ -102,7 +102,7 @@
                     <div class="lecture-viewer-container">
                         <div class="lecture-video-item">
                             <iframe width="100%" height="500" id="iframeVideo" src="" title="The Best Way to Learn With Videos and Online Classes I Video Notebook" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <video width="100%" height="500" id="videoContainer" src="" title="The Best Way to Learn With Videos and Online Classes I Video Notebook" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" controls></video>
+                            <video width="100%" height="500px" id="videoContainer" src="" title="The Best Way to Learn With Videos and Online Classes I Video Notebook" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" controls></video>
                             <div id="textLesson" class="fs-24 font-weight-semi-bold pb-2 text-center mt-4">
                                 <h3></h3>
                             </div>
@@ -684,11 +684,11 @@
                                     <div class="lecture-overview-wrap lecture-announcement-wrap">
                                         <div class="lecture-overview-item">
                                             <div class="media media-card align-items-center">
-                                                <a href="teacher-detail.html" class="media-img d-block rounded-full avatar-md">
+                                                <a href="{{ route('instructor.details',$course->instructor_id) }}" class="media-img d-block rounded-full avatar-md">
                                                     <img src="images/small-avatar-1.jpg" alt="Instructor avatar" class="rounded-full">
                                                 </a>
                                                 <div class="media-body">
-                                                    <h5 class="pb-1"><a href="teacher-detail.html">Alex Smith</a></h5>
+                                                    <h5 class="pb-1"><a href="{{ route('instructor.details',$course->instructor_id) }}">Alex Smith</a></h5>
                                                     <div class="announcement-meta fs-15">
                                                         <span>Posted an announcement</span>
                                                         <span> · 3 years ago ·</span>
@@ -776,7 +776,7 @@
                             </div><!-- end row -->
                         </div><!-- end container-fluid -->
                     </div><!-- end cta-area --> --}}
-                    <div class="footer-area pt-50px">
+                    {{-- <div class="footer-area pt-50px">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-3 responsive-column-half">
@@ -869,7 +869,8 @@
                                 </div><!-- end row -->
                             </div><!-- end container-fluid -->
                         </div><!-- end copyright-content -->
-                    </div><!-- end footer-area -->
+                    </div><!-- end footer-area --> --}}
+                    @include('frontend.body.footer')
                 </div><!-- end course-dashboard-column -->
                 <div class="course-dashboard-sidebar-column">
                     <button class="sidebar-open" type="button"><i class="la la-angle-left"></i> Course content</button>
@@ -1130,39 +1131,42 @@
         }
     }
 
-    // Function to handle lecture clicks and load content
     function viewLesson(videoUrl, videoFile, textContent) {
-    const iframe = document.getElementById("iframeVideo");
-    const video = document.getElementById("videoContainer");
-    // const video = document.getElementById("videoContainer");
-    const text = document.getElementById("textLesson");
-    const textContainer = document.createElement("div");
+        const iframe = document.getElementById("iframeVideo");
+        const video = document.getElementById("videoContainer");
+        const text = document.getElementById("textLesson");
+        const textContainer = document.createElement("div");
 
-    if (videoUrl && videoUrl.trim() !== "") {
-        video.classList.remove("d-none");
-        text.classList.add("d-none");
-        //text.innerHTML = "";
-        text.classList.add("d-none");
-        iframe.src = videoUrl;
-        video.setAttribute("src", videoUrl);
-    } else if (videoFile && videoFile.trim() !== "") {
-        video.classList.remove("d-none");
-        text.classList.add("d-none");
-        video.src = "/" + videoFile;
-        video.load();
-        video.setAttribute("src", "/" + videoFile); // pastikan pakai slash depan
-    } else if (textContent && textContent.trim() !== "") {
-        video.classList.add("d-none");
-        text.classList.remove("d-none");
-        text.innerHTML = "";
-        textContainer.innerText = textContent;
-        textContainer.style.fontSize = "14px";
-        textContainer.style.textAlign = "left";
-        textContainer.style.paddingLeft = "40px";
-        textContainer.style.paddingRight = "40px";
-        text.appendChild(textContainer);
+        if (videoUrl && videoUrl.trim() !== "") {
+            iframe.classList.remove("d-none");
+            video.classList.add("d-none");
+            text.classList.add("d-none");
+
+            iframe.src = videoUrl;
+
+        } else if (videoFile && videoFile.trim() !== "") {
+            video.classList.remove("d-none");
+            iframe.classList.add("d-none");
+            text.classList.add("d-none");
+
+            video.src = "/" + videoFile;
+            video.load();
+
+        } else if (textContent && textContent.trim() !== "") {
+            text.classList.remove("d-none");
+            video.classList.add("d-none");
+            iframe.classList.add("d-none");
+
+            text.innerHTML = "";
+            textContainer.innerText = textContent;
+            textContainer.style.fontSize = "14px";
+            textContainer.style.textAlign = "left";
+            textContainer.style.paddingLeft = "40px";
+            textContainer.style.paddingRight = "40px";
+            text.appendChild(textContainer);
+        }
     }
-}
+
 
 
     // Add a click event listener to all lecture elements

@@ -23,4 +23,9 @@ class Course extends Model
     {
         return $this->belongsTo(User::class, 'instructor_id', 'id');
     }
+
+    public function instructorDescription()
+    {
+        return $this->hasOne(InstructorDescription::class, 'instructor_id');
+    }
 }

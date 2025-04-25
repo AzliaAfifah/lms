@@ -23,8 +23,10 @@ class IndexController extends Controller
 {
     public function CourseDetails($id,$slug)
     {
-        $course = Course::find($id);
+        $course = Course::with('user.instructorDescription')->find($id);
         $goals = Course_goal::where('course_id',$id)->orderBy('id','DESC')->get();
+
+        // $user = User::with('instructorDescription')->findOrFail($id);
 
         $ins_id = $course->instructor_id;
         $instructorCourses = Course::where('instructor_id',$ins_id)->orderBy('id','DESC')->get();
@@ -70,8 +72,9 @@ class IndexController extends Controller
 
     public function InstructorDetails($id)
     {
-        $instructor = User::find($id);
+        $instructor = User::with('instructorDescription')->find($id);
         $courses = Course::where('instructor_id',$id)->get();
+        // $course = Course::with('user.instructorDescription')->find($id);
         $student = Order::where('user_id', $id)->get();
         $review = Review::where('user_id', $id)->get();
         return view('frontend.instructor.instructor_details',compact('instructor','courses','student','review'));

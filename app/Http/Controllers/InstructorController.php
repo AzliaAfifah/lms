@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\InstructorDescription;
 
 class InstructorController extends Controller
 {
@@ -30,7 +31,7 @@ class InstructorController extends Controller
 
         return redirect('/instructor/login')->with($notification);
     }
-    
+
     public function InstructorLogin()
     {
         return view('instructor.instructor_login');
@@ -61,8 +62,13 @@ class InstructorController extends Controller
             $file->move(public_path('upload/instructor_images'), $filename);
             $data['photo'] = $filename;
         }
- 
+
         $data->save();
+
+        InstructorDescription::updateOrCreate(
+            ['instructor_id' => $id],
+            ['description' => $request->description]
+        );
 
         $notification = array(
            'message' => 'Instructor Profile Updated Successfully!',
@@ -80,7 +86,7 @@ class InstructorController extends Controller
         return view('instructor.instructor_change_password', compact('profileData'));
 
     }
-    
+
     public function InstructorPasswordUpdate(Request $request)
     {
         // Validation
@@ -94,7 +100,7 @@ class InstructorController extends Controller
                 'message' => 'Old Password Does not Match!',
                 'alert-type' => 'error'
              );
-     
+
              return back()->with($notification);
         }
 
@@ -107,7 +113,7 @@ class InstructorController extends Controller
             'message' => 'Password Change Successfully!',
             'alert-type' => 'success'
          );
- 
+
          return back()->with($notification);
     }
 }

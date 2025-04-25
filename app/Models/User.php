@@ -58,7 +58,7 @@ class User extends Authenticatable
                         ->select('name','id')
                         ->where('group_name',$group_name)
                         ->get();
-                            
+
         return $permissions;
     }
 
@@ -68,10 +68,10 @@ class User extends Authenticatable
         foreach ($permissions as $permission) {
             if (!$role->hasPermissionTo($permission->name)) {
                 $hasPermission = false;
-            } 
+            }
             return $hasPermission;
         }
-    } 
+    }
 
     public function courses()
     {
@@ -81,5 +81,10 @@ class User extends Authenticatable
     public function review()
     {
         return $this->hasMany(Review::class, 'instructor_id');
+    }
+
+    public function instructorDescription()
+    {
+        return $this->hasOne(InstructorDescription::class, 'instructor_id');
     }
 }

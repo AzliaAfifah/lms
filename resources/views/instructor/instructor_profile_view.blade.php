@@ -33,11 +33,11 @@
                                     <h4>{{ $profileData->name }}</h4>
                                     <p class="text-secondary mb-1">{{ $profileData->username }}</p>
                                     <p class="text-muted font-size-sm">{{ $profileData->email }}</p>
-                                    <button class="btn btn-primary">Follow</button>
-                                    <button class="btn btn-outline-primary">Message</button>
+                                    {{-- <button class="btn btn-primary">Follow</button>
+                                    <button class="btn btn-outline-primary">Message</button> --}}
                                 </div>
                             </div>
-                            <hr class="my-4" />
+                            {{-- <hr class="my-4" />
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline">
@@ -47,7 +47,7 @@
                                         </svg>Website</h6>
                                     <span class="text-secondary">https://codervent.com</span>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </div>
                     </div>
                 </div>
@@ -90,6 +90,30 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-3">
+                                        <h6 class="mb-0">Facebook</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="address" class="form-control" value="{{ $profileData->address }}" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Instagram</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="address" class="form-control" value="{{ $profileData->address }}" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Linkedin</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <input type="text" name="address" class="form-control" value="{{ $profileData->address }}" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
                                         <h6 class="mb-0">Address</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
@@ -102,6 +126,14 @@
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         <input type="file" name="photo" class="form-control" id="image" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Description</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        <textarea type="text" name="description" rows="5" class="form-control">{{ $profileData['instructorDescription']['description'] }}</textarea>
                                     </div>
                                 </div>
                                 <div class="row mb-3">

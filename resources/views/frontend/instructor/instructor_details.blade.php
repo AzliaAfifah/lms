@@ -23,10 +23,9 @@
 
             <ul class="social-icons social-icons-styled social--icons-styled">
                 <li><a href="#"><i class="la la-facebook"></i></a></li>
-                <li><a href="#"><i class="la la-twitter"></i></a></li>
                 <li><a href="#"><i class="la la-instagram"></i></a></li>
                 <li><a href="#"><i class="la la-linkedin"></i></a></li>
-                <li><a href="#"><i class="la la-youtube"></i></a></li>
+                {{-- <li><a href="#"><i class="la la-tiktok"></i></a></li> --}}
             </ul>
         </div><!-- end breadcrumb-content -->
     </div><!-- end container -->
@@ -216,7 +215,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" role="tab" aria-controls="about-me" aria-selected="false">
+                    <a class="nav-link" >
                         About Me
                     </a>
                 </li>
@@ -229,15 +228,18 @@
             <div class="tab-content pt-40px" id="myTabContent">
                 <div class="tab-pane fade show active" id="about-me" role="tabpanel" aria-labelledby="about-me-tab">
                     <div class="card card-item">
+                        @php
+                            $description = optional($instructor->instructorDescription)->description;
+                            $shortDesc = \Illuminate\Support\Str::limit(strip_tags($description), 400);
+                        @endphp
                         <div class="card-body">
-                            <p class="card-text pb-3">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab corporis est fugiat ipsa laboriosam laudantium possimus quo? Aperiam architecto laborum provident rerum, totam ullam! Accusantium eius eum perferendis quasi, repellendus suscipit voluptate voluptatem! Delectus dolorem maxime nulla numquam quasi quod.</p>
-                            <p class="card-text pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias atque ipsa magnam, magni nobis quam ratione reiciendis totam? Accusantium aliquam aspernatur, assumenda cupiditate deleniti eius, ex fuga iusto minus, nihil perspiciatis porro provident quasi soluta ut! Consequuntur earum eos magnam?</p>
-                            <div class="collapse" id="collapseReadMore">
-                                <p class="card-text pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias consequatur consequuntur dolorem enim error est fuga iure magnam voluptas, voluptates.</p>
+                            <p class="card-text pb-3" id="shortDesc">{!! nl2br(e($shortDesc)) !!}</p>
+                            <div class="collapse" id="fullDescription">
+                                <p class="card-text pb-3">{!! nl2br(e($description)) !!}</p>
                             </div>
-                            <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#collapseReadMore" role="button" aria-expanded="false" aria-controls="collapseReadMore">
+                            <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#fullDescription" role="button" aria-expanded="false" aria-controls="fullDescription" onclick="toggleDescription(this)">
                                 <span class="collapse-btn-hide">Read more<i class="la la-angle-down ml-1 fs-14"></i></span>
-                                <span class="collapse-btn-show">Read less<i class="la la-angle-up ml-1 fs-14"></i></span>
+                                <span class="collapse-btn-show d-none">Read less<i class="la la-angle-up ml-1 fs-14"></i></span>
                             </a>
                         </div>
                     </div>
@@ -306,6 +308,10 @@
         </div>
         <div class="divider"><span></span></div>
         <div class="row pt-30px">
+            @php
+                // $category = App\Models\Category::latest()->paginate(6);
+                $courses = App\Models\Course::latest()->paginate(6);
+            @endphp
             @foreach ($courses as $course)
             <div class="col-lg-4 responsive-column-half">
                 <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_1{{ $course->id }}">
@@ -360,25 +366,8 @@
         </div><!-- end row -->
         <div class="text-center pt-3">
             <nav aria-label="Page navigation example" class="pagination-box">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="la la-arrow-left"></i></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="la la-arrow-right"></i></span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
+                {{ $courses->links('vendor.pagination.custom') }}
             </nav>
-            <p class="fs-14 pt-2">Showing 1-6 of 24 results</p>
         </div>
     </div><!-- end container -->
 </section><!-- end courses-area -->
@@ -395,7 +384,7 @@
     <div id="tooltip_content_1{{ $item->id }}">
         <div class="card card-item">
             <div class="card-body">
-                <p class="card-text pb-2">By <a href="teacher-detail.html">{{ $item['user']['name'] }}</a></p>
+                <p class="card-text pb-2">By <a href="{{ route('instructor.details',$course->instructor_id) }}">{{ $item['user']['name'] }}</a></p>
                 <h5 class="card-title pb-1"><a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}">{{ $item->course_name }}</a></h5>
                 <div class="d-flex align-items-center pb-1">
 
@@ -433,6 +422,21 @@
     </div>
 </div><!-- end tooltip_templates -->
 @endforeach
+
+<script>
+    function toggleDescription(button) {
+        const show = button.querySelector('.collapse-btn-show');
+        const hide = button.querySelector('.collapse-btn-hide');
+        show.classList.toggle('d-none');
+        hide.classList.toggle('d-none');
+
+        // Optional: hide short desc saat show more ditekan
+        const shortDesc = document.getElementById('shortDesc');
+        if (shortDesc) {
+            shortDesc.classList.toggle('d-none');
+        }
+    }
+</script>
 
 @endsection
 
