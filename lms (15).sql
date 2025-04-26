@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 25, 2025 at 12:44 PM
+-- Generation Time: Apr 26, 2025 at 12:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -372,7 +372,9 @@ CREATE TABLE `failed_jobs` (
 CREATE TABLE `instructor_descriptions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `instructor_id` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `description` text DEFAULT NULL,
+  `platform` text DEFAULT NULL,
+  `url` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -381,8 +383,9 @@ CREATE TABLE `instructor_descriptions` (
 -- Dumping data for table `instructor_descriptions`
 --
 
-INSERT INTO `instructor_descriptions` (`id`, `instructor_id`, `description`, `created_at`, `updated_at`) VALUES
-(1, 2, 'Hi! I’m a full-stack web developer with over 8 years of experience in the tech industry. I specialize in Laravel for backend development and enjoy combining it with modern frontend tools like Vue.js and Tailwind CSS.\r\n\r\nThroughout my career, I’ve worked on various projects—ranging from e-commerce platforms to educational web applications. I love solving problems through code and sharing what I’ve learned with others.\r\n\r\nMy goal as an instructor is to help you understand complex topics in a simple and structured way. Whether you’re just starting out or looking to sharpen your skills, I’m here to guide you step by step.\r\nLet’s learn, build, and grow together as developers!', '2025-04-24 21:11:10', '2025-04-25 01:35:16');
+INSERT INTO `instructor_descriptions` (`id`, `instructor_id`, `description`, `platform`, `url`, `created_at`, `updated_at`) VALUES
+(1, 2, 'Hi! I’m a full-stack web developer with over 8 years of experience in the tech industry. I specialize in Laravel for backend development and enjoy combining it with modern frontend tools like Vue.js and Tailwind CSS.\r\n\r\nThroughout my career, I’ve worked on various projects—ranging from e-commerce platforms to educational web applications. I love solving problems through code and sharing what I’ve learned with others.\r\n\r\nMy goal as an instructor is to help you understand complex topics in a simple and structured way. Whether you’re just starting out or looking to sharpen your skills, I’m here to guide you step by step.\r\nLet’s learn, build, and grow together as developers!', NULL, NULL, '2025-04-24 21:11:10', '2025-04-25 01:35:16'),
+(2, 2, NULL, 'instagram', '#', NULL, '2025-04-26 00:48:29');
 
 -- --------------------------------------------------------
 
@@ -1026,8 +1029,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email`, `email_verified_at`, `password`, `photo`, `phone`, `address`, `role`, `status`, `last_seen`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Admin', 'admin', 'admin@gmail.com', NULL, '$2y$10$K/vqnSm3BLgaL9PgcrNWCOaeOSD7YHzb0zueEhPkjDCdbAS4joka6', '202412221500cat profile 2.jpg', '1234', 'Indonesia', 'admin', '1', '2025-04-25 02:47:59', NULL, NULL, '2025-04-24 19:47:59'),
-(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202504250419525a256bd065ddffe5bcc3a72121e245.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-25 10:10:23', NULL, '2025-02-04 07:11:01', '2025-04-25 03:10:23'),
-(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-25 02:45:54', 'wvT6TOnSe0Np4HsIxHY2Z7hyysuYqfdhM2di7NvlrPUyVJAAT9jYAGT4RNBb', NULL, '2025-04-24 19:45:54'),
+(2, 'Instructor', 'instructor', 'instructor@gmail.com', NULL, '$2y$10$/DsOa07xfd4gOcL.M/JUh.gEW22ERgiQx9bmzDoqaeAgereWFNhn6', '202504250419525a256bd065ddffe5bcc3a72121e245.jpg', '993', 'Indonesia', 'instructor', '1', '2025-04-26 07:58:31', NULL, '2025-02-04 07:11:01', '2025-04-26 00:58:31'),
+(3, 'User', 'user', 'user@gmail.com', NULL, '$2y$10$9SmCs4RFBq96suBtXs2ICe.8hBTCPhy96dYCVtMp5Cfm623VlTsLa', '202412271457bebek.jpg', '1234567890', 'Sukamaju', 'user', '1', '2025-04-26 07:54:27', 'wvT6TOnSe0Np4HsIxHY2Z7hyysuYqfdhM2di7NvlrPUyVJAAT9jYAGT4RNBb', NULL, '2025-04-26 00:54:27'),
 (4, 'Onis', 'onis', 'onis@gmail.com', NULL, '$2y$10$atY1WAY3AQTlkhxLlKpGWeUnFk.Q9I8vWk6ruXM9Ars7bBcUvDAfS', '20241227150120240130_050807.jpg', '089525907023', 'Indonesia', 'user', '1', '2025-04-14 23:54:59', NULL, '2024-12-19 05:30:18', '2025-04-14 16:54:59'),
 (5, 'Batu Karang', 'batukarang', 'batukarang@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', '202412271447cat glasses.jpg', '0888', 'BBC', 'user', '1', NULL, NULL, '2024-12-25 04:13:09', '2024-12-27 07:49:12'),
 (6, 'Azlia', 'azlia', 'azlia@gmail.com', NULL, '$2y$10$dM8vlhsaFf7h10MVhAUtZuJrKLOwX2mqKFuhGxPocj8UrQVWxDzBG', NULL, '0881', 'Indonesia', 'instructor', '1', '2025-03-28 14:46:14', NULL, NULL, '2025-03-28 07:46:14'),
@@ -1372,7 +1375,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `instructor_descriptions`
 --
 ALTER TABLE `instructor_descriptions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `instructor_profiles`
