@@ -20,11 +20,10 @@
                 </div>
             </div><!-- end media -->
 
-
             <ul class="social-icons social-icons-styled social--icons-styled">
-                <li><a href="#"><i class="la la-facebook"></i></a></li>
-                <li><a href="#"><i class="la la-instagram"></i></a></li>
-                <li><a href="#"><i class="la la-linkedin"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
                 {{-- <li><a href="#"><i class="la la-tiktok"></i></a></li> --}}
             </ul>
         </div><!-- end breadcrumb-content -->

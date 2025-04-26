@@ -1,5 +1,5 @@
 <!doctype html>
-    <html lang="en">    
+    <html lang="en">
 
     <head>
         <!-- Required meta tags -->
@@ -26,6 +26,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
         <link href="{{ asset('backend/assets/css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('backend/assets/css/icons.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <!-- Theme Style CSS -->
         <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
         <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
@@ -83,7 +84,7 @@
             new PerfectScrollbar('.chat-list');
             new PerfectScrollbar('.chat-content');
 	    </script>
-        
+
         <script src="{{ asset('backend/assets/js/app.js') }}"></script>
         <script src="{{ asset('backend/assets/js/validate.min.js') }}"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
@@ -128,7 +129,7 @@
 
         </script>
 
-        <script src="https://cdn.tiny.cloud/1/a8fb9z4oshzj8bqmngh4fdu71rrxjv3hwtudu5pg4m4wtbl4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>        
+        <script src="https://cdn.tiny.cloud/1/a8fb9z4oshzj8bqmngh4fdu71rrxjv3hwtudu5pg4m4wtbl4/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
         <script>
             tinymce.init({
                 selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE

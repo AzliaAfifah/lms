@@ -78,6 +78,69 @@ class InstructorController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    public function InstructorSocialMedia()
+    {
+        $id = Auth::user()->id;
+        $media = InstructorDescription::where('instructor_id', $id)
+                ->whereNotNull('platform')
+                ->whereNotNull('url')
+                ->orderBy('id', 'asc')
+                ->select('id','platform', 'url')
+                ->get();
+
+        return view('instructor.instructor_social_media',compact('media'));
+    }
+
+    public function InstructorSocialMediaStore(Request $request)
+    {
+        InstructorDescription::insert([
+            'instructor_id' => Auth::user()->id,
+            'platform' => $request->platform,
+            'url' => $request->url,
+        ]);
+
+        $notification = array(
+            'message' => 'Social Media Add Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function InstructorSocialMediaEdit($id)
+    {
+        $media = InstructorDescription::find($id);
+        return view('instructor.instructor_social_media_edit', compact('media'));
+    }
+
+    public function InstructorSocialMediaUpdate(Request $request, $id)
+    {
+        InstructorDescription::findOrFail($id)->update([
+            'platform' => $request->platform,
+            'url' => $request->url,
+        ]);
+
+        $notification = array(
+            'message' => 'Social Media Updated Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('instructor.social.media')->with($notification);
+    }
+
+    public function InstructorSocialMediaDelete($id)
+    {
+        $media = InstructorDescription::findOrFail($id);
+        $media->delete();
+
+        $notification = array(
+            'message' => 'Social Media Deleted Successfully',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('instructor.social.media')->with($notification);
+    }
+
     public function InstructorChangePassword()
     {
         $id = Auth::user()->id;

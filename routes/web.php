@@ -245,6 +245,11 @@ Route::middleware(['auth','roles:instructor'])->group(function(){
     Route::get('/instructor/dashboard', [InstructorController::class, 'InstructorDashboard'])->name('instructor.dashboard');
     Route::get('/instructor/logout', [InstructorController::class, 'InstructorLogout'])->name('instructor.logout');
     Route::get('/instructor/profile', [InstructorController::class, 'InstructorProfile'])->name('instructor.profile');
+    Route::get('/instructor/social-media', [InstructorController::class, 'InstructorSocialMedia'])->name('instructor.social.media');
+    Route::post('/instructor/social-media/store', [InstructorController::class, 'InstructorSocialMediaStore'])->name('instructor.social.media.store');
+    Route::get('/instructor/social-media/edit/{id}', [InstructorController::class, 'InstructorSocialMediaEdit'])->name('instructor.social.media.edit');
+    Route::post('/instructor/social-media/update/{id}', [InstructorController::class, 'InstructorSocialMediaUpdate'])->name('instructor.social.media.update');
+    Route::get('/instructor/social-media/delete/{id}', [InstructorController::class, 'InstructorSocialMediaDelete'])->name('instructor.social.media.delete');
     Route::post('/instructor/profile/store', [InstructorController::class, 'InstructorProfileStore'])->name('instructor.profile.store');
     Route::get('/instructor/change/password', [InstructorController::class, 'InstructorChangePassword'])->name('instructor.change.password');
     Route::post('/instructor/password/update', [InstructorController::class, 'InstructorPasswordUpdate'])->name('instructor.password.update');
