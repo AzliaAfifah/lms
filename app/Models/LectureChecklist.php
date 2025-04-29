@@ -9,5 +9,17 @@ class LectureChecklist extends Model
 {
     use HasFactory;
 
-    protected $guarded;
+    protected $table = 'lecture_checklists';
+
+    protected $fillable = ['user_id', 'lecture_id', 'status'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function lecture()
+    {
+        return $this->belongsTo(CourseLecture::class, 'lecture_id');
+    }
 }

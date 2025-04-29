@@ -10,10 +10,9 @@ class CourseLecture extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function users()
+    public function checklists()
     {
-        return $this->belongsToMany(User::class, 'lecture_checklists', 'lecture_id', 'user_id')
-                    ->withPivot('status')
-                    ->withTimestamps();
+        return $this->hasMany(LectureChecklist::class, 'lecture_id');
     }
+
 }

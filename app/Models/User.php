@@ -88,12 +88,9 @@ class User extends Authenticatable
         return $this->hasOne(InstructorDescription::class, 'instructor_id');
     }
 
-    public function completedLectures()
+    public function lectureChecklists()
     {
-        return $this->belongsToMany(CourseLecture::class, 'lecture_checklists', 'user_id', 'lecture_id')
-                    ->withPivot('status')
-                    ->withTimestamps();
+        return $this->hasMany(LectureChecklist::class);
     }
-
 
 }
