@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('video')->nullable();
             $table->string('url')->nullable();
             $table->text('content')->nullable();
+            // $table->enum('status',['1','0'])->default('0');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\LectureChecklist;
 use Illuminate\Http\Request;
 use App\Models\Category;
 // use App\Models\SubCategory;
@@ -12,6 +13,7 @@ use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Models\Course_goal;
 use App\Models\Quiz;
+use App\Models\User;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -378,6 +380,32 @@ class CourseController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function UpdateLectureStatus(Request $request)
+    {
+        $request->validate([
+            'lecture_id' => 'required|exists:lectures,id',
+            'checked' => 'required|boolean',
+        ]);
+
+        $checklist = LectureChecklist::updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'lecture_id' => $request->lecture_id,
+            ],
+            [
+                'checked_at' => now(),
+                'checked' => $request->checked,
+            ]
+        );
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Checklist updated successfully',
+        ]);
+
+    }
+
 
     public function DeleteSection($id)
     {

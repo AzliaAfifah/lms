@@ -282,6 +282,7 @@ Route::middleware(['auth','roles:instructor'])->group(function(){
         Route::post('/update/course/lecture/','UpdateCourseLecture')->name('update.course.lecture');
         Route::get('/delete/lecture/{id}','DeleteLecture')->name('delete.lecture');
         Route::post('/delete/section/{id}','DeleteSection')->name('delete.section');
+        Route::post('/update/lecture/status','UpdateLectureStatus')->name('update.lecture.status');
     });
 
     // Instructor All Order Route

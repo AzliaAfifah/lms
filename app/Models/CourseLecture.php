@@ -9,4 +9,11 @@ class CourseLecture extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'lecture_checklists', 'lecture_id', 'user_id')
+                    ->withPivot('status')
+                    ->withTimestamps();
+    }
 }
