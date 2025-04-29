@@ -14,6 +14,7 @@ use App\Models\Review;
 use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Models\Course_goal;
+use App\Models\InstructorDescription;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -77,7 +78,13 @@ class IndexController extends Controller
         // $course = Course::with('user.instructorDescription')->find($id);
         $student = Order::where('user_id', $id)->get();
         $review = Review::where('user_id', $id)->get();
-        return view('frontend.instructor.instructor_details',compact('instructor','courses','student','review'));
+        $media = InstructorDescription::where('instructor_id', $id)
+                ->whereNotNull('platform')
+                ->whereNotNull('url')
+                ->orderBy('id', 'asc')
+                ->select('id','platform', 'url')
+                ->get();
+        return view('frontend.instructor.instructor_details',compact('instructor','courses','student','review','media'));
     }
 
     public function QuizCourse()

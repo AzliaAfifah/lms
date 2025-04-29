@@ -21,9 +21,20 @@
             </div><!-- end media -->
 
             <ul class="social-icons social-icons-styled social--icons-styled">
-                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            @php
+                $icons = [
+                    'facebook' => 'fab fa-facebook',
+                    'instagram' => 'fab fa-instagram',
+                    'linkedin' => 'fab fa-linkedin',
+                    'tiktok' => 'fab fa-tiktok',
+                    'github' => 'fab fa-github',
+                    'youtube' => 'fab fa-youtube',
+                ];
+            @endphp
+
+            @foreach($media as $item)
+                <li><a href="{{ $item->url }}"><i class="{{ $icons[$item->platform] ?? '' }}"></i></a></li>
+            @endforeach
                 {{-- <li><a href="#"><i class="la la-tiktok"></i></a></li> --}}
             </ul>
         </div><!-- end breadcrumb-content -->
