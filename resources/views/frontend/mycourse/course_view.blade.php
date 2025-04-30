@@ -1312,75 +1312,155 @@
     </script> --}}
 
     <script type="text/javascript">
-    document.querySelectorAll('.lecture-checkbox').forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            const lectureId = this.dataset.lectureId;
-            const isChecked = this.checked;
+        $(document).ready(function () {
+            $('.lecture-checkbox').on('change', function () {
+                const lectureId = $(this).data('lecture-id');
+                const isChecked = $(this).is(':checked') ? 1 : 0;
+                const csrfToken = $('meta[name="csrf-token"]').attr('content');
 
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-            fetch('/update-lecture-status', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    lecture_id: lectureId,
-                    checked: isChecked
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log('Status updated successfully');
-                } else {
-                    console.error('Failed to update status');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
+                $.ajax({
+                    url: '/update/lecture/status',
+                    method: 'POST',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken
+                    },
+                    data: JSON.stringify({
+                        lecture_id: lectureId,
+                        checked: isChecked
+                    }),
+                    success: function (response) {
+                        if (response.success) {
+                            console.log('Status updated successfully');
+                        } else {
+                            console.error('Failed to update status');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX error:', error);
+                        console.log(xhr.responseText); 
+                    }
+                });
             });
         });
-    });
     </script>
 
 
-    {{-- <script type="text/javascript">
-function viewLesson(videoUrl, videoFile, textContent) {
-    const iframe = document.getElementById("iframeVideo");
-    const video = document.getElementById("videoContainer");
-    const text = document.getElementById("textLesson");
-    const textContainer = document.createElement("div");
+{{-- <script>
+    $(document).ready(function() {
+        $('.progress-checkbox').on('change', function() {
+            let lectureId = $(this).data('lecture-id');
+            let InsId = $(this).data('instructor-id');
+            let courseId = $(this).data('course-id');
+            let sectionIdData = $(this).closest('.card').data('section-id');
+            let sectionId = $(this).closest('.card').data('section-id');
+            let isChecked = $(this).is(':checked') ? 1 : 0;
 
-    // Reset semuanya dulu
-    iframe.classList.add("d-none");
-    video.classList.add("d-none");
-    text.classList.add("d-none");
+            $.ajax({
+                url: "{{ url('/update-progress') }}",
+                method: "POST",
+                data: {
+                    lecture_id: lectureId,
+                    instructor_id: InsId,
+                    course_id: courseId,
+                    section_id: sectionIdData,
+                    is_completed: isChecked,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    if (response.success) {
+                        updateProgressUI(sectionId);
+                        unlockNextLecture(lectureId, sectionId);
+                        unlockNextSection(sectionId);
+                        checkAllLecturesCompleted();
 
-    if (videoUrl && videoUrl.trim() !== "") {
-        // Tampilkan iframe, sembunyikan yang lain
-        iframe.classList.remove("d-none");
-        iframe.src = videoUrl;
-    } else if (videoFile && videoFile.trim() !== "") {
-        // Tampilkan video tag, sembunyikan yang lain
-        video.classList.remove("d-none");
-        video.src = "/" + videoFile;
-        video.load();
-    } else if (textContent && textContent.trim() !== "") {
-        // Tampilkan teks, sembunyikan video & iframe
-        text.classList.remove("d-none");
-        text.innerHTML = "";
-        textContainer.innerText = textContent;
-        textContainer.style.fontSize = "14px";
-        textContainer.style.textAlign = "left";
-        textContainer.style.paddingLeft = "40px";
-        textContainer.style.paddingRight = "40px";
-        text.appendChild(textContainer);
-    }
-}
+                        if (isChecked) {
+                            $(`#courseCheckbox${lectureId}`).prop('disabled', true);
+                        }
+                    }
+                }
+            });
+        });
 
-    </script> --}}
+        function updateProgressUI(sectionId) {
+            $.ajax({
+                url: "{{ url('/get-progress') }}/" + sectionId,
+                method: "GET",
+                success: function(response) {
+                    $('#sectionProgress' + sectionId).text(response.completed + '/' + response
+                        .total);
+                    checkAllLecturesCompleted
+                        (); // 🚀 Pastikan ini dipanggil setelah update progress
+                    unlockNextSection(sectionId);
+                }
+            });
+
+            lockCheckedLectures();
+        }
+
+        function lockCheckedLectures() {
+            $('.progress-checkbox').each(function() {
+                if ($(this).is(':checked')) {
+                    $(this).prop("disabled", true);
+                }
+            });
+        }
+
+        function unlockNextLecture(lectureId, sectionId) {
+            let currentLecture = $(`#courseCheckbox${lectureId}`).closest('.course-item-link');
+            let nextLecture = currentLecture.next('.course-item-link');
+
+            if (nextLecture.length > 0 && $(`#courseCheckbox${lectureId}`).is(':checked')) {
+                nextLecture.removeClass('disabled-lecture');
+                nextLecture.find('.progress-checkbox').prop('disabled', false);
+                nextLecture.find('.lecture-title h4').text(nextLecture.find('.lecture-title h4').text().replace(
+                    "🔒", ""));
+            }
+        }
+
+        function unlockNextSection(currentSectionId) {
+            let currentSection = $(`[data-section-id="${currentSectionId}"]`);
+            let nextSection = currentSection.next('.card');
+
+            if (nextSection.length > 0) {
+                let totalLectures = parseInt(currentSection.find('.course-duration span').eq(0).text().split(
+                    '/')[1]);
+                let completedLectures = parseInt(currentSection.find('.course-duration span').eq(0).text()
+                    .split('/')[0]);
+
+                if (completedLectures === totalLectures) {
+                    let nextSectionButton = nextSection.find('.btn-link');
+                    nextSectionButton.removeClass('disabled');
+                    nextSectionButton.text(nextSectionButton.text().replace("🔒", ""));
+
+                    let nextSectionCollapse = nextSection.find('.collapse');
+                    if (!nextSectionCollapse.hasClass('show')) {
+                        nextSectionCollapse.collapse('show');
+                    }
+
+                    nextSection.find('.fs-15').css('font-size', 'inherit');
+                }
+            }
+        }
+
+        function checkAllLecturesCompleted() {
+            let totalLectures = $('.progress-checkbox').length;
+            let completedLectures = $('.progress-checkbox:checked').length;
+
+            if (totalLectures === completedLectures) {
+                $("#startQuizButton").show(); // Tampilkan tombol quiz jika semua lecture selesai
+            }
+        }
+
+        $('.progress-checkbox').on('change', function() {
+            checkAllLecturesCompleted();
+        });
+
+        checkAllLecturesCompleted();
+        lockCheckedLectures();
+    });
+</script> --}}
 
     @include('frontend.mycourse.body.footer')
 </body>
