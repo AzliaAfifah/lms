@@ -31,6 +31,8 @@ class CouponController extends Controller
             'coupon_name' => strtoupper($request->coupon_name),
             'coupon_discount' => $request->coupon_discount,
             'coupon_validity' => $request->coupon_validity,
+            'coupon_title' => $request->coupon_title,
+            'coupon_announcement' => $request->coupon_announcement,
             'created_at' => Carbon::now(),
         ]);
 
@@ -55,6 +57,8 @@ class CouponController extends Controller
             'coupon_name' => strtoupper($request->coupon_name),
             'coupon_discount' => $request->coupon_discount,
             'coupon_validity' => $request->coupon_validity,
+            'coupon_title' => $request->coupon_title,
+            'coupon_announcement' => $request->coupon_announcement,
             'created_at' => Carbon::now(),
         ]);
 
@@ -152,5 +156,24 @@ class CouponController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function AdminAddCouponAnnouncement()
+    {
+        return view('admin.backend.coupon.coupon_announcement');
+    }
+
+    public function AdminStoreCouponAnnouncement(Request $request)
+    {
+        Coupon::insert([
+            'coupon_announcement' => $request->coupon_announcement,
+        ]);
+
+        $notification = array(
+            'message' => 'Coupon Announcement Inserted Successfully!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.all.coupon')->with($notification);
     }
 }

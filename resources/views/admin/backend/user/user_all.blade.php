@@ -9,7 +9,7 @@
 							<ol class="breadcrumb mb-0 p-0">
 								<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
 								</li>
-								<li class="breadcrumb-item active" aria-current="page">All Instructor</li>
+								<li class="breadcrumb-item active" aria-current="page">All User</li>
 							</ol>
 						</nav>
 					</div>
@@ -27,7 +27,7 @@
 								<thead>
 									<tr>
 										<th>Sl</th>
-										<th>Instructor Image</th>
+										<th>User Image</th>
 										<th>Name</th>
                                         <th>Email</th>
                                         <th>Phone</th>

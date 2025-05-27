@@ -39,6 +39,17 @@
                     <label class="form-label">Coupon Validity Date</label>
                     <input type="date" name="coupon_validity" class="form-control" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" value="{{ $coupon->coupon_validity }}">
                 </div>
+                <div class="mt-4">
+                <h5 class="mb-4">Add Coupon Announcement (Optional)</h5>
+                    <div class="form-group col-md-6">
+                        <label class="form-label">Coupon Title Announcement</label>
+                        <input type="text" name="coupon_title" class="form-control" value="{{ $coupon->coupon_title }}">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="form-label">Coupon Description Announcement</label>
+                        <textarea name="coupon_announcement" rows="5" class="form-control">{{ $coupon->coupon_announcement }}</textarea>
+                    </div>
+                </div>
                 <div class="col-md-12">
                     <div class="d-md-flex d-grid align-items-center gap-3">
                         <button type="submit" class="btn btn-primary px-4">Save Changes</button>

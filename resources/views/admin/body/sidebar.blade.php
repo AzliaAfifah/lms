@@ -45,16 +45,21 @@
 						<div class="menu-title">Manage Instructor</div>
 					</a>
 					<ul>
+						@if (Auth::user()->can('all.instructor'))
 						<li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a>
 						</li>
+						@endif
 					</ul>
 					<ul>
+						@if (Auth::user()->can('pending.instructor'))
 						<li> <a href="{{ route('pending.instructor') }}"><i class='bx bx-radio-circle'></i>Pending Instructor</a>
 						</li>
+						@endif
 					</ul>
 				</li>
 				@endif
 
+				@if (Auth::user()->can('course.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-book"></i>
@@ -66,19 +71,25 @@
 						</li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('coupon.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-ticket-alt"></i>
 						</div>
 						<div class="menu-title">Manage Coupon</div>
 					</a>
+					@if (Auth::user()->can('coupon.all'))
 					<ul>
 						<li> <a href="{{ route('admin.all.coupon') }}"><i class='bx bx-radio-circle'></i>All Coupons</a>
 						</li>
 					</ul>
+					@endif
 				</li>
+				@endif
 
+				@if (Auth::user()->can('setting.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-cog"></i>
@@ -92,7 +103,9 @@
 						</li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('order.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-cart"></i>
@@ -104,7 +117,9 @@
 						<li> <a href="{{ route('admin.confirm.order') }}"><i class='bx bx-radio-circle'></i>Confirm Orders</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('report.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-bar-chart"></i>
@@ -115,7 +130,9 @@
 						<li> <a href="{{ route('report.view') }}"><i class='bx bx-radio-circle'></i>Report View</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('review.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-bubble"></i>
@@ -127,7 +144,9 @@
 						<li> <a href="{{ route('admin.active.review') }}"><i class='bx bx-radio-circle'></i>Active Review</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('comment.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-comments"></i>
@@ -139,7 +158,9 @@
 						<li> <a href="{{ route('admin.active.comment') }}"><i class='bx bx-radio-circle'></i>Active Comment</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('testimonial.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-star"></i>
@@ -151,7 +172,9 @@
 						<li> <a href="{{ route('admin.active.testimonial') }}"><i class='bx bx-radio-circle'></i>Active Testimonial</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('all.user.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-users"></i>
@@ -163,7 +186,9 @@
 						{{-- <li> <a href="{{ route('all.instructor') }}"><i class='bx bx-radio-circle'></i>All Instructor</a></li> --}}
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('blog.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-pencil"></i>
@@ -175,7 +200,9 @@
 						<li> <a href="{{ route('blog.post') }}"><i class='bx bx-radio-circle'></i>Blog Post</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('role.permission.menu'))
 				<li class="menu-label">Role & Permission</li>
 				<li>
 					<a class="has-arrow" href="javascript:;">
@@ -190,7 +217,9 @@
 						<li> <a href="{{ route('all.roles.permission') }}"><i class='bx bx-radio-circle'></i>All Role in Permission</a></li>
 					</ul>
 				</li>
+				@endif
 
+				@if (Auth::user()->can('admin.menu'))
 				<li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="lni lni-shield"></i>
@@ -201,6 +230,7 @@
 						<li> <a href="{{ route('all.admin') }}"><i class='bx bx-radio-circle'></i>All Admin</a></li>
 					</ul>
 				</li>
+				@endif
 				{{-- <li>
 					<a class="has-arrow" href="javascript:;">
 						<div class="parent-icon"><i class="bx bx-map-alt"></i>

@@ -14,9 +14,11 @@
 						</nav>
 					</div>
 					<div class="ms-auto">
+						@if (Auth::user()->can('category.add'))
 						<div class="btn-group">
 							<a href="{{ route('add.category') }}" class="btn btn-primary px-5">Add Category</a>
 						</div>
+						@endif
 					</div>
 				</div>
 				<!--end breadcrumb-->

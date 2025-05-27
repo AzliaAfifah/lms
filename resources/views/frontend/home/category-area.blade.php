@@ -4,6 +4,9 @@
 
 <section class="category-area pb-90px">
     <div class="container">
+        {{-- <div class="bg-yellow-100 p-4 rounded-lg shadow mb-6 text-center mb-4">
+            🎉 Promo khusus! Gunakan kode <strong></strong> untuk diskon %!
+        </div> --}}
         <div class="row align-items-center">
             <div class="col-lg-9">
                 <div class="category-content-wrap">

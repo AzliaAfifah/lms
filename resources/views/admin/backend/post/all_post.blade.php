@@ -14,9 +14,11 @@
 						</nav>
 					</div>
 					<div class="ms-auto">
+						@if (Auth::user()->can('blog.add'))
 						<div class="btn-group">
 							<a href="{{ route('add.blog.post') }}" class="btn btn-primary px-5">Add Blog Post</a>
 						</div>
+						@endif
 					</div>
 				</div>
 				<!--end breadcrumb-->
@@ -42,8 +44,12 @@
                                         <td>{{ $item['blog_category']['category_name'] }}</td>
 										<td><img src="{{ asset($item->post_image) }}" alt="" style="width: 70px; height: 40px;"></td>
 										<td>
+											@if (Auth::user()->can('blog.edit'))
 											<a href="{{ route('edit.post',$item->id) }}" class="btn btn-info px-5">Edit </a>
+											@endif
+											@if (Auth::user()->can('blog.delete'))
 											<a href="{{ route('delete.post',$item->id) }}" class="btn btn-danger px-5" id="delete" >Delete </a>
+											@endif
 										</td>
 									</tr>
 								@endforeach

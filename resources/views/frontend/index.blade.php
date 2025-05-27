@@ -21,6 +21,14 @@ Linguana
 ======================================-->
 
 <!--======================================
+        START ANNOUNCEMENT COUPON AREA
+======================================-->
+@include('frontend.home.announcement-coupon')
+<!--======================================
+        END ANNOUNCEMENT COUPON AREA
+======================================-->
+
+<!--======================================
         START CATEGORY AREA
 ======================================-->
 @include('frontend.home.category-area')

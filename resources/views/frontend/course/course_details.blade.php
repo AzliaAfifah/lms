@@ -26,8 +26,8 @@
                     @endif
 
                     @php
-                        $reviewcount = App\Models\Review::where('course_id',$course->id)->where('status',1)->latest()->get();
-                        $average = App\Models\Review::where('course_id',$course->id)->where('status',1)->avg('rating');
+                    $reviewcount = App\Models\Review::where('course_id',$course->id)->where('status',1)->latest()->get();
+                    $average = App\Models\Review::where('course_id',$course->id)->where('status',1)->avg('rating');
                     @endphp
 
                     <div class="rating-wrap d-flex flex-wrap align-items-center">
@@ -35,49 +35,44 @@
                             <span class="rating-number">{{ round($average,1) }}</span>
 
                             @if($average == 0)
+                            <span class="la la-star-o"></span>
+                            <span class="la la-star-o"></span>
+                            <span class="la la-star-o"></span>
+                            <span class="la la-star-o"></span>
+                            <span class="la la-star-o"></span>
+                            @elseif($average == 1 || $average < 2) <span class="la la-star"></span>
                                 <span class="la la-star-o"></span>
                                 <span class="la la-star-o"></span>
                                 <span class="la la-star-o"></span>
                                 <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                            @elseif($average == 1 || $average < 2)
-                                <span class="la la-star"></span>
-                                <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                            @elseif($average == 2 || $average < 3)
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                            @elseif($average == 3 || $average < 4)
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star-o"></span>
-                                <span class="la la-star-o"></span>
-                            @elseif($average == 4 || $average < 5)
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star-o"></span>
-                            @elseif($average == 5 || $average < 5)
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                                <span class="la la-star"></span>
-                            @endif
+                                @elseif($average == 2 || $average < 3) <span class="la la-star"></span>
+                                    <span class="la la-star"></span>
+                                    <span class="la la-star-o"></span>
+                                    <span class="la la-star-o"></span>
+                                    <span class="la la-star-o"></span>
+                                    @elseif($average == 3 || $average < 4) <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        @elseif($average == 4 || $average < 5) <span class="la la-star"></span>
+                                            <span class="la la-star"></span>
+                                            <span class="la la-star"></span>
+                                            <span class="la la-star"></span>
+                                            <span class="la la-star-o"></span>
+                                            @elseif($average == 5 || $average < 5) <span class="la la-star"></span>
+                                                <span class="la la-star"></span>
+                                                <span class="la la-star"></span>
+                                                <span class="la la-star"></span>
+                                                <span class="la la-star"></span>
+                                                @endif
 
                         </div>
                         <span class="rating-total pl-1">({{ count($reviewcount) }} ratings)</span>
 
                         @php
-                            $enrollmentCount = App\Models\Order::where('course_id',$course->id)->count();
-                            $courseData = App\Models\Course::get();
+                        $enrollmentCount = App\Models\Order::where('course_id',$course->id)->count();
+                        $courseData = App\Models\Course::get();
                         @endphp
                         <span class="student-total pl-2">{{ number_format($enrollmentCount) }} students</span>
                     </div>
@@ -134,363 +129,372 @@
                         <h3 class="fs-24 font-weight-semi-bold pb-3">Requirements</h3>
                         <ul class="generic-list-item generic-list-item-bullet fs-15">
                             <li>{{ $course->prerequisite }}</li>
-                        </ul>
-                    </div><!-- end course-overview-card --> --}}
-                    <div class="course-overview-card">
-                        <h3 class="fs-24 font-weight-semi-bold pb-3">Description</h3>
-                        <p class="fs-15 pb-2">{!! $course->description !!}</p>
+                    </ul>
+                </div><!-- end course-overview-card --> --}}
+                <div class="course-overview-card">
+                    <h3 class="fs-24 font-weight-semi-bold pb-3">Description</h3>
+                    <p class="fs-15 pb-2">{!! $course->description !!}</p>
 
-                        <div class="collapse" id="collapseMore">
-                            <h4 class="fs-20 font-weight-semi-bold py-2">Who this course is for:</h4>
-                            <p class="fs-15 pb-2">{{ $course->prerequisite }}</p>
+                    <div class="collapse" id="collapseMore">
+                        <h4 class="fs-20 font-weight-semi-bold py-2">Who this course is for:</h4>
+                        <p class="fs-15 pb-2">{{ $course->prerequisite }}</p>
+                    </div>
+                    <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#collapseMore" role="button" aria-expanded="false" aria-controls="collapseMore">
+                        <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>
+                        <span class="collapse-btn-show">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
+                    </a>
+                </div><!-- end course-overview-card -->
+
+                @php
+                $lecture = App\Models\CourseLecture::where('course_id',$course->id)->get();
+                @endphp
+                <div class="course-overview-card">
+                    <div class="curriculum-header d-flex align-items-center justify-content-between pb-4">
+                        <h3 class="fs-24 font-weight-semi-bold">Course content</h3>
+                        <div class="curriculum-duration fs-15">
+                            <span class="curriculum-total__text mr-2"><strong class="text-black font-weight-semi-bold">Total:</strong> {{ count($lecture) }} lectures</span>
+                            <span class="curriculum-total__hours"><strong class="text-black font-weight-semi-bold">Total hours:</strong> {{ $course->duration }}</span>
                         </div>
-                        <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#collapseMore" role="button" aria-expanded="false" aria-controls="collapseMore">
-                            <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>
-                            <span class="collapse-btn-show">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
-                        </a>
-                    </div><!-- end course-overview-card -->
+                    </div>
 
                     @php
-                    $lecture = App\Models\CourseLecture::where('course_id',$course->id)->get();
+                    $section = App\Models\CourseSection::where('course_id',$course->id)->orderBy('id','asc')->get();
                     @endphp
-                    <div class="course-overview-card">
-                        <div class="curriculum-header d-flex align-items-center justify-content-between pb-4">
-                            <h3 class="fs-24 font-weight-semi-bold">Course content</h3>
-                            <div class="curriculum-duration fs-15">
-                                <span class="curriculum-total__text mr-2"><strong class="text-black font-weight-semi-bold">Total:</strong> {{ count($lecture) }} lectures</span>
-                                <span class="curriculum-total__hours"><strong class="text-black font-weight-semi-bold">Total hours:</strong> {{ $course->duration }}</span>
+                    <div class="curriculum-content">
+                        <div id="accordion" class="generic-accordion">
+                            @foreach($section as $sec)
+
+                            @php
+                            $lecture = App\Models\CourseLecture::where('section_id',$sec->id)->get();
+                            @endphp
+
+                            <div class="card">
+                                <div class="card-header" id="heading{{ $sec->id }}">
+                                    <button class="btn btn-link d-flex align-items-center justify-content-between" data-toggle="collapse" data-target="#collapse{{ $sec->id }}" aria-expanded="true" aria-controls="collapse{{ $sec->id }}">
+                                        <i class="la la-plus"></i>
+                                        <i class="la la-minus"></i>
+                                        {{ $sec->section_title }}
+                                        <span class="fs-15 text-gray font-weight-medium">{{ count($lecture) }} lectures</span>
+                                    </button>
+                                </div><!-- end card-header -->
+                                <div id="collapse{{ $sec->id }}" class="collapse" aria-labelledby="heading{{ $sec->id }}" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <ul class="generic-list-item">
+                                            @foreach($lecture as $lect)
+                                            <li>
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <span>
+                                                        <i class="la la-play-circle mr-1"></i>
+                                                        {{ $lect->lecture_title }}
+                                                    </span>
+                                                    <span>03:09</span>
+                                                </div>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+
+                                    </div><!-- end card-body -->
+                                </div><!-- end collapse -->
+                            </div><!-- end card -->
+                            @endforeach
+
+                        </div><!-- end generic-accordion -->
+                    </div><!-- end curriculum-content -->
+                </div><!-- end course-overview-card -->
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-4">About the instructor</h3>
+                    <div class="instructor-wrap">
+                        <div class="media media-card">
+                            <div class="instructor-img">
+                                <a href="teacher-detail.html" class="media-img d-block">
+                                    <img class="lazy" src="images/img-loading.png" data-src="{{ (!empty($course->user->photo)) ? url('upload/instructor_images/'.$course->user->photo) : url('upload/no_image.jpg') }}" alt="Avatar image">
+                                </a>
+                                <ul class="generic-list-item pt-3">
+                                    <li><i class="la la-user mr-2 text-color-3"></i> {{ count($student) }} Students</li>
+                                    <li><i class="la la-comment-o mr-2 text-color-3"></i> {{ count($review) }} Reviews</li>
+                                    <li><i class="la la-play-circle-o mr-2 text-color-3"></i>{{ count($instructorCourses) }} Courses</li>
+                                    <li><a href="{{ route('instructor.details',$course->instructor_id) }}">Visit Instructor Profile</a></li>
+                                </ul>
+                            </div><!-- end instructor-img -->
+                            <div class="media-body">
+                                @php
+                                $description = optional($course->user->instructorDescription)->description;
+                                $shortDesc = \Illuminate\Support\Str::limit(strip_tags($description), 200);
+                                @endphp
+                                <h5><a href="teacher-detail.html">{{ $course['user']['name'] }}</a></h5>
+                                <span class="d-block lh-18 pt-2 pb-3">Joined {{ Carbon\Carbon::parse($course->user->created_at)->diffForHumans() }}</span>
+                                <p class="text-black lh-18 pb-3">{{ $course['user']['email'] }}</p>
+                                <p class="pb-3" id="shortDesc">{!! nl2br(e($shortDesc)) !!}</p>
+                                <div class="collapse" id="fullDescription">
+                                    <p class="pb-3">{!! nl2br(e($description)) !!}</p>
+                                </div>
+                                <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#fullDescription" role="button" aria-expanded="false" aria-controls="fullDescription" onclick="toggleDescription(this)">
+                                    <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>
+                                    <span class="collapse-btn-show d-none">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
+                                </a>
                             </div>
                         </div>
+                    </div><!-- end instructor-wrap -->
+                </div><!-- end course-overview-card -->
 
-                        @php
-                        $section = App\Models\CourseSection::where('course_id',$course->id)->orderBy('id','asc')->get();
-                        @endphp
-                        <div class="curriculum-content">
-                            <div id="accordion" class="generic-accordion">
-                                @foreach($section as $sec)
+
+
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-40px">Student feedback</h3>
+                    <div class="feedback-wrap">
+                        <div class="media media-card align-items-center">
+                            <div class="review-rating-summary">
+                                <span class="stats-average__count">{{ round($average,1) }}</span>
+                                <div class="rating-wrap pt-1">
+                                    <div class="review-stars">
+                                        @if($average == 0)
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        @elseif($average == 1 || $average < 2) <span class="la la-star"></span>
+                                            <span class="la la-star-o"></span>
+                                            <span class="la la-star-o"></span>
+                                            <span class="la la-star-o"></span>
+                                            <span class="la la-star-o"></span>
+                                            @elseif($average == 2 || $average < 3) <span class="la la-star"></span>
+                                                <span class="la la-star"></span>
+                                                <span class="la la-star-o"></span>
+                                                <span class="la la-star-o"></span>
+                                                <span class="la la-star-o"></span>
+                                                @elseif($average == 3 || $average < 4) <span class="la la-star"></span>
+                                                    <span class="la la-star"></span>
+                                                    <span class="la la-star"></span>
+                                                    <span class="la la-star-o"></span>
+                                                    <span class="la la-star-o"></span>
+                                                    @elseif($average == 4 || $average < 5) <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star"></span>
+                                                        <span class="la la-star-o"></span>
+                                                        @elseif($average == 5 || $average < 5) <span class="la la-star"></span>
+                                                            <span class="la la-star"></span>
+                                                            <span class="la la-star"></span>
+                                                            <span class="la la-star"></span>
+                                                            <span class="la la-star"></span>
+                                                            @endif
+                                    </div>
+                                    <span class="rating-total d-block">({{ count($reviewcount) }})</span>
+                                    <span>Course Rating</span>
+                                </div><!-- end rating-wrap -->
+                            </div><!-- end review-rating-summary -->
+
+                            <div class="media-body">
 
                                 @php
-                                $lecture = App\Models\CourseLecture::where('section_id',$sec->id)->get();
-                                @endphp
-
-                                <div class="card">
-                                    <div class="card-header" id="heading{{ $sec->id }}">
-                                        <button class="btn btn-link d-flex align-items-center justify-content-between" data-toggle="collapse" data-target="#collapse{{ $sec->id }}" aria-expanded="true" aria-controls="collapse{{ $sec->id }}">
-                                            <i class="la la-plus"></i>
-                                            <i class="la la-minus"></i>
-                                            {{ $sec->section_title }}
-                                            <span class="fs-15 text-gray font-weight-medium">{{ count($lecture) }} lectures</span>
-                                        </button>
-                                    </div><!-- end card-header -->
-                                    <div id="collapse{{ $sec->id }}" class="collapse" aria-labelledby="heading{{ $sec->id }}" data-parent="#accordion">
-                                        <div class="card-body">
-                                            <ul class="generic-list-item">
-                                                @foreach($lecture as $lect)
-                                                <li>
-                                                    <div class="d-flex align-items-center justify-content-between">
-                                                        <span>
-                                                            <i class="la la-play-circle mr-1"></i>
-                                                            {{ $lect->lecture_title }}
-                                                        </span>
-                                                        <span>03:09</span>
-                                                    </div>
-                                                </li>
-                                                @endforeach
-                                            </ul>
-
-                                        </div><!-- end card-body -->
-                                    </div><!-- end collapse -->
-                                </div><!-- end card -->
-                                @endforeach
-
-                            </div><!-- end generic-accordion -->
-                        </div><!-- end curriculum-content -->
-                    </div><!-- end course-overview-card -->
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-4">About the instructor</h3>
-                        <div class="instructor-wrap">
-                            <div class="media media-card">
-                                <div class="instructor-img">
-                                    <a href="teacher-detail.html" class="media-img d-block">
-                                        <img class="lazy" src="images/img-loading.png" data-src="{{ (!empty($course->user->photo)) ? url('upload/instructor_images/'.$course->user->photo) : url('upload/no_image.jpg') }}" alt="Avatar image">
-                                    </a>
-                                    <ul class="generic-list-item pt-3">
-                                        <li><i class="la la-user mr-2 text-color-3"></i> {{ count($student) }} Students</li>
-                                        <li><i class="la la-comment-o mr-2 text-color-3"></i> {{ count($review) }} Reviews</li>
-                                        <li><i class="la la-play-circle-o mr-2 text-color-3"></i>{{ count($instructorCourses) }} Courses</li>
-                                        <li><a href="{{ route('instructor.details',$course->instructor_id) }}">Visit Instructor Profile</a></li>
-                                    </ul>
-                                </div><!-- end instructor-img -->
-                                <div class="media-body">
-                                    @php
-                                        $description = optional($course->user->instructorDescription)->description;
-                                        $shortDesc = \Illuminate\Support\Str::limit(strip_tags($description), 200);
-                                    @endphp
-                                    <h5><a href="teacher-detail.html">{{ $course['user']['name'] }}</a></h5>
-                                    <span class="d-block lh-18 pt-2 pb-3">Joined {{ Carbon\Carbon::parse($course->user->created_at)->diffForHumans() }}</span>
-                                    <p class="text-black lh-18 pb-3">{{ $course['user']['email'] }}</p>
-                                    <p class="pb-3" id="shortDesc">{!! nl2br(e($shortDesc)) !!}</p>
-                                    <div class="collapse" id="fullDescription">
-                                        <p class="pb-3">{!! nl2br(e($description)) !!}</p>
-                                    </div>
-                                    <a class="collapse-btn collapse--btn fs-15" data-toggle="collapse" href="#fullDescription" role="button" aria-expanded="false" aria-controls="fullDescription" onclick="toggleDescription(this)">
-                                        <span class="collapse-btn-hide">Show more<i class="la la-angle-down ml-1 fs-14"></i></span>
-                                        <span class="collapse-btn-show d-none">Show less<i class="la la-angle-up ml-1 fs-14"></i></span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div><!-- end instructor-wrap -->
-                    </div><!-- end course-overview-card -->
-
-
-
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-40px">Student feedback</h3>
-                        <div class="feedback-wrap">
-                            <div class="media media-card align-items-center">
-                                <div class="review-rating-summary">
-                                    <span class="stats-average__count">{{ round($average,1) }}</span>
-                                    <div class="rating-wrap pt-1">
-                                        <div class="review-stars">
-                                            @if($average == 0)
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 1 || $average < 2)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 2 || $average < 3)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 3 || $average < 4)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 4 || $average < 5)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star-o"></span>
-                                            @elseif($average == 5 || $average < 5)
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                                <span class="la la-star"></span>
-                                            @endif
-                                        </div>
-                                        <span class="rating-total d-block">({{ count($reviewcount) }})</span>
-                                        <span>Course Rating</span>
-                                    </div><!-- end rating-wrap -->
-                                </div><!-- end review-rating-summary -->
-
-                                <div class="media-body">
-
-                                 @php
-                                    $reviewcount = App\Models\Review::where('course_id',$course->id)
-                                                    ->where('status',1)
-                                                    ->select('rating', DB::raw('count(*) as count'))
-                                                    ->groupBy('rating')
-                                                    ->orderBy('rating','desc')
-                                                    ->get();
-                                    $totalReviews = $reviewcount->sum('count');
-                                    $percentages = [];
-                                    for ($i=5; $i >= 1; $i--) {
-                                        $ratingCount = $reviewcount->where('rating',$i)->first();
-                                        $count = $ratingCount ? $ratingCount->count : 0;
-                                        $percent = $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
-                                        $percentages[] = [
-                                            'rating' => $i,
-                                            'percent' => $percent,
-                                            'count' => $count,
-                                        ];
-                                    }
+                                $reviewcount = App\Models\Review::where('course_id',$course->id)
+                                ->where('status',1)
+                                ->select('rating', DB::raw('count(*) as count'))
+                                ->groupBy('rating')
+                                ->orderBy('rating','desc')
+                                ->get();
+                                $totalReviews = $reviewcount->sum('count');
+                                $percentages = [];
+                                for ($i=5; $i >= 1; $i--) {
+                                $ratingCount = $reviewcount->where('rating',$i)->first();
+                                $count = $ratingCount ? $ratingCount->count : 0;
+                                $percent = $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
+                                $percentages[] = [
+                                'rating' => $i,
+                                'percent' => $percent,
+                                'count' => $count,
+                                ];
+                                }
                                 @endphp
 
                                 @if(count($percentages) > 0)
-                                    @foreach($percentages as $ratingInfo)
-                                        <div class="review-bars d-flex align-items-center mb-2">
-                                        <div class="review-bars__text">{{ $ratingInfo['rating'] }} stars</div>
-                                        <div class="review-bars__fill">
-                                            <div class="skillbar-box">
-                                                <div class="skillbar" data-percent="{{ $ratingInfo['percent'] }}%">
-                                                    <div class="skillbar-bar bg-3" style="width: {{ $ratingInfo['percent'] }}%;"></div>
-                                                </div> <!-- End Skill Bar -->
-                                            </div>
-                                        </div><!-- end review-bars__fill -->
-                                        <div class="review-bars__percent">{{ number_format($ratingInfo['percent'],2) }}%</div>
-                                    </div><!-- end review-bars -->
-                                    @endforeach
+                                @foreach($percentages as $ratingInfo)
+                                <div class="review-bars d-flex align-items-center mb-2">
+                                    <div class="review-bars__text">{{ $ratingInfo['rating'] }} stars</div>
+                                    <div class="review-bars__fill">
+                                        <div class="skillbar-box">
+                                            <div class="skillbar" data-percent="{{ $ratingInfo['percent'] }}%">
+                                                <div class="skillbar-bar bg-3" style="width: {{ $ratingInfo['percent'] }}%;"></div>
+                                            </div> <!-- End Skill Bar -->
+                                        </div>
+                                    </div><!-- end review-bars__fill -->
+                                    <div class="review-bars__percent">{{ number_format($ratingInfo['percent'],2) }}%</div>
+                                </div><!-- end review-bars -->
+                                @endforeach
                                 @else
                                 <p>No Reviews Available</p>
                                 @endif
 
-                                </div><!-- end media-body -->
-                            </div>
-                        </div><!-- end feedback-wrap -->
-                    </div><!-- end course-overview-card -->
-                    <div class="course-overview-card pt-4">
-                        <h3 class="fs-24 font-weight-semi-bold pb-4">Reviews</h3>
-                        <div class="review-wrap">
+                            </div><!-- end media-body -->
+                        </div>
+                    </div><!-- end feedback-wrap -->
+                </div><!-- end course-overview-card -->
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-4">Reviews</h3>
+                    <div class="review-wrap">
 
                         @php
-                            $reviews = App\Models\Review::where('course_id',$course->id)->where('status',1)->latest()->limit(5)->get();
+                        $reviews = App\Models\Review::where('course_id',$course->id)->where('status',1)->latest()->limit(5)->get();
                         @endphp
 
                         @foreach($reviews as $item)
-                            <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
-                                <div class="media-img mr-4 rounded-full">
-                                    <img class="rounded-full lazy" src="{{ (!empty($item->user->photo)) ? url('upload/user_images/'.$item->user->photo) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-1.jpg" alt="User image">
-                                </div>
-                                <div class="media-body">
-                                    <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
-                                        <h5>{{ $item->user->name }}</h5>
-                                        <div class="review-stars">
+                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+                            <div class="media-img mr-4 rounded-full">
+                                <img class="rounded-full lazy" src="{{ (!empty($item->user->photo)) ? url('upload/user_images/'.$item->user->photo) : url('upload/no_image.jpg') }}" data-src="images/small-avatar-1.jpg" alt="User image">
+                            </div>
+                            <div class="media-body">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between pb-1">
+                                    <h5>{{ $item->user->name }}</h5>
+                                    <div class="review-stars">
 
                                         @if ($item->rating == NULL)
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
                                         @elseif($item->rating == 1)
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
                                         @elseif($item->rating == 2)
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
                                         @elseif($item->rating == 3)
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
-                                            <span class="la la-star-o"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star-o"></span>
+                                        <span class="la la-star-o"></span>
                                         @elseif($item->rating == 4)
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star-o"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star-o"></span>
                                         @elseif($item->rating == 5)
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
-                                            <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
+                                        <span class="la la-star"></span>
                                         @endif
-                                        </div>
                                     </div>
-                                    <span class="d-block lh-18 pb-2">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
-                                    <p class="pb-2">{{ $item->comment }}</p>
-
                                 </div>
-                            </div><!-- end media -->
+                                <span class="d-block lh-18 pb-2">{{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</span>
+                                <p class="pb-2">{{ $item->comment }}</p>
+
+                            </div>
+                        </div><!-- end media -->
                         @endforeach
 
-                        </div><!-- end review-wrap -->
-                        <div class="see-more-review-btn text-center">
-                            <button type="button" class="btn theme-btn theme-btn-transparent">Load more reviews</button>
-                        </div>
-                    </div><!-- end course-overview-card -->
+                    </div><!-- end review-wrap -->
+                    <div class="see-more-review-btn text-center">
+                        <button type="button" class="btn theme-btn theme-btn-transparent">Load more reviews</button>
+                    </div>
+                </div><!-- end course-overview-card -->
 
-                    @guest
-                    <p><b>For Add Course Review, You need to login first <br> <a href="{{ route('login') }}">Login Here</a></b></p>
-                    @else
-                        <div class="course-overview-card pt-4">
-                            <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
+                @guest
+                <p><b>For Add Course Review, You need to login first <br> <a href="{{ route('login') }}">Login Here</a></b></p>
+                @else
+                @if ($isEnrolled)
+                <div class="course-overview-card pt-4">
+                    <h3 class="fs-24 font-weight-semi-bold pb-4">Add a Review</h3>
 
-                            <form method="post" action="{{ route('store.review') }}" class="row">
-                            @csrf
-                            <div class="leave-rating-wrap pb-4">
-                                <div class="leave-rating leave--rating">
-                                    <input type="radio" name='rate' id="star5" value="5"/>
-                                    <label for="star5"></label>
-                                    <input type="radio" name='rate' id="star4" value="4"/>
-                                    <label for="star4"></label>
-                                    <input type="radio" name='rate' id="star3" value="3"/>
-                                    <label for="star3"></label>
-                                    <input type="radio" name='rate' id="star2" value="2"/>
-                                    <label for="star2"></label>
-                                    <input type="radio" name='rate' id="star1" value="1"/>
-                                    <label for="star1"></label>
-                                </div><!-- end leave-rating -->
+                    <form method="post" action="{{ route('store.review') }}" class="row">
+                        @csrf
+                        <div class="leave-rating-wrap pb-4">
+                            <div class="leave-rating leave--rating">
+                                <input type="radio" name='rate' id="star5" value="5" />
+                                <label for="star5"></label>
+                                <input type="radio" name='rate' id="star4" value="4" />
+                                <label for="star4"></label>
+                                <input type="radio" name='rate' id="star3" value="3" />
+                                <label for="star3"></label>
+                                <input type="radio" name='rate' id="star2" value="2" />
+                                <label for="star2"></label>
+                                <input type="radio" name='rate' id="star1" value="1" />
+                                <label for="star1"></label>
                             </div>
+                        </div>
 
-                            <input type="hidden" name="course_id" value="{{ $course->id }}">
-                            <input type="hidden" name="instructor_id" value="{{ $course->instructor_id }}">
+                        <input type="hidden" name="course_id" value="{{ $course->id }}">
+                        <input type="hidden" name="instructor_id" value="{{ $course->instructor_id }}">
 
-                                <div class="input-box col-lg-12">
-                                    <label class="label-text">Message</label>
-                                    <div class="form-group">
-                                        <textarea class="form-control form--control pl-3" name="comment" placeholder="Write Message" rows="5"></textarea>
+                        <div class="input-box col-lg-12">
+                            <label class="label-text">Message</label>
+                            <div class="form-group">
+                                <textarea class="form-control form--control pl-3" name="comment" placeholder="Write Message" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="btn-box col-lg-12">
+                            <button class="btn theme-btn" type="submit">Submit Review</button>
+                        </div>
+                    </form>
+                </div>
+                @else
+                <p><b>You can only review this course if you have enrolled in it.</b></p>
+                @endif
+                @endguest
+
+            </div><!-- end course-details-content-wrap -->
+        </div><!-- end col-lg-8 -->
+        <div class="col-lg-4">
+            <div class="sidebar sidebar-negative">
+                <div class="card card-item">
+                    <div class="card-body">
+                        <div class="preview-course-video">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#previewModal">
+                                <img src="{{ asset($course->course_image) }}" data-src="{{ asset($course->course_image) }}" alt="course-img" class="w-100 rounded lazy">
+                                <div class="preview-course-video-content">
+                                    <div class="overlay"></div>
+                                    <div class="play-button">
+                                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="-307.4 338.8 91.8 91.8" style=" enable-background:new -307.4 338.8 91.8 91.8;" xml:space="preserve">
+                                            <style type="text/css">
+                                                .st0 {
+                                                    fill: #ffffff;
+                                                    border-radius: 100px;
+                                                }
+
+                                                .st1 {
+                                                    fill: #000000;
+                                                }
+
+                                            </style>
+                                            <g>
+                                                <circle class="st0" cx="-261.5" cy="384.7" r="45.9"></circle>
+                                                <path class="st1" d="M-272.9,363.2l35.8,20.7c0.7,0.4,0.7,1.3,0,1.7l-35.8,20.7c-0.7,0.4-1.5-0.1-1.5-0.9V364C-274.4,363.3-273.5,362.8-272.9,363.2z"></path>
+                                            </g>
+                                        </svg>
                                     </div>
-                                </div><!-- end input-box -->
-                                <div class="btn-box col-lg-12">
-                                    <button class="btn theme-btn" type="submit">Submit Review</button>
-                                </div><!-- end btn-box -->
-                            </form>
-                        </div><!-- end course-overview-card -->
-                    @endguest
+                                    <p class="fs-15 font-weight-bold text-white pt-3">Preview this course</p>
+                                </div>
+                            </a>
+                        </div><!-- end preview-course-video -->
 
-                </div><!-- end course-details-content-wrap -->
-            </div><!-- end col-lg-8 -->
-            <div class="col-lg-4">
-                <div class="sidebar sidebar-negative">
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <div class="preview-course-video">
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#previewModal">
-                                    <img src="{{ asset($course->course_image) }}" data-src="{{ asset($course->course_image) }}" alt="course-img" class="w-100 rounded lazy">
-                                    <div class="preview-course-video-content">
-                                        <div class="overlay"></div>
-                                        <div class="play-button">
-                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="-307.4 338.8 91.8 91.8" style=" enable-background:new -307.4 338.8 91.8 91.8;" xml:space="preserve">
-                                                <style type="text/css">
-                                                    .st0 {
-                                                        fill: #ffffff;
-                                                        border-radius: 100px;
-                                                    }
+                        @php
+                        $amount = $course->selling_price - $course->discount_price;
+                        $discount = ($amount/$course->selling_price) * 100;
+                        @endphp
 
-                                                    .st1 {
-                                                        fill: #000000;
-                                                    }
-
-                                                </style>
-                                                <g>
-                                                    <circle class="st0" cx="-261.5" cy="384.7" r="45.9"></circle>
-                                                    <path class="st1" d="M-272.9,363.2l35.8,20.7c0.7,0.4,0.7,1.3,0,1.7l-35.8,20.7c-0.7,0.4-1.5-0.1-1.5-0.9V364C-274.4,363.3-273.5,362.8-272.9,363.2z"></path>
-                                                </g>
-                                            </svg>
-                                        </div>
-                                        <p class="fs-15 font-weight-bold text-white pt-3">Preview this course</p>
-                                    </div>
-                                </a>
-                            </div><!-- end preview-course-video -->
-
-                            @php
-                            $amount = $course->selling_price - $course->discount_price;
-                            $discount = ($amount/$course->selling_price) * 100;
-                            @endphp
-
-                            <div class="preview-course-feature-content pt-40px">
-                                <p class="d-flex align-items-center pb-2">
+                        <div class="preview-course-feature-content pt-40px">
+                            @if($courseCoupons->count() > 0)
+                                @foreach($courseCoupons as $coupon)
+                                    {{-- @if(\Carbon\Carbon::now()->lessThanOrEqualTo($coupon->coupon_validity)) --}}
+                                        <p class="preview-price-discount-text pb-35px">
+                                            🎉 Special promo! Use the code <strong>{{ $coupon->coupon_name }}</strong> to get {{ $coupon->coupon_discount }}% off.
+                                            Offer valid until {{ \Carbon\Carbon::parse($coupon->coupon_validity)->format('F j, Y') }}.
+                                        </p>
+                                    {{-- @endif --}}
+                                @endforeach
+                            @endif
+                            <p class="d-flex align-items-center pb-2">
                                 @if ($course->discount_price == NULL)
                                 <span class="fs-35 font-weight-semi-bold text-black">${{ $course->selling_price }}</span>
                                 @else
@@ -499,83 +503,83 @@
                                 @endif
 
                                 <span class="price-discount">{{ round($discount) }}% off</span>
-                                </p>
-                                <p class="preview-price-discount-text pb-35px">
-                                    <span class="text-color-3">4 days</span> left at this price!
-                                </p>
-                                <div class="buy-course-btn-box">
-                                    <button type="submit" class="btn theme-btn w-100 mb-2" onclick="addToCart({{ $course->id }}, '{{ $course->course_name }}',  '{{ $course->instructor_id }}',  '{{ $course->course_name_slug }}' )"><i class="la la-shopping-cart fs-18 mr-1"></i> Add to cart</button>
-                                    <button type="button" class="btn theme-btn w-100 theme-btn-white mb-2" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}',  '{{ $course->instructor_id }}',  '{{ $course->course_name_slug }}' )"><i class="la la-shopping-bag mr-1"></i> Buy this course</button>
+                            </p>
+                            <p class="preview-price-discount-text pb-35px">
+                                {{-- <span class="text-color-3">4 days</span> left at this price! --}}
+                            </p>
+                            <div class="buy-course-btn-box">
+                                <button type="submit" class="btn theme-btn w-100 mb-2" onclick="addToCart({{ $course->id }}, '{{ $course->course_name }}',  '{{ $course->instructor_id }}',  '{{ $course->course_name_slug }}' )"><i class="la la-shopping-cart fs-18 mr-1"></i> Add to cart</button>
+                                <button type="button" class="btn theme-btn w-100 theme-btn-white mb-2" onclick="buyCourse({{ $course->id }}, '{{ $course->course_name }}',  '{{ $course->instructor_id }}',  '{{ $course->course_name_slug }}' )"><i class="la la-shopping-bag mr-1"></i> Buy this course</button>
 
-                                    <div class="input-group mb-2" id="couponField">
-                                        <input class="form-control form--control pl-3" type="text" id="coupon_name" name="search" placeholder="Coupon code">
-                                        <div class="input-group-append">
-                                            {{-- <button class="btn theme-btn" type="submit" onclick="applyCoupon()">Apply Code</button> --}}
-                                            <input type="hidden" id="course_id" name="course_id" value="{{ $course->id }}">
-                                            <input type="hidden" id="instructor_id" name="instructor_id" value="{{ $course->instructor_id }}">
-                                            <a type="submit" onclick="applyInsCoupon()" class="btn theme-btn" style="color: #fff;">Apply Coupon</a>
-                                        </div>
+                                <div class="input-group mb-2" id="couponField">
+                                    <input class="form-control form--control pl-3" type="text" id="coupon_name" name="search" placeholder="Coupon code">
+                                    <div class="input-group-append">
+                                        {{-- <button class="btn theme-btn" type="submit" onclick="applyCoupon()">Apply Code</button> --}}
+                                        <input type="hidden" id="course_id" name="course_id" value="{{ $course->id }}">
+                                        <input type="hidden" id="instructor_id" name="instructor_id" value="{{ $course->instructor_id }}">
+                                        <a type="submit" onclick="applyInsCoupon()" class="btn theme-btn" style="color: #fff;">Apply Coupon</a>
                                     </div>
+                                </div>
 
-                                </div>
-                            </div><!-- end preview-course-content -->
-                        </div>
-                    </div><!-- end card -->
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <h3 class="card-title fs-18 pb-2">Course Features</h3>
-                            <div class="divider"><span></span></div>
-                            <ul class="generic-list-item generic-list-item-flash">
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-clock mr-2 text-color"></i>Duration</span> {{ $course->duration }} hours</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-file-text-o mr-2 text-color"></i>Resources</span> {{ $course->resources }}</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-bolt mr-2 text-color"></i>Quizzes</span> 26</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-eye mr-2 text-color"></i>Preview Lessons</span> 4</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-language mr-2 text-color"></i>Language</span> English</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-lightbulb mr-2 text-color"></i>Skill level</span> {{ $course->label }}</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-users mr-2 text-color"></i>Students</span> 30,506</li>
-                                <li class="d-flex align-items-center justify-content-between"><span><i class="la la-certificate mr-2 text-color"></i>Certificate</span> {{ $course->certificate }}</li>
-                            </ul>
-                        </div>
-                    </div><!-- end card -->
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <h3 class="card-title fs-18 pb-2">Course Categories</h3>
-                            <div class="divider"><span></span></div>
-                            <ul class="generic-list-item">
-                            @foreach ($categories as $cat)
-                                <li><a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}</a></li>
-                            @endforeach
-                            </ul>
-                        </div>
-                    </div><!-- end card -->
-                    <div class="card card-item">
-                        <div class="card-body">
-                            <h3 class="card-title fs-18 pb-2">Related Courses</h3>
-                            <div class="divider"><span></span></div>
-                            @foreach ($relatedCourses as $related)
-                            <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
-                                <a href="course-details.html" class="media-img">
-                                    <img class="mr-3 lazy" src="{{ asset($related->course_image) }}" data-src="{{ asset($related->course_image) }}" alt="Related course image">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="fs-15"><a href="course-details.html">{{ $related->course_name }}</a></h5>
-                                    <span class="d-block lh-18 py-1 fs-14">{{ $related['user']['name'] }}</span>
-                                    @if ($related->discount_price == NULL)
-                                    <p class="text-black font-weight-semi-bold lh-18 fs-15">${{ $related->selling_price }} </p>
-                                    @else
-                                    <p class="text-black font-weight-semi-bold lh-18 fs-15">${{ $related->discount_price }} <span class="before-price fs-14">${{ $related->selling_price }}</span></p>
-                                    @endif
-                                </div>
-                            </div><!-- end media -->
-                            @endforeach
-                            <div class="view-all-course-btn-box">
-                                <a href="course-grid.html" class="btn theme-btn w-100">View All Courses <i class="la la-arrow-right icon ml-1"></i></a>
                             </div>
+                        </div><!-- end preview-course-content -->
+                    </div>
+                </div><!-- end card -->
+                <div class="card card-item">
+                    <div class="card-body">
+                        <h3 class="card-title fs-18 pb-2">Course Features</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item generic-list-item-flash">
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-clock mr-2 text-color"></i>Duration</span> {{ $course->duration }} hours</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-file-text-o mr-2 text-color"></i>Resources</span> {{ $course->resources }}</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-bolt mr-2 text-color"></i>Quizzes</span> 26</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-eye mr-2 text-color"></i>Preview Lessons</span> 4</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-language mr-2 text-color"></i>Language</span> English</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-lightbulb mr-2 text-color"></i>Skill level</span> {{ $course->label }}</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-users mr-2 text-color"></i>Students</span> 30,506</li>
+                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-certificate mr-2 text-color"></i>Certificate</span> {{ $course->certificate }}</li>
+                        </ul>
+                    </div>
+                </div><!-- end card -->
+                <div class="card card-item">
+                    <div class="card-body">
+                        <h3 class="card-title fs-18 pb-2">Course Categories</h3>
+                        <div class="divider"><span></span></div>
+                        <ul class="generic-list-item">
+                            @foreach ($categories as $cat)
+                            <li><a href="{{ url('category/'.$cat->id.'/'.$cat->category_slug) }}">{{ $cat->category_name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div><!-- end card -->
+                <div class="card card-item">
+                    <div class="card-body">
+                        <h3 class="card-title fs-18 pb-2">Related Courses</h3>
+                        <div class="divider"><span></span></div>
+                        @foreach ($relatedCourses as $related)
+                        <div class="media media-card border-bottom border-bottom-gray pb-4 mb-4">
+                            <a href="course-details.html" class="media-img">
+                                <img class="mr-3 lazy" src="{{ asset($related->course_image) }}" data-src="{{ asset($related->course_image) }}" alt="Related course image">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="fs-15"><a href="course-details.html">{{ $related->course_name }}</a></h5>
+                                <span class="d-block lh-18 py-1 fs-14">{{ $related['user']['name'] }}</span>
+                                @if ($related->discount_price == NULL)
+                                <p class="text-black font-weight-semi-bold lh-18 fs-15">${{ $related->selling_price }} </p>
+                                @else
+                                <p class="text-black font-weight-semi-bold lh-18 fs-15">${{ $related->discount_price }} <span class="before-price fs-14">${{ $related->selling_price }}</span></p>
+                                @endif
+                            </div>
+                        </div><!-- end media -->
+                        @endforeach
+                        <div class="view-all-course-btn-box">
+                            <a href="course-grid.html" class="btn theme-btn w-100">View All Courses <i class="la la-arrow-right icon ml-1"></i></a>
                         </div>
-                    </div><!-- end card -->
-                </div><!-- end sidebar -->
-            </div><!-- end col-lg-4 -->
-        </div><!-- end row -->
+                    </div>
+                </div><!-- end card -->
+            </div><!-- end sidebar -->
+        </div><!-- end col-lg-4 -->
+    </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end course-details-area -->
 <!--======================================
@@ -766,5 +770,6 @@
             shortDesc.classList.toggle('d-none');
         }
     }
+
 </script>
 @endsection

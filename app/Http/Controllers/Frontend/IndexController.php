@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Review;
+use App\Models\Coupon;
 use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Models\Course_goal;
@@ -40,7 +41,25 @@ class IndexController extends Controller
         $cat_id = $course->category_id;
         $relatedCourses = Course::where('category_id',$cat_id)->where('id','!=',$id)->orderBy('id','DESC')->limit(3)->get();
 
-        return view('frontend.course.course_details',compact('course','goals','instructorCourses','categories','relatedCourses','student','review'));
+        $isEnrolled = false;
+
+        if (Auth::check()) {
+            $isEnrolled = Order::where('user_id', Auth::id())
+                ->where('course_id', $id) 
+                ->exists();
+        }
+
+        $isEnrolled = false;
+
+        if (Auth::check()) {
+            $isEnrolled = Order::where('user_id', Auth::id())
+                ->where('course_id', $id) 
+                ->exists();
+        }
+
+        $courseCoupons = Coupon::where('course_id', $course->id)->whereDate('coupon_validity', '>=', now())->get();
+
+        return view('frontend.course.course_details',compact('course','goals','instructorCourses','categories','relatedCourses','student','review','isEnrolled','courseCoupons'));
     }
 
     public function CategoryCourse($id, $slug)

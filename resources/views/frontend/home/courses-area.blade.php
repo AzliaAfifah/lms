@@ -3,7 +3,9 @@ $courses = App\Models\Course::where('status',1)->orderBy('id','desc')->limit(6)-
 $categories = App\Models\Category::orderBy('category_name','ASC')->get();
 @endphp
 
+
 <section class="course-area pb-120px">
+
     <div class="container">
         <div class="section-heading text-center">
             <h5 class="ribbon ribbon-lg mb-2">Choose your desired languages</h5>

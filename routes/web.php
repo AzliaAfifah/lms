@@ -118,6 +118,8 @@ Route::middleware(['auth','roles:admin'])->group(function(){
         Route::get('admin/edit/coupon/{id}','AdminEditCoupon')->name('admin.edit.coupon');
         Route::post('admin/update/coupon','AdminUpdateCoupon')->name('admin.update.coupon');
         Route::get('admin/delete/coupon/{id}','AdminDeleteCoupon')->name('admin.delete.coupon');
+        Route::get('admin/add/coupon/announcement','AdminAddCouponAnnouncement')->name('admin.add.coupon.announcement');
+        Route::post('admin/store/coupon/announcement','AdminStoreCouponAnnouncement')->name('admin.store.coupon.announcement');
     });
 
     // SMTP Setting

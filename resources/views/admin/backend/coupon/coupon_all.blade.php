@@ -15,7 +15,9 @@
 					</div>
 					<div class="ms-auto">
 						<div class="btn-group">
+							@if (Auth::user()->can('coupon.add'))
 							<a href="{{ route('admin.add.coupon') }}" class="btn btn-primary px-5">Add Coupon</a>
+							@endif
 						</div>
 					</div>
 				</div>
@@ -50,8 +52,12 @@
                                             @endif
                                         </td>
 										<td>
+											@if (Auth::user()->can('coupon.edit'))
 											<a href="{{ route('admin.edit.coupon',$item->id) }}" class="btn btn-info px-5">Edit </a>
+											@endif
+											@if (Auth::user()->can('coupon.delete'))
 											<a href="{{ route('admin.delete.coupon',$item->id) }}" class="btn btn-danger px-5" id="delete" >Delete </a>
+											@endif
 										</td>
 									</tr>
 								@endforeach

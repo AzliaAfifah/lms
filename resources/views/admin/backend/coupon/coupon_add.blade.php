@@ -23,7 +23,7 @@
         <div class="card-body p-4">
             <h5 class="mb-4">Add Coupon</h5>
             <form id="myForm" action="{{ route('admin.store.coupon') }}" method="POST" class="row g-3" enctype="multipart/form-data">
-            @csrf
+                @csrf
                 <div class="form-group col-md-6">
                     <label class="form-label">Coupon Name</label>
                     <input type="text" name="coupon_name" class="form-control">
@@ -35,6 +35,17 @@
                 <div class="form-group col-md-6">
                     <label class="form-label">Coupon Validity Date</label>
                     <input type="date" name="coupon_validity" class="form-control" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}">
+                </div>
+                <div class="mt-4">
+                <h5 class="mb-4">Add Coupon Announcement (Optional)</h5>
+                    <div class="form-group col-md-6">
+                        <label class="form-label">Coupon Title Announcement</label>
+                        <input type="text" name="coupon_title" class="form-control">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="form-label">Coupon Description Announcement</label>
+                        <textarea name="coupon_announcement" rows="5" class="form-control"></textarea>
+                    </div>
                 </div>
                 <div class="col-md-12">
                     <div class="d-md-flex d-grid align-items-center gap-3">

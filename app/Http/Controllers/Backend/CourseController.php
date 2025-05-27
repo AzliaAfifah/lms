@@ -381,22 +381,34 @@ class CourseController extends Controller
         return redirect()->back()->with($notification);
     }
 
+    // public function UpdateLectureStatus(Request $request)
+    // {
+    //     $userId = auth()->id();
+    //     $lectureId = $request->lecture_id;
+    //     $status = $request->checked ? '1' : '0';
+
+    //     $checklist = LectureChecklist::updateOrCreate(
+    //         ['user_id' => $userId, 'lecture_id' => $lectureId],
+    //         ['status' => $status]
+    //     );
+
+    //     return response()->json([
+    //         'success' => true,
+    //         'checklist' => $checklist,
+    //         'message' => 'Course Lecture Checked Successfully!'
+    //     ]);
+    // }
+
     public function UpdateLectureStatus(Request $request)
     {
-        $userId = auth()->id();
-        $lectureId = $request->lecture_id;
-        $status = $request->checked ? '1' : '0';
-
-        $checklist = LectureChecklist::updateOrCreate(
-            ['user_id' => $userId, 'lecture_id' => $lectureId],
-            ['status' => $status]
-        );
-
-        return response()->json([
-            'success' => true,
-            'checklist' => $checklist,
-            'message' => 'Course Lecture Checked Successfully!'
+        LectureChecklist::updateOrCreate([
+            'user_id' => auth()->id(),
+            'lecture_id' => $request->lecture_id
+        ], [
+            'status' => 1
         ]);
+
+        return response()->json(['success' => true]);
     }
 
 

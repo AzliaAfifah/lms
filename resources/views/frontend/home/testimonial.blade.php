@@ -1,7 +1,8 @@
 @guest
 
 @else
-<section class="register-area section-padding dot-bg overflow-hidden">
+@if(auth()->user()->enrolledCourses()->exists())
+    <section class="register-area section-padding dot-bg overflow-hidden">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -78,5 +79,9 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </section><!-- end register-area -->
+@else
+    <div class="alert alert-warning">You need to enroll in a course to give feedback.</div>
+@endif
+
 @endguest
 

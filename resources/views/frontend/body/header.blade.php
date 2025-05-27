@@ -107,7 +107,6 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('course.all') }}">courses</a>
-
                                     </li>
                                     <li>
                                         <a href="{{ route('blog') }}">blog </a>

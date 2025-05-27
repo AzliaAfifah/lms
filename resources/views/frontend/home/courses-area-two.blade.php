@@ -11,7 +11,7 @@ $courses = App\Models\Course::where('status',1)->where('featured',1)->orderBy('i
                 <span class="section-divider"></span>
             </div><!-- end section-heading -->
             <div class="course-carousel owl-action-styled owl--action-styled mt-30px">
-            @foreach ($courses as $course)
+            @foreach ($courses as $course)4
                 <div class="card card-item card-preview" data-tooltip-content="#tooltip_content_3">
                     <div class="card-image">
                         <a href="{{ url('course/details/'.$course->id.'/'.$course->course_name_slug) }}" class="d-block">
