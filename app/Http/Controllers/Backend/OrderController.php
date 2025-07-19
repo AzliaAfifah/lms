@@ -11,7 +11,7 @@ use App\Models\Course;
 use App\Models\CourseLecture;
 use App\Models\CourseSection;
 use App\Models\Course_goal;
-use App\Models\Coupon;
+use App\Models\User;
 use Intervention\Image\Laravel\Facades\Image;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -115,6 +115,8 @@ class OrderController extends Controller
 
         $allquestion = Question::latest()->get();
 
-        return view('frontend.mycourse.course_view', compact('course','section','allquestion','quisCount'));
+        $instructor = User::with('instructorDescription')->find($id);
+
+        return view('frontend.mycourse.course_view', compact('course','section','allquestion','quisCount','instructor'));
     }
 }

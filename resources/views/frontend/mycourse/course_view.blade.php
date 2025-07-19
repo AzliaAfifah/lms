@@ -163,10 +163,15 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <div id="app">
+                                        <send-message :receiverid="{{ $instructor->id }}" receivername="{{ $instructor->name }}"></send-message>
+                                    </div>
+                                </li>
+                                {{-- <li class="nav-item">
                                     <a class="nav-link" id="question-and-ans-tab" data-toggle="tab" href="#question-and-ans" role="tab" aria-controls="question-and-ans" aria-selected="false">
                                         Question & Ans
                                     </a>
-                                </li>
+                                </li> --}}
                                 {{-- <li class="nav-item">
                                     <a class="nav-link" id="announcements-tab" data-toggle="tab" href="#announcements" role="tab" aria-controls="announcements" aria-selected="false">
                                         Announcements
@@ -955,80 +960,57 @@
         @include('frontend.body.footer')
         </div><!-- end course-dashboard-column -->
         <div class="course-dashboard-sidebar-column">
-            <button class="sidebar-open" type="button"><i class="la la-angle-left"></i> Course
-                content</button>
-            <div class="course-dashboard-sidebar-wrap custom-scrollbar-styled">
-                <div class="course-dashboard-side-heading d-flex align-items-center justify-content-between">
-                    <h3 class="fs-18 font-weight-semi-bold">Course content</h3>
-                    <button class="sidebar-close" type="button"><i class="la la-times"></i></button>
-                </div><!-- end course-dashboard-side-heading -->
-                <div class="course-dashboard-side-content">
-                    <div class="accordion generic-accordion generic--accordion" id="accordionCourseExample">
+                    <button class="sidebar-open" type="button"><i class="la la-angle-left"></i> Course content</button>
+                    <div class="course-dashboard-sidebar-wrap custom-scrollbar-styled">
+                        <div class="course-dashboard-side-heading d-flex align-items-center justify-content-between">
+                            <h3 class="fs-18 font-weight-semi-bold">Course content</h3>
+                            <button class="sidebar-close" type="button"><i class="la la-times"></i></button>
+                        </div><!-- end course-dashboard-side-heading -->
+                        <div class="course-dashboard-side-content">
+                            <div class="accordion generic-accordion generic--accordion" id="accordionCourseExample">
 
-                        @foreach ($section as $sec)
-                        @php
-                        $lectures = App\Models\CourseLecture::where('section_id', $sec->id)->get();
-                        @endphp
+                                @foreach($section as $sec)
 
-                        <div class="card">
-                            <div class="card-header" id="headingOne{{ $sec->id }}">
-                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne{{ $sec->id }}" aria-expanded="true" aria-controls="collapseOne">
-                                    <i class="la la-angle-down"></i>
-                                    <i class="la la-angle-up"></i>
-                                    <span class="fs-15">{{ $sec->section_title }}</span>
-                                    <span class="course-duration">
-                                        <span>({{ count($lectures) }})</span>
-                                    </span>
-                                </button>
-                            </div><!-- end card-header -->
-                            <div id="collapseOne{{ $sec->id }}" class="collapse " aria-labelledby="headingOne{{ $sec->id }}" data-parent="#accordionCourseExample">
-                                <div class="card-body p-0">
-                                    <ul class="curriculum-sidebar-list">
-                                        @foreach ($lectures as $lect)
-                                        <li class="course-item-link active">
-                                            <div class="course-item-content-wrap">
-                                                <div class="">
-                                                    @php
-                                                    $check = App\Models\LectureChecklist::where('user_id', auth()->id())
-                                                    ->where('lecture_id', $lect->id)
-                                                    ->first();
-                                                    $isChecked = $check && $check->status == 1;
-                                                    @endphp
-                                                    <label>
-                                                        {{ $lect->name }}
-                                                    </label>
-                                                </div>
-                                                <div class="course-item-content">
-                                                    <h4 class="fs-15 lecture-title" data-video-url="{{ $lect->url }}" data-video-file="{{ $lect->video }}" data-content="{!! $lect->content !!}">
-                                                        {{ $lect->lecture_title }}</h4>
-                                                    @if ($isChecked)
-                                                    <div id="statusBox">
-                                                        <span class="status-label badge badge-success"><i class="la la-check-circle"></i> Completed</span>
-                                                    </div>
-                                                    @endif
-                                                </div><!-- end course-item-content -->
-                                            </div><!-- end course-item-content-wrap -->
-                                        </li>
-                                        @endforeach
-                                    </ul>
-                                </div><!-- end card-body -->
-                            </div><!-- end collapse -->
-                        </div><!-- end card -->
-                        @endforeach
-                        @if ($quisCount > 0)
-                        {{-- <div class="card"> --}}
-                        {{-- <div class="card-header" id=""> --}}
-                        <div class="center">
-                            <a href="{{ route('quiz.course', $course->id) }}" class="btn btn-link quiz-button mt-4"><i class="la la-edit"></i>
-                                <span class="fs-15"> Final Review Quiz</span>
-                            </a>
-                        </div>
-                        {{-- </div><!-- end card-header --> --}}
-                        {{-- </div><!-- end card --> --}}
-                        @endif
-                    </div><!-- end accordion-->
-                </div><!-- end course-dashboard-side-content -->
-            </div><!-- end course-dashboard-sidebar-wrap -->
+                                @php
+                                $lectures = App\Models\CourseLecture::where('section_id',$sec->id)->get();
+                                @endphp
+
+                                <div class="card">
+                                    <div class="card-header" id="headingOne{{ $sec->id }}">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne{{ $sec->id }}" aria-expanded="true" aria-controls="collapseOne">
+                                            <i class="la la-angle-down"></i>
+                                            <i class="la la-angle-up"></i>
+                                            <span class="fs-15">{{ $sec->section_title }}</span>
+                                            <span class="course-duration">
+                                                <span>({{ count($lectures) }})</span>
+                                            </span>
+                                        </button>
+                                    </div><!-- end card-header -->
+                                    <div id="collapseOne{{ $sec->id }}" class="collapse " aria-labelledby="headingOne{{ $sec->id }}" data-parent="#accordionCourseExample">
+                                        <div class="card-body p-0">
+                                            <ul class="curriculum-sidebar-list">
+                                                @foreach($lectures as $lect)
+                                                <li class="course-item-link active">
+                                                    <div class="course-item-content-wrap">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="courseCheckbox" required>
+                                                            <label class="custom-control-label custom--control-label" for="courseCheckbox"></label>
+                                                        </div><!-- end custom-control -->
+                                                        <div class="course-item-content">
+                                                            <h4 class="fs-15 lecture-title" data-video-url="{{ $lect->url }}" data-content="{!! $lect->content !!}">{{ $lect->lecture_title }}</h4>
+                                                        </div><!-- end course-item-content -->
+                                                    </div><!-- end course-item-content-wrap -->
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </div><!-- end card-body -->
+                                    </div><!-- end collapse -->
+                                </div><!-- end card -->
+                                @endforeach
+
+                            </div><!-- end accordion-->
+                        </div><!-- end course-dashboard-side-content -->
+                    </div><!-- end course-dashboard-sidebar-wrap -->
         </div><!-- end course-dashboard-sidebar-column -->
         </div><!-- end course-dashboard-container -->
         </div><!-- end course-dashboard-wrap -->
@@ -1290,57 +1272,6 @@
 
     </script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const videoFile = document.getElementById('videoContainer');
-        const iframe = document.getElementById('iframeVideo');
-
-        // ✅ Untuk videoFile (HTML5)
-        if (videoFile) {
-            videoFile.addEventListener('ended', sendCompleteRequest);
-        }
-
-        // ✅ Untuk videoUrl (YouTube iframe)
-        if (iframe) {
-            // Load YouTube API
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            window.onYouTubeIframeAPIReady = function () {
-                const player = new YT.Player('iframeVideo', {
-                    events: {
-                        'onStateChange': function (event) {
-                            if (event.data === YT.PlayerState.ENDED) {
-                                sendCompleteRequest();
-                            }
-                        }
-                    }
-                });
-            };
-        }
-
-        function sendCompleteRequest() {
-            fetch('/update/lecture/status', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    lecture_id: {{ $lect->id }}
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.success) {
-                    document.getElementById('statusBox').innerHTML = `<span class="badge badge-success">✔ Completed</span>`;
-                }
-            });
-        }
-    });
-</script>
 
     {{-- <script>
         $('.lecture-btn').on('click', function() {
